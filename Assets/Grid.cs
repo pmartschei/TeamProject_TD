@@ -27,7 +27,8 @@ public class Grid : MonoBehaviour {
                 zoffset += offsetTiles;
                 xoffset = 0.0f;
             }
-            GameObject newObject = (GameObject)Instantiate(singleTile, new Vector3(transform.position.x + xoffset, transform.position.y, transform.position.z + zoffset), new Quaternion(270, 0, 0, transform.rotation.w));
+            GameObject newObject = Instantiate(singleTile);
+            newObject.transform.position = new Vector3(transform.position.x + xoffset, transform.position.y, transform.position.z + zoffset);
         }
     }
 
