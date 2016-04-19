@@ -45,9 +45,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Grid.cs" />
-     <Compile Include="Assets\MouseScript.cs" />
-     <Compile Include="Assets\Scripts\DrawTiles.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\DrawTiles.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\MouseScript.cs" />
+     <Compile Include="Assets\Scripts\Grid.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
