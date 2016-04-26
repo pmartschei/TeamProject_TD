@@ -7,6 +7,7 @@ public class FieldScript : MonoBehaviour
     // Use this for initialization
     public int m_LevelWidth;
     public GameObject m_SimpleInitTile;
+    public GameObject m_SimpleInitStreetTile;
     private GameObject[][] m_TileArray;
     void Start()
     {
@@ -29,11 +30,22 @@ public class FieldScript : MonoBehaviour
         {
             for (int y = 0; y < m_LevelWidth; y++)
             {
-                GameObject tile = Instantiate(m_SimpleInitTile);
-                Mesh mesh = tile.GetComponent<MeshFilter>().mesh;
-                Vector3 size = mesh.bounds.size;
-                tile.transform.position = new Vector3(x * size.x + size.x / 2.0f, -size.z / 2.0f, y * size.y + size.y / 2.0f);
-                AddTileTo(tile, x,y);
+                if (x == 3 && y == 4)
+                {
+                    GameObject tile = Instantiate(m_SimpleInitStreetTile);
+                    Mesh mesh = tile.GetComponent<MeshFilter>().mesh;
+                    Vector3 size = mesh.bounds.size;
+                    tile.transform.position = new Vector3(x * size.x + size.x / 2.0f, -size.z / 2.0f, y * size.y + size.y / 2.0f);
+                    AddTileTo(tile, x, y);
+                }
+                else
+                {
+                    GameObject tile = Instantiate(m_SimpleInitTile);
+                    Mesh mesh = tile.GetComponent<MeshFilter>().mesh;
+                    Vector3 size = mesh.bounds.size;
+                    tile.transform.position = new Vector3(x * size.x + size.x / 2.0f, -size.z / 2.0f, y * size.y + size.y / 2.0f);
+                    AddTileTo(tile, x, y);
+                }
             }
         }
     }

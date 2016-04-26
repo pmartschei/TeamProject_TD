@@ -64,8 +64,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\GameLogic\DrawTiles.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\FieldScript.cs" />
     <Compile Include="Assets\Scripts\GameLogic\MouseScript.cs" />
     <Compile Include="Assets\Scripts\Grid.cs" />
+    <Compile Include="Assets\Scripts\PathTileScript.cs" />
     <Compile Include="Assets\Scripts\UIManagerScript.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />

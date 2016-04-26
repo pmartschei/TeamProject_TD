@@ -22,7 +22,7 @@ public class MouseScript : MonoBehaviour
             m_GhostTile = Instantiate(m_Tile);
             m_GhostTile.transform.position = new Vector3(-100, -100, -100);
             Material ghostMaterial = m_GhostTile.GetComponent<Renderer>().material;
-            ghostMaterial.color = new Color(1.0f, 1.0f, 1.0f, 0.25f);
+            ghostMaterial.color = new Color(1.0f, 0.0f, 0.0f, 0.25f);
         }
         Mesh mesh = m_GhostTile.GetComponent<MeshFilter>().mesh;
         Vector3 size = mesh.bounds.size;
@@ -54,7 +54,7 @@ public class MouseScript : MonoBehaviour
             if (yNegative)
                 yMultiplier = -1.0f;
         }
-        if (m_Field.HasNeighbour(x, y) && !m_Field.IsTile(x,y))
+        if (m_Field.HasNeighbour(x, y) && !m_Field.IsTile(x,y) && checkValidStreet(x, y))
         {
             Vector3 pos = new Vector3(x * size.x + size.x / 2.0f * xMultiplier, -size.z / 2.0f, y * size.y + size.y / 2.0f * yMultiplier);
             m_GhostTile.transform.position = pos;
@@ -64,15 +64,15 @@ public class MouseScript : MonoBehaviour
                 m_Field.AddTileTo(rb, x, y);
 
                 Transform t = rb.GetComponent<Transform>();
-                Material m = rb.GetComponent<Renderer>().material;
-                if (x == 0 || y == 0)
-                {
-                    m.color = Color.white;
-                }
-                else
-                {
-                    m.color = new Color((255 / (float)x) / 255, (255 / (float)y) / 255, 0.0f, 1.0f);
-                }
+                //Material m = rb.GetComponent<Renderer>().material;
+                //if (x == 0 || y == 0)
+                //{
+                //    m.color = Color.white;
+                //}
+                //else
+                //{
+                //    m.color = new Color((255 / (float)x) / 255, (255 / (float)y) / 255, 0.0f, 1.0f);
+                //}
                 if (t != null)
                 {
 
@@ -88,5 +88,9 @@ public class MouseScript : MonoBehaviour
             m_GhostTile = null;
         }
     }
-}
 
+    bool checkValidStreet(int x, int y)
+    {
+        return true;
+    }
+}
