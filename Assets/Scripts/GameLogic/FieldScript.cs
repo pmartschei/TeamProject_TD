@@ -80,6 +80,7 @@ public class FieldScript : MonoBehaviour
                 }
                 Mesh mesh = tile.GetComponent<MeshFilter>().mesh;
                 Vector3 size = mesh.bounds.size;
+                Debug.Log(size.x);
                 tile.transform.position = new Vector3(x * size.x + size.x / 2.0f, -size.z / 2.0f, y * size.y + size.y / 2.0f);
                 AddTileTo(tile, x, y);
             }
