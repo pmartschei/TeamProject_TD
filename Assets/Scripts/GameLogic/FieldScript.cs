@@ -1,13 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class FieldScript : MonoBehaviour
 {
 
     // Use this for initialization
     public int m_LevelWidth;
-    public GameObject m_SimpleInitTile;
-    public GameObject m_SimpleInitStreetTile;
+
+    public GameObject m_EndTile;
+    public GameObject m_BlankTile;
+    public GameObject m_TowerTile;
+    public GameObject m_StreetTile;
+    public GameObject m_CurveTile;
+
+    public int m_GeneratedRandomValue;
+
     private GameObject[][] m_TileArray;
     void Start()
     {
@@ -16,7 +24,100 @@ public class FieldScript : MonoBehaviour
         {
             m_TileArray[i] = new GameObject[m_LevelWidth];
         }
-        SimpleInit();
+
+        Init();
+    }
+
+    private void Init()
+    {
+        System.Random rand = new System.Random();
+        double randValue = rand.NextDouble();
+        int scenario = (int)(randValue * 100);
+
+        m_GeneratedRandomValue = scenario;
+
+        if(scenario < 33)
+        {
+            CreateScenario(0);
+        }
+        else if(scenario < 66)
+        {
+            CreateScenario(1);
+        }
+        else
+        {
+            CreateScenario(2);
+        }
+    }
+
+    private void CreateScenario(int scenario)
+    {
+
+        int[,] tileOrder = GetTileValues(scenario);
+
+        for (int x = 0; x < m_LevelWidth; x++)
+        {
+            for (int y = 0; y < m_LevelWidth; y++)
+            {
+                GameObject tile = null;
+                switch(tileOrder[m_LevelWidth - y - 1, x])
+                {
+                    case 0:
+                        tile = Instantiate(m_EndTile);
+                        break;
+                    case 1:
+                        tile = Instantiate(m_BlankTile);
+                        break;
+                    case 2:
+                        tile = Instantiate(m_TowerTile);
+                        break;
+                    case 3:
+                        tile = Instantiate(m_StreetTile);
+                        break;
+                    case 4:
+                        tile = Instantiate(m_CurveTile);
+                        break;
+                }
+                Mesh mesh = tile.GetComponent<MeshFilter>().mesh;
+                Vector3 size = mesh.bounds.size;
+                tile.transform.position = new Vector3(x * size.x + size.x / 2.0f, -size.z / 2.0f, y * size.y + size.y / 2.0f);
+                AddTileTo(tile, x, y);
+            }
+        }
+    }
+
+    private int[,] GetTileValues(int scenario)
+    {
+        if (scenario == 0)
+        {
+            int[,] tileOrder = new int[,]
+            { { 1, 2, 3, 2, 1 },
+              { 1, 1, 4, 4, 1 },
+              { 1, 1, 2, 3, 2 },
+              { 1, 1, 4, 4, 1 },
+              { 1, 2, 3, 2, 1 }};
+            return tileOrder;
+        }
+        else if(scenario == 1)
+        {
+            int[,] tileOrder = new int[,]
+             { { 1, 2, 3, 2, 1 },
+               { 1, 4, 4, 1, 1 },
+               { 2, 3, 2, 1, 1 },
+               { 1, 4, 4, 1, 1 },
+               { 1, 2, 3, 2, 1 }};
+            return tileOrder;
+        }
+        else
+        {
+            int[,] tileOrder = new int[,]
+            { { 1, 2, 3, 2, 1 },
+              { 1, 1, 3, 1, 1 },
+              { 1, 2, 3, 2, 1 },
+              { 1, 1, 3, 1, 1 },
+              { 1, 2, 3, 2, 1 }};
+            return tileOrder;
+        }
     }
 
     // Update is called once per frame
@@ -24,31 +125,7 @@ public class FieldScript : MonoBehaviour
     {
 
     }
-    private void SimpleInit()
-    {
-        for (int x = 0; x < m_LevelWidth; x++)
-        {
-            for (int y = 0; y < m_LevelWidth; y++)
-            {
-                if (x == 3 && y == 4)
-                {
-                    GameObject tile = Instantiate(m_SimpleInitStreetTile);
-                    Mesh mesh = tile.GetComponent<MeshFilter>().mesh;
-                    Vector3 size = mesh.bounds.size;
-                    tile.transform.position = new Vector3(x * size.x + size.x / 2.0f, -size.z / 2.0f, y * size.y + size.y / 2.0f);
-                    AddTileTo(tile, x, y);
-                }
-                else
-                {
-                    GameObject tile = Instantiate(m_SimpleInitTile);
-                    Mesh mesh = tile.GetComponent<MeshFilter>().mesh;
-                    Vector3 size = mesh.bounds.size;
-                    tile.transform.position = new Vector3(x * size.x + size.x / 2.0f, -size.z / 2.0f, y * size.y + size.y / 2.0f);
-                    AddTileTo(tile, x, y);
-                }
-            }
-        }
-    }
+
     public bool AddTileTo(GameObject go, int x, int y)
     {
         //CheckArraySize(ref m_TileArray[x], y+1);
