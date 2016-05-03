@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\GameLogic\DrawTiles.cs" />
     <Compile Include="Assets\Scripts\GameLogic\FieldScript.cs" />
     <Compile Include="Assets\Scripts\GameLogic\MouseScript.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\TileUI.cs" />
     <Compile Include="Assets\Scripts\Grid.cs" />
     <Compile Include="Assets\Scripts\PathTileScript.cs" />
     <Compile Include="Assets\Scripts\UIManagerScript.cs" />
