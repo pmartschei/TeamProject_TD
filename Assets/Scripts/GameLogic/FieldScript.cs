@@ -51,12 +51,12 @@ public class FieldScript : MonoBehaviour
     }
     public bool AddTileTo(GameObject go, int x, int y)
     {
-        //CheckArraySize(ref m_TileArray[x], y+1);
+        CheckArraySize(ref m_TileArray[x], y+1);
         if (IsValid(x, y))
         {
             m_TileArray[x][y] = go;
-            SingleRowAdvance(y);
-            return false;
+            //SingleRowAdvance(y); und checkarraysize kommentieren
+            return true;
         }
         return false;
     }
@@ -178,6 +178,13 @@ public class FieldScript : MonoBehaviour
 
     public GameObject GetTileFrom(int x, int y)
     {
-        return m_TileArray[x][y];
+        try
+        {
+            return m_TileArray[x][y];
+        }
+        catch
+        {
+            return null;
+        }
     }
 }
