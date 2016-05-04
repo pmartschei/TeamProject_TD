@@ -2,21 +2,24 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class RawImageCamera : MonoBehaviour {
+public class RawImageCamera : MonoBehaviour
+{
 
-	// Use this for initialization
+    // Use this for initialization
 
     public Camera m_MainCamera;
     public Camera m_ImageCamera;
     public RawImage m_Image;
     [SerializeField]
     public GameObjectHitEvent m_OnGameObjectHit;
-	void Start () {
-	    
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         if (!Input.GetMouseButton(0))
             return;
         Vector3[] corners = new Vector3[4];
@@ -36,5 +39,5 @@ public class RawImageCamera : MonoBehaviour {
                 m_OnGameObjectHit.Invoke(hit1.transform.gameObject);
             }
         }
-	}
+    }
 }
