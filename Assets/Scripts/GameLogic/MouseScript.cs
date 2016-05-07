@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using System.Collections.Generic;
+using UnityEngine.Events;
 
 public class MouseScript : MonoBehaviour
 {
 
     // Use this for initialization
     public Camera m_Camera;
-    public Camera m_Camera2;
-    public GameObject m_Screen;
     public GameObject m_Tile;
     public GameObject m_FloorPlane;
     public FieldScript m_Field;
@@ -29,21 +30,6 @@ public class MouseScript : MonoBehaviour
                 script.Rotate();//rotieren von den teilen
                 Destroy(m_GhostTile);
                 m_GhostTile = null;
-            }
-            Ray ray = m_Camera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit1;
-            Debug.Log(ray);
-            if (Physics.Raycast(ray, out hit1))
-            {
-                Debug.Log(hit1.textureCoord);
-                if (hit1.transform.gameObject == m_Screen)
-                {
-                    ray = m_Camera2.ViewportPointToRay(new Vector3(hit1.textureCoord.x, hit1.textureCoord.y, 0f));
-                    if (Physics.Raycast(ray, out hit1))
-                    {
-                        Debug.Log(hit1.transform.gameObject);
-                    }
-                }
             }
         }
         if (m_GhostTile == null)

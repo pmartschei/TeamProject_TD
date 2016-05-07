@@ -32,22 +32,11 @@ public class FieldScript : MonoBehaviour
     {
         System.Random rand = new System.Random();
         double randValue = rand.NextDouble();
-        int scenario = (int)(randValue * 100);
+        int scenario = (int)(randValue * 99);
 
         m_GeneratedRandomValue = scenario;
 
-        if(scenario < 33)
-        {
-            CreateScenario(0);
-        }
-        else if(scenario < 66)
-        {
-            CreateScenario(1);
-        }
-        else
-        {
-            CreateScenario(2);
-        }
+        CreateScenario(scenario/33);
     }
 
     private void CreateScenario(int scenario)
@@ -80,7 +69,7 @@ public class FieldScript : MonoBehaviour
                 }
                 Mesh mesh = tile.GetComponent<MeshFilter>().mesh;
                 Vector3 size = mesh.bounds.size;
-                Debug.Log(size.x);
+                Debug.Log(size.x +" todo");
                 tile.transform.position = new Vector3(x * size.x + size.x / 2.0f, -size.z / 2.0f, y * size.y + size.y / 2.0f);
                 AddTileTo(tile, x, y);
             }

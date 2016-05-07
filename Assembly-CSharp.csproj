@@ -1,12 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
+<<<<<<< HEAD
     <RootNamespace></RootNamespace>
     <ProjectGuid>{2460DD42-064B-E5BB-4719-175519E06856}</ProjectGuid>
+=======
+    <RootNamespace>
+    </RootNamespace>
+    <ProjectGuid>{1B62ABBF-064C-214C-E413-B5AC398C20F2}</ProjectGuid>
+>>>>>>> e9a3032d7be045348399b1765ab649e875172c4f
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -45,6 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
      <Compile Include="Assets\Scripts\GameLogic\DrawTiles.cs" />
      <Compile Include="Assets\Scripts\GameLogic\FieldScript.cs" />
      <Compile Include="Assets\Scripts\GameLogic\MouseScript.cs" />
@@ -60,6 +67,25 @@
  <Reference Include="UnityEngine.Networking">
  <HintPath>F:/Thomas/Unity/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
+=======
+    <Compile Include="Assets\Scripts\GameLogic\DrawTiles.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\FieldScript.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\MouseScript.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\TileSystem.cs" />
+    <Compile Include="Assets\Scripts\GameLogic\TileUI.cs" />
+    <Compile Include="Assets\Scripts\GameObjectHitEvent.cs" />
+    <Compile Include="Assets\Scripts\Grid.cs" />
+    <Compile Include="Assets\Scripts\PathTileScript.cs" />
+    <Compile Include="Assets\Scripts\RawImageCamera.cs" />
+    <Compile Include="Assets\Scripts\UIManagerScript.cs" />
+    <Compile Include="Assets\yoloscript.cs" />
+    <Reference Include="UnityEngine.UI">
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+    </Reference>
+>>>>>>> e9a3032d7be045348399b1765ab649e875172c4f
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -69,5 +95,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  
 </Project>
