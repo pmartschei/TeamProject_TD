@@ -121,6 +121,7 @@ public class FieldScript : MonoBehaviour
         CheckArraySize(ref m_TileArray[x], y+1);
         if (IsValid(x, y))
         {
+            go.transform.parent = this.transform;
             m_TileArray[x][y] = go;
             //SingleRowAdvance(y); und checkarraysize kommentieren
             return true;

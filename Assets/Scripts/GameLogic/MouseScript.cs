@@ -76,8 +76,10 @@ public class MouseScript : MonoBehaviour
             Vector3 pos = new Vector3(x * size.x + size.x / 2.0f * xMultiplier, -size.z / 2.0f, y * size.y + size.y / 2.0f * yMultiplier);
             m_GhostTile.transform.position = pos;
             //Ghosttile verschieben
+            Material ghostMaterial = m_GhostTile.GetComponent<Renderer>().material;
             if (checkValidStreet(x, y))
             {
+                ghostMaterial.color = new Color(1.0f, 1.0f, 1.0f, 0.25f);
                 if (Input.GetMouseButtonDown(0))
                 {
                     GameObject rb = Instantiate(m_Tile);
@@ -94,8 +96,7 @@ public class MouseScript : MonoBehaviour
             }
             else//if invalides Tile
             {
-                Material ghostMaterial = m_GhostTile.GetComponent<Renderer>().material;
-                ghostMaterial.color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
+                ghostMaterial.color = new Color(1.0f, 0.0f, 0.0f, 0.25f);
             }
         }
         else
@@ -113,12 +114,12 @@ public class MouseScript : MonoBehaviour
     bool checkValidStreet(int x, int y)
     {
         PathTileScript pt = m_Tile.GetComponent<PathTileScript>();
+        GameObject southObject = m_Field.GetTileFrom(x, y - 1);
+        GameObject northObject = m_Field.GetTileFrom(x, y + 1);
+        GameObject eastObject = m_Field.GetTileFrom(x + 1, y);
+        GameObject westObject = m_Field.GetTileFrom(x - 1, y);
         if (pt != null)
         {
-            GameObject southObject = m_Field.GetTileFrom(x, y - 1);
-            GameObject northObject = m_Field.GetTileFrom(x, y + 1);
-            GameObject eastObject = m_Field.GetTileFrom(x + 1, y);
-            GameObject westObject = m_Field.GetTileFrom(x - 1, y);
             int resultSouth = checkStreet(pt, PathTileScript.SOUTH, southObject, PathTileScript.NORTH);
             int resultNorth = checkStreet(pt, PathTileScript.NORTH, northObject, PathTileScript.SOUTH);
             int resultEast = checkStreet(pt, PathTileScript.EAST, eastObject, PathTileScript.WEST);
@@ -131,14 +132,50 @@ public class MouseScript : MonoBehaviour
             {
                 return false;
             }
-            //if (pt.GetDirection(PathTileScript.EAST) && x + 1 >= m_Field.m_LevelWidth)//wenn osten true und letztes feld ist
-            //{
-            //    return false;
-            //}
-            //if (pt.GetDirection(PathTileScript.WEST) && x - 1 > 0)//wenn westen true und letztes feld ist
-            //{
-            //    return false;
-            //}
+            if (pt.GetDirection(PathTileScript.EAST) && x + 1 >= m_Field.m_LevelWidth)//wenn osten true und letztes feld ist
+            {
+                return false;
+            }
+            if (pt.GetDirection(PathTileScript.WEST) && x - 1 < 0)//wenn westen true und letztes feld ist
+            {
+                return false;
+            }
+        }
+        else
+        {
+            PathTileScript script;
+            if (southObject != null)
+            {
+                script = southObject.GetComponent<PathTileScript>();
+                if (script != null && script.m_north)
+                {
+                    return false;
+                }
+            }
+            if (northObject != null)
+            {
+                script = northObject.GetComponent<PathTileScript>();
+                if (script != null && script.m_south)
+                {
+                    return false;
+                }
+            }
+            if (eastObject != null)
+            {
+                script = eastObject.GetComponent<PathTileScript>();
+                if (script != null && script.m_west)
+                {
+                    return false;
+                }
+            }
+            if (westObject != null)
+            {
+                script = westObject.GetComponent<PathTileScript>();
+                if (script != null && script.m_east)
+                {
+                    return false;
+                }
+            }
         }
         return true;
     }
