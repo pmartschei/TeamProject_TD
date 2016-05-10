@@ -196,5 +196,7 @@ public class MouseScript : MonoBehaviour
     public void SetTile(GameObject gameObject)
     {
         m_Tile = Instantiate(gameObject);
+        // Destroy the script for the UI functionality, not needed anymore
+        Destroy(m_Tile.GetComponent<UISelectTile>());
     }
 }
