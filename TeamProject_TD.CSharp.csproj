@@ -68,8 +68,10 @@
     <Compile Include="Assets\Scripts\GameLogic\MouseScript.cs" />
     <Compile Include="Assets\Scripts\GameLogic\TileSystem.cs" />
     <Compile Include="Assets\Scripts\GameLogic\TileUI.cs" />
+    <Compile Include="Assets\Scripts\GameObjectHitEvent.cs" />
     <Compile Include="Assets\Scripts\Grid.cs" />
     <Compile Include="Assets\Scripts\PathTileScript.cs" />
+    <Compile Include="Assets\Scripts\RawImageCamera.cs" />
     <Compile Include="Assets\Scripts\UIManagerScript.cs" />
     <Compile Include="Assets\yoloscript.cs" />
   </ItemGroup>
