@@ -21,88 +21,93 @@ public class MouseScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(1))//Rechtsklick
+        if (m_Tile != null)
         {
-            PathTileScript script = m_Tile.GetComponent<PathTileScript>();
-            if (script != null)
+            if (Input.GetMouseButtonDown(1))//Rechtsklick
             {
-                m_Tile.transform.Rotate(Vector3.forward, 90);//Rotieren
-                script.Rotate();//rotieren von den teilen
-                Destroy(m_GhostTile);
-                m_GhostTile = null;
-            }
-        }
-        if (m_GhostTile == null)
-        {
-            m_GhostTile = Instantiate(m_Tile);
-            m_GhostTile.transform.position = new Vector3(-100, -100, -100);
-            Material ghostMaterial = m_GhostTile.GetComponent<Renderer>().material;
-            ghostMaterial.color = new Color(1.0f, 1.0f, 1.0f, 0.25f);
-        }
-        Mesh mesh = m_GhostTile.GetComponent<MeshFilter>().mesh;
-        Vector3 size = mesh.bounds.size;//Mesh size
-        //GameObject floorPlane = Instantiate(m_FloorPlane);
-        //Mesh floorMesh = floorPlane.GetComponent<MeshFilter>().mesh;
-        //float ratioX = size.x / floorMesh.bounds.size.x;
-        //float ratioY = size.y / floorMesh.bounds.size.y;
-        //floorPlane.transform.position = new Vector3(0, 0, 0);
-        //floorPlane.transform.localScale = new Vector3(ratioX*5, 0, ratioY*5);
-        Ray r = m_Camera.ScreenPointToRay(Input.mousePosition);//Ray von der Maus
-        Vector3 hit = r.origin + Mathf.Abs(r.origin.y / r.direction.y) * r.direction;//Auf Y=0 Achse den hit suchen
-        bool xNegative;
-        bool yNegative;
-        xNegative = hit.x < 0.0f;
-        yNegative = hit.z < 0.0f;
-        int x = (int)(hit.x / size.x);
-        int y = (int)(hit.z / size.y);
-        if (hit.x < 0 || hit.z < 0)//negativ x und z)
-            return;
-        float xMultiplier = 1.0f;
-        float yMultiplier = 1.0f;
-        if (x <= 0)//für negativ x nicht benötigt aktuell
-        {
-            if (xNegative)
-                xMultiplier = -1.0f;
-        }
-        if (y <= 0)//für negativ y nicht benötigt aktuell
-        {
-            if (yNegative)
-                yMultiplier = -1.0f;
-        }
-        //if Feld nen nachbar hat und es Im Feld existiert
-        if (m_Field.HasNeighbour(x, y) && !m_Field.IsTile(x, y))
-        {
-            //positionsberechnung
-            Vector3 pos = new Vector3(x * size.x + size.x / 2.0f * xMultiplier, -size.z / 2.0f, y * size.y + size.y / 2.0f * yMultiplier);
-            m_GhostTile.transform.position = pos;
-            //Ghosttile verschieben
-            Material ghostMaterial = m_GhostTile.GetComponent<Renderer>().material;
-            if (checkValidStreet(x, y))
-            {
-                ghostMaterial.color = new Color(1.0f, 1.0f, 1.0f, 0.25f);
-                if (Input.GetMouseButtonDown(0))
+                PathTileScript script = m_Tile.GetComponent<PathTileScript>();
+                if (script != null)
                 {
-                    GameObject rb = Instantiate(m_Tile);
-                    m_Field.AddTileTo(rb, x, y);//zum feld hinzufügen
-
-                    Transform t = rb.GetComponent<Transform>();
-                    if (t != null)
-                    {
-                        t.position = pos;
-                    }
-                    GameObject.Destroy(m_GhostTile);
+                    m_Tile.transform.Rotate(Vector3.forward, 90);//Rotieren
+                    script.Rotate();//rotieren von den teilen
+                    Destroy(m_GhostTile);
                     m_GhostTile = null;
                 }
             }
-            else//if invalides Tile
+            if (m_GhostTile == null)
             {
-                ghostMaterial.color = new Color(1.0f, 0.0f, 0.0f, 0.25f);
+                m_GhostTile = Instantiate(m_Tile);
+                m_GhostTile.name = "GhostTile";
+                m_GhostTile.transform.position = new Vector3(-100, -100, -100);
+                Material ghostMaterial = m_GhostTile.GetComponent<Renderer>().material;
+                ghostMaterial.color = new Color(1.0f, 1.0f, 1.0f, 0.25f);
             }
-        }
-        else
-        {
-            GameObject.Destroy(m_GhostTile);
-            m_GhostTile = null;
+            Mesh mesh = m_GhostTile.GetComponent<MeshFilter>().mesh;
+            Vector3 size = mesh.bounds.size;//Mesh size
+            //GameObject floorPlane = Instantiate(m_FloorPlane);
+            //Mesh floorMesh = floorPlane.GetComponent<MeshFilter>().mesh;
+            //float ratioX = size.x / floorMesh.bounds.size.x;
+            //float ratioY = size.y / floorMesh.bounds.size.y;
+            //floorPlane.transform.position = new Vector3(0, 0, 0);
+            //floorPlane.transform.localScale = new Vector3(ratioX*5, 0, ratioY*5);
+            Ray r = m_Camera.ScreenPointToRay(Input.mousePosition);//Ray von der Maus
+            Vector3 hit = r.origin + Mathf.Abs(r.origin.y / r.direction.y) * r.direction;//Auf Y=0 Achse den hit suchen
+            bool xNegative;
+            bool yNegative;
+            xNegative = hit.x < 0.0f;
+            yNegative = hit.z < 0.0f;
+            int x = (int)(hit.x / size.x);
+            int y = (int)(hit.z / size.y);
+            if (hit.x < 0 || hit.z < 0)//negativ x und z)
+                return;
+            float xMultiplier = 1.0f;
+            float yMultiplier = 1.0f;
+            if (x <= 0)//für negativ x nicht benötigt aktuell
+            {
+                if (xNegative)
+                    xMultiplier = -1.0f;
+            }
+            if (y <= 0)//für negativ y nicht benötigt aktuell
+            {
+                if (yNegative)
+                    yMultiplier = -1.0f;
+            }
+            //if Feld nen nachbar hat und es Im Feld existiert
+            if (m_Field.HasNeighbour(x, y) && !m_Field.IsTile(x, y))
+            {
+                //positionsberechnung
+                Vector3 pos = new Vector3(x * size.x + size.x / 2.0f * xMultiplier, -size.z / 2.0f, y * size.y + size.y / 2.0f * yMultiplier);
+                m_GhostTile.transform.position = pos;
+                //Ghosttile verschieben
+                Material ghostMaterial = m_GhostTile.GetComponent<Renderer>().material;
+                if (checkValidStreet(x, y))
+                {
+                    ghostMaterial.color = new Color(1.0f, 1.0f, 1.0f, 0.25f);
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        GameObject rb = m_Tile;
+                        m_Field.AddTileTo(rb, x, y);//zum feld hinzufügen
+
+                        Transform t = rb.GetComponent<Transform>();
+                        if (t != null)
+                        {
+                            t.position = pos;
+                        }
+                        m_Tile = null;
+                        GameObject.Destroy(m_GhostTile);
+                        m_GhostTile = null;
+                    }
+                }
+                else//if invalides Tile
+                {
+                    ghostMaterial.color = new Color(1.0f, 0.0f, 0.0f, 0.25f);
+                }
+            }
+            else
+            {
+                GameObject.Destroy(m_GhostTile);
+                m_GhostTile = null;
+            }
         }
     }
     /// <summary>
@@ -232,8 +237,12 @@ public class MouseScript : MonoBehaviour
 
     public void SetTile(GameObject gameObject)
     {
+        if (m_Tile != null)
+        {
+            Destroy(m_Tile);
+        }
         m_Tile = Instantiate(gameObject);
-        // Destroy the script for the UI functionality, not needed anymore
-        Destroy(m_Tile.GetComponent<UISelectTile>());
+        m_Tile.transform.rotation = Quaternion.Euler(-90, 0, 0);
+        m_Tile.transform.position = new Vector3(900, 900, 900);
     }
 }

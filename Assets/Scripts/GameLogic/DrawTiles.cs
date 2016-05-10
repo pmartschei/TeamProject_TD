@@ -40,7 +40,7 @@ public class DrawTiles : MonoBehaviour
     void Start ()
     {
         // Only start the script and therefor the drawing process after the Main Menu is over and the correct Scene is loaded
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("thomasTestScene"))
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("testScene"))
         {
             // Get the time spend in the Main Menu (needed for the correct drawing intervalls)
             m_timeSpendInMenu = Time.time;
@@ -95,8 +95,6 @@ public class DrawTiles : MonoBehaviour
                         */
                     m_getRoad += m_changePercentagesFactor;
                     m_getBlank += (m_changePercentagesFactor / 2);
-
-                    Debug.Log("Road - Tile");
                 }
             }
             else if (m_rndNumber < m_getRoad && m_rndNumber >= m_getBlank)
@@ -111,8 +109,6 @@ public class DrawTiles : MonoBehaviour
                     // The range between 0.0f and getBlank gets bigger, more chance to draw that Tile
                     m_getRoad -= (m_changePercentagesFactor / 2);
                     m_getBlank += (m_changePercentagesFactor / 2);
-
-                    Debug.Log("Build - Tile");
                 }
             }
             else
@@ -127,8 +123,6 @@ public class DrawTiles : MonoBehaviour
                     // The range between 0.0f and getBlank gets smaller, less chance to draw that Tile
                     m_getRoad -= (m_changePercentagesFactor / 2);
                     m_getBlank -= m_changePercentagesFactor;
-
-                    Debug.Log("Blank - Tile");
                 }
             }
         }

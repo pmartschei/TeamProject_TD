@@ -52,23 +52,18 @@ public class TileUI : MonoBehaviour
         switch (m_counterCurrentTiles)
         {
             case 0: m_currentTiles[m_counterCurrentTiles].transform.position = m_TileSlot0.transform.position;
-                    m_currentTiles[m_counterCurrentTiles].transform.Rotate(-90, 0, 0);
-                    m_currentTiles[m_counterCurrentTiles].AddComponent<UISelectTile>();
                     break;
 
             case 1: m_currentTiles[m_counterCurrentTiles].transform.position = m_TileSlot1.transform.position;
-                    m_currentTiles[m_counterCurrentTiles].transform.Rotate(-90, 0, 0);
-                    m_currentTiles[m_counterCurrentTiles].AddComponent<UISelectTile>();
                     break;
 
             case 2: m_currentTiles[m_counterCurrentTiles].transform.position = m_TileSlot2.transform.position;
-                    m_currentTiles[m_counterCurrentTiles].transform.Rotate(-90, 0, 0);
-                    m_currentTiles[m_counterCurrentTiles].AddComponent<UISelectTile>();
                     break;
 
             default: break;
         }
 
+        m_currentTiles[m_counterCurrentTiles].transform.Rotate(-90, 0, 0);
         // Change the displayed text
         m_counterCurrentTiles++;
         m_displayedText.text = "Saved Tiles\n" + m_counterCurrentTiles + " / " + m_maxTiles;
