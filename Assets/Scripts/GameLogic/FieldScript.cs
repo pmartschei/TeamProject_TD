@@ -14,6 +14,9 @@ public class FieldScript : MonoBehaviour
     public GameObject m_StreetTile;
     public GameObject m_CurveTile;
 
+    public float m_SizeX;
+    public float m_SizeY;
+
     public int m_GeneratedRandomValue;
 
     private GameObject[][] m_TileArray;
@@ -67,10 +70,9 @@ public class FieldScript : MonoBehaviour
                         tile = Instantiate(m_CurveTile);
                         break;
                 }
-                Mesh mesh = tile.GetComponent<MeshFilter>().mesh;
-                Vector3 size = mesh.bounds.size;
-                Debug.Log(size.x +" todo");
-                tile.transform.position = new Vector3(x * size.x + size.x / 2.0f, -size.z / 2.0f, y * size.y + size.y / 2.0f);
+                //Mesh mesh = tile.GetComponent<MeshFilter>().mesh;
+                //Vector3 size = mesh.bounds.size;
+                tile.transform.position = new Vector3(x * m_SizeX + m_SizeX / 2.0f, 0.0f, y * m_SizeY+m_SizeY / 2.0f);
                 AddTileTo(tile, x, y);
             }
         }

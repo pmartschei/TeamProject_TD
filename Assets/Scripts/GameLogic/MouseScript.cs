@@ -13,6 +13,7 @@ public class MouseScript : MonoBehaviour
     public GameObject m_Tile;
     public GameObject m_FloorPlane;
     public FieldScript m_Field;
+
     private GameObject m_GhostTile;
     void Start()
     {
@@ -42,8 +43,9 @@ public class MouseScript : MonoBehaviour
                 Material ghostMaterial = m_GhostTile.GetComponent<Renderer>().material;
                 ghostMaterial.color = new Color(1.0f, 1.0f, 1.0f, 0.25f);
             }
-            Mesh mesh = m_GhostTile.GetComponent<MeshFilter>().mesh;
-            Vector3 size = mesh.bounds.size;//Mesh size
+            //Mesh mesh = m_GhostTile.GetComponent<MeshFilter>().mesh;
+            //Vector3 size = mesh.bounds.size;//Mesh size
+
             //GameObject floorPlane = Instantiate(m_FloorPlane);
             //Mesh floorMesh = floorPlane.GetComponent<MeshFilter>().mesh;
             //float ratioX = size.x / floorMesh.bounds.size.x;
@@ -56,8 +58,8 @@ public class MouseScript : MonoBehaviour
             bool yNegative;
             xNegative = hit.x < 0.0f;
             yNegative = hit.z < 0.0f;
-            int x = (int)(hit.x / size.x);
-            int y = (int)(hit.z / size.y);
+            int x = (int)(hit.x / m_Field.m_SizeX);
+            int y = (int)(hit.z / m_Field.m_SizeY);
             if (hit.x < 0 || hit.z < 0)//negativ x und z)
                 return;
             float xMultiplier = 1.0f;
@@ -76,7 +78,7 @@ public class MouseScript : MonoBehaviour
             if (m_Field.HasNeighbour(x, y) && !m_Field.IsTile(x, y))
             {
                 //positionsberechnung
-                Vector3 pos = new Vector3(x * size.x + size.x / 2.0f * xMultiplier, -size.z / 2.0f, y * size.y + size.y / 2.0f * yMultiplier);
+                Vector3 pos = new Vector3(x * m_Field.m_SizeX + m_Field.m_SizeX / 2.0f * xMultiplier, 0.0f, y * m_Field.m_SizeY + m_Field.m_SizeY / 2.0f * yMultiplier);
                 m_GhostTile.transform.position = pos;
                 //Ghosttile verschieben
                 Material ghostMaterial = m_GhostTile.GetComponent<Renderer>().material;
