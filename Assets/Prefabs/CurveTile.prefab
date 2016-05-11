@@ -12,6 +12,7 @@ GameObject:
   - 23: {fileID: 2325414}
   - 95: {fileID: 9565818}
   - 65: {fileID: 6552108}
+  - 114: {fileID: 11460348}
   m_Layer: 0
   m_Name: CurveTile
   m_TagString: Untagged
@@ -94,6 +95,21 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11460348
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 169952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dfac81c63e5d6f449d3ec9d0f80f376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_north: 0
+  m_south: 1
+  m_west: 1
+  m_east: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -8,18 +8,17 @@ public class FieldScript : MonoBehaviour
     // Use this for initialization
     public int m_LevelWidth;
 
-    public GameObject m_EndTile;
-    public GameObject m_BlankTile;
-    public GameObject m_TowerTile;
-    public GameObject m_StreetTile;
-    public GameObject m_CurveTile;
+    // system to get all possible tiles;
+    public GameObject m_TileSystem;
 
     public float m_SizeX;
     public float m_SizeY;
 
+    //to see which number was generated
     public int m_GeneratedRandomValue;
 
     private GameObject[][] m_TileArray;
+
     void Start()
     {
         m_TileArray = new GameObject[m_LevelWidth][];
@@ -52,62 +51,135 @@ public class FieldScript : MonoBehaviour
             for (int y = 0; y < m_LevelWidth; y++)
             {
                 GameObject tile = null;
-                switch(tileOrder[m_LevelWidth - y - 1, x])
+
+                int tileVariationValue = tileOrder[m_LevelWidth - y - 1, x] / 10;
+                int tileRotationValue = tileOrder[m_LevelWidth - y - 1, x] % 10;
+
+                switch(tileVariationValue)
                 {
-                    case 0:
-                        tile = Instantiate(m_EndTile);
+                    case 11:
+                        tile = Instantiate(m_TileSystem.GetComponent<TileSystem>().m_BlankVar1);
                         break;
-                    case 1:
-                        tile = Instantiate(m_BlankTile);
+                    case 12:
+                        tile = Instantiate(m_TileSystem.GetComponent<TileSystem>().m_BlankVar2);
                         break;
-                    case 2:
-                        tile = Instantiate(m_TowerTile);
+                    case 21:
+                        tile = Instantiate(m_TileSystem.GetComponent<TileSystem>().m_TowerBuildSpotVar1);
                         break;
-                    case 3:
-                        tile = Instantiate(m_StreetTile);
+                    case 22:
+                        tile = Instantiate(m_TileSystem.GetComponent<TileSystem>().m_TowerBuildSpotVar2);
                         break;
-                    case 4:
-                        tile = Instantiate(m_CurveTile);
+                    case 31:
+                        tile = Instantiate(m_TileSystem.GetComponent<TileSystem>().m_StreetStraightVar1);
+                        break;
+                    case 32:
+                        tile = Instantiate(m_TileSystem.GetComponent<TileSystem>().m_StreetStraightVar2);
+                        break;
+                    case 41:
+                        tile = Instantiate(m_TileSystem.GetComponent<TileSystem>().m_StreetCurveVar1);
+                        break;
+                    case 42:
+                        tile = Instantiate(m_TileSystem.GetComponent<TileSystem>().m_StreetCurveVar2);
+                        break;
+                    case 51:
+                        tile = Instantiate(m_TileSystem.GetComponent<TileSystem>().m_StreetEndVar1);
+                        break;
+                    case 52:
+                        tile = Instantiate(m_TileSystem.GetComponent<TileSystem>().m_StreetEndVar2);
                         break;
                 }
+
                 //Mesh mesh = tile.GetComponent<MeshFilter>().mesh;
                 //Vector3 size = mesh.bounds.size;
-                tile.transform.position = new Vector3(x * m_SizeX + m_SizeX / 2.0f, 0.0f, y * m_SizeY+m_SizeY / 2.0f);
+                //drehen
+                PathTileScript path = null;
+                if (tileRotationValue == 2)
+                {
+                    tile.transform.Rotate(Vector3.forward, 90);
+                    path = tile.GetComponent<PathTileScript>();
+                    if(path != null)
+                        path.Rotate();
+                }
+                else if (tileRotationValue == 3)
+                {
+                    tile.transform.Rotate(Vector3.forward, 180);
+                    path = tile.GetComponent<PathTileScript>();
+                    if (path != null)
+                    {
+                        path.Rotate();
+                        path.Rotate();
+                    }
+                }
+                else if (tileRotationValue == 4)
+                {
+                    tile.transform.Rotate(Vector3.forward, 270);
+                    path = tile.GetComponent<PathTileScript>();
+                    if (path != null)
+                    {
+                        path.Rotate();
+                        path.Rotate();
+                        path.Rotate();
+                    }
+                }
+                tile.transform.position = new Vector3(x * m_SizeX + m_SizeX / 2.0f, 0.0f, y * m_SizeY + m_SizeY / 2.0f);
                 AddTileTo(tile, x, y);
             }
         }
     }
 
+    //code for tiles:
+    //first value: category of tile (blank, street, buildPlace)...
+    //second value: rotation
+    //third value: variation ID
+    /*
+     *  First:
+     *  1 blank
+     *  2 tower
+     *  3 street straight
+     *  4 street curve
+     *  5 end of street
+     *  
+     *  Second:
+     *  1 var1
+     *  2 var2
+     *  
+     *  Third:
+     *  1 0 degree
+     *  2 90 degree
+     *  3 180 degree
+     *  4 270 degree
+     * 
+     */
     private int[,] GetTileValues(int scenario)
     {
         if (scenario == 0)
         {
             int[,] tileOrder = new int[,]
-            { { 1, 2, 3, 2, 1 },
-              { 1, 1, 4, 4, 1 },
-              { 1, 1, 2, 3, 2 },
-              { 1, 1, 4, 4, 1 },
-              { 1, 2, 3, 2, 1 }};
+            { { 111, 211, 312, 211, 111 },
+              { 111, 111, 413, 411, 111 },
+              { 111, 111, 211, 312, 211 },
+              { 111, 111, 414, 412, 111 },
+              { 111, 211, 312, 211, 111 }};
             return tileOrder;
         }
         else if(scenario == 1)
         {
             int[,] tileOrder = new int[,]
-             { { 1, 2, 3, 2, 1 },
-               { 1, 4, 4, 1, 1 },
-               { 2, 3, 2, 1, 1 },
-               { 1, 4, 4, 1, 1 },
-               { 1, 2, 3, 2, 1 }};
+             { { 111, 211, 312, 211, 111 },
+               { 111, 414, 412, 111, 111 },
+               { 211, 312, 211, 111, 111 },
+               { 111, 413, 411, 111, 111 },
+               { 111, 211, 312, 211, 111 }};
             return tileOrder;
         }
         else
         {
             int[,] tileOrder = new int[,]
-            { { 1, 2, 3, 2, 1 },
-              { 1, 1, 3, 1, 1 },
-              { 1, 2, 3, 2, 1 },
-              { 1, 1, 3, 1, 1 },
-              { 1, 2, 3, 2, 1 }};
+            { { 111, 211, 312, 211, 111 },
+              { 111, 111, 312, 111, 111 },
+              { 111, 211, 312, 211, 111 },
+              { 111, 111, 312, 111, 111 },
+              { 111, 211, 312, 211, 111 }};
             return tileOrder;
         }
     }

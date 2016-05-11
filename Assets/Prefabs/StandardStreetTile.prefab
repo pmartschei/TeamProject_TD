@@ -106,10 +106,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dfac81c63e5d6f449d3ec9d0f80f376, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_north: 1
-  m_south: 1
-  m_west: 0
-  m_east: 0
+  m_north: 0
+  m_south: 0
+  m_west: 1
+  m_east: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
