@@ -45,35 +45,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Game Jam Menu Template\Scripts\DontDestroy.cs" />
-     <Compile Include="Assets\Game Jam Menu Template\Scripts\EventSystemChecker.cs" />
-     <Compile Include="Assets\Game Jam Menu Template\Scripts\Pause.cs" />
-     <Compile Include="Assets\Game Jam Menu Template\Scripts\PlayMusic.cs" />
-     <Compile Include="Assets\Game Jam Menu Template\Scripts\QuitApplication.cs" />
-     <Compile Include="Assets\Game Jam Menu Template\Scripts\SetAudioLevels.cs" />
-     <Compile Include="Assets\Game Jam Menu Template\Scripts\ShowPanels.cs" />
-     <Compile Include="Assets\Game Jam Menu Template\Scripts\StartOptions.cs" />
      <Compile Include="Assets\Scripts\GameLogic\DrawTiles.cs" />
      <Compile Include="Assets\Scripts\GameLogic\EnemySystem\EndPoint.cs" />
      <Compile Include="Assets\Scripts\GameLogic\EnemySystem\MoveEnemyScript.cs" />
      <Compile Include="Assets\Scripts\GameLogic\EnemySystem\PathMoveScript.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\EnemySystem\PathTileScript.cs" />
      <Compile Include="Assets\Scripts\GameLogic\EnemySystem\SpawnEnemyScript.cs" />
      <Compile Include="Assets\Scripts\GameLogic\EnemySystem\TilePos.cs" />
      <Compile Include="Assets\Scripts\GameLogic\FieldScript.cs" />
      <Compile Include="Assets\Scripts\GameLogic\MouseScript.cs" />
-     <Compile Include="Assets\Scripts\GameLogic\NOT USED ANYMORE.cs" />
      <Compile Include="Assets\Scripts\GameLogic\TileSystem.cs" />
      <Compile Include="Assets\Scripts\GameLogic\TileUI.cs" />
-     <Compile Include="Assets\Scripts\GameObjectHitEvent.cs" />
      <Compile Include="Assets\Scripts\Grid.cs" />
-     <Compile Include="Assets\Scripts\OpenTowerHUDScript.cs" />
-     <Compile Include="Assets\Scripts\OptionsScript.cs" />
-     <Compile Include="Assets\Scripts\PathTileScript.cs" />
-     <Compile Include="Assets\Scripts\RawImageCamera.cs" />
-     <Compile Include="Assets\Scripts\SelectTowerScript.cs" />
-     <Compile Include="Assets\Scripts\UIManagerScript.cs" />
-     <None Include="Assets\Game Jam Menu Template\Fonts\OpenSans\License!.txt" />
-     <None Include="Assets\Game Jam Menu Template\GameJamTemplateReadMe.txt" />
+     <Compile Include="Assets\Scripts\UI\GameObjectHitEvent.cs" />
+     <Compile Include="Assets\Scripts\UI\OpenTowerHUDScript.cs" />
+     <Compile Include="Assets\Scripts\UI\OptionsScript.cs" />
+     <Compile Include="Assets\Scripts\UI\RawImageCamera.cs" />
+     <Compile Include="Assets\Scripts\UI\SelectTowerScript.cs" />
+     <Compile Include="Assets\Scripts\UI\UIManagerScript.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

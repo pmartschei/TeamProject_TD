@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class DrawTiles : MonoBehaviour
 {
     // Drawing your first Tile after X seconds
-    public float m_startDrawing;
-    // Draw a new Tile every X seconds
     public float m_drawNextTile;
+    // Draw a new Tile every X seconds
+    public float m_drawIntervall;
 
     // Stores all forms of Tiles
     public GameObject m_tileSystem;
@@ -61,9 +61,9 @@ public class DrawTiles : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if ((Time.time - m_timeSpendInMenu) > m_startDrawing)
+        if ((Time.time - m_timeSpendInMenu) > m_drawNextTile)
         {
-            m_startDrawing = (Time.time - m_timeSpendInMenu) + m_drawNextTile;
+            m_drawNextTile = (Time.time - m_timeSpendInMenu) + m_drawIntervall;
 
             // rndNumber between 0.0f and 1.0f (both included)
             m_rndNumber = Random.Range(0.0f, 1.0f);
