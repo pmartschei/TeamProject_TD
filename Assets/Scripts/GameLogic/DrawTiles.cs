@@ -40,8 +40,7 @@ public class DrawTiles : MonoBehaviour
     void Start ()
     {
         // Only start the script and therefor the drawing process after the Main Menu is over and the correct Scene is loaded
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("testScene"))
-        {
+
             // Get the time spend in the Main Menu (needed for the correct drawing intervalls)
             m_timeSpendInMenu = Time.time;
 
@@ -57,7 +56,6 @@ public class DrawTiles : MonoBehaviour
             m_counterCurrentTiles = 0;
 
             m_drawTileSystem = GameObject.Find("DrawTileSystem");
-        }
 	}
 	
 	// Update is called once per frame
