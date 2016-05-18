@@ -75,9 +75,9 @@ public class DrawTiles : MonoBehaviour
                     float rndRoadTile = Random.Range(0.0f, 1.0f);
                     
                     if(rndRoadTile > 0.5f)
-                        m_drawTileSystem.GetComponent<TileUI>().SetNewTile(m_tileSystem.GetComponent<TileSystem>().m_road);
+                        m_drawTileSystem.GetComponent<TileUI>().SetNewTile(m_tileSystem.GetComponent<TileSystem>().m_StreetStraightVar1);
                     else
-                        m_drawTileSystem.GetComponent<TileUI>().SetNewTile(m_tileSystem.GetComponent<TileSystem>().m_curve);
+                        m_drawTileSystem.GetComponent<TileUI>().SetNewTile(m_tileSystem.GetComponent<TileSystem>().m_StreetCurveVar1);
                         
                     m_counterCurrentTiles++;
 
@@ -99,7 +99,7 @@ public class DrawTiles : MonoBehaviour
             {
                 if (m_counterCurrentTiles < 3)
                 {
-                    m_drawTileSystem.GetComponent<TileUI>().SetNewTile(m_tileSystem.GetComponent<TileSystem>().m_buildSpot);
+                    m_drawTileSystem.GetComponent<TileUI>().SetNewTile(m_tileSystem.GetComponent<TileSystem>().m_TowerBuildSpotVar1);
                     m_counterCurrentTiles++;
 
                     // The range between getRoad and 1.0f gets bigger, more chance to draw that Tile
@@ -113,7 +113,7 @@ public class DrawTiles : MonoBehaviour
             {
                 if (m_counterCurrentTiles < 3 )
                 {
-                    m_drawTileSystem.GetComponent<TileUI>().SetNewTile(m_tileSystem.GetComponent<TileSystem>().m_grass);
+                    m_drawTileSystem.GetComponent<TileUI>().SetNewTile(m_tileSystem.GetComponent<TileSystem>().m_BlankVar1);
                     m_counterCurrentTiles++;
 
                     // The range between getRoad and 1.0f gets bigger, more chance to draw that Tile

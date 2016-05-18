@@ -12,6 +12,7 @@ GameObject:
   - 23: {fileID: 2318430}
   - 95: {fileID: 9542974}
   - 65: {fileID: 6556740}
+  - 114: {fileID: 11474692}
   m_Layer: 0
   m_Name: BuildingLotTile
   m_TagString: Untagged
@@ -74,7 +75,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 2}
+  m_Size: {x: 2, y: 2, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &9542974
 Animator:
@@ -93,6 +94,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11474692
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 198000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d989f93e76226424b9484f63a205de6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
