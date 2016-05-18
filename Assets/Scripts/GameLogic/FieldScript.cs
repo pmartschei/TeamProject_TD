@@ -159,7 +159,7 @@ public class FieldScript : MonoBehaviour
               { 111, 111, 413, 411, 111 },
               { 111, 111, 211, 312, 211 },
               { 111, 111, 414, 412, 111 },
-              { 111, 211, 312, 211, 111 }};
+              { 111, 211, 512, 211, 111 }};
             return tileOrder;
         }
         else if(scenario == 1)
@@ -169,7 +169,7 @@ public class FieldScript : MonoBehaviour
                { 111, 414, 412, 111, 111 },
                { 211, 312, 211, 111, 111 },
                { 111, 413, 411, 111, 111 },
-               { 111, 211, 312, 211, 111 }};
+               { 111, 211, 512, 211, 111 }};
             return tileOrder;
         }
         else
@@ -179,7 +179,7 @@ public class FieldScript : MonoBehaviour
               { 111, 111, 312, 111, 111 },
               { 111, 211, 312, 211, 111 },
               { 111, 111, 312, 111, 111 },
-              { 111, 211, 312, 211, 111 }};
+              { 111, 211, 512, 211, 111 }};
             return tileOrder;
         }
     }
@@ -188,6 +188,25 @@ public class FieldScript : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void GetTilePos(GameObject go, out int x, out int y)
+    {
+        for (int i = 0; i < m_LevelWidth; i++)
+        {
+            for (int j = 0; j < m_TileArray[i].Length; i++)
+            {
+                if (m_TileArray[i][j].Equals(go))
+                {
+                    x = i;
+                    y = j;
+                    return;
+                }
+            }
+        }
+        x = -1;
+        y = -1;
+        return;
     }
 
     public bool AddTileTo(GameObject go, int x, int y)

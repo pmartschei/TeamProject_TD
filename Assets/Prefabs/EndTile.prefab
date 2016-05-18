@@ -12,6 +12,8 @@ GameObject:
   - 23: {fileID: 2344362}
   - 95: {fileID: 9545020}
   - 65: {fileID: 6535554}
+  - 114: {fileID: 11430058}
+  - 114: {fileID: 11487088}
   m_Layer: 0
   m_Name: EndTile
   m_TagString: Untagged
@@ -94,6 +96,33 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11430058
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 194012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dfac81c63e5d6f449d3ec9d0f80f376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_north: 0
+  m_south: 0
+  m_west: 1
+  m_east: 0
+  m_MoveSpots: []
+--- !u!114 &11487088
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 194012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f299dce2005738141a5fd33a64745f4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

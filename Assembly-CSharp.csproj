@@ -54,6 +54,11 @@
      <Compile Include="Assets\Game Jam Menu Template\Scripts\ShowPanels.cs" />
      <Compile Include="Assets\Game Jam Menu Template\Scripts\StartOptions.cs" />
      <Compile Include="Assets\Scripts\GameLogic\DrawTiles.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\EnemySystem\EndPoint.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\EnemySystem\MoveEnemyScript.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\EnemySystem\PathMoveScript.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\EnemySystem\SpawnEnemyScript.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\EnemySystem\TilePos.cs" />
      <Compile Include="Assets\Scripts\GameLogic\FieldScript.cs" />
      <Compile Include="Assets\Scripts\GameLogic\MouseScript.cs" />
      <Compile Include="Assets\Scripts\GameLogic\NOT USED ANYMORE.cs" />
