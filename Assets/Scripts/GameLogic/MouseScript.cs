@@ -15,8 +15,12 @@ public class MouseScript : MonoBehaviour
     public FieldScript m_Field;
 
     private GameObject m_GhostTile;
+    private GameObject m_parentTile;
+
     void Start()
     {
+        // Eventuell woanders hin
+        GameObject.Find("BuildTowerHUD").SetActive(false);
     }
 
     // Update is called once per frame
@@ -95,7 +99,16 @@ public class MouseScript : MonoBehaviour
                         {
                             t.position = pos;
                         }
+
+                        // Löschen, nur zum testen so geregelt!!!
+                        // Collidorbox zu groß!
+                        if (m_Tile.name.Equals("BuildingLotTile(Clone)(Clone)"))
+                        {
+                            m_Tile.AddComponent<OpenTowerHUDScript>();
+                        }
+
                         m_Tile = null;
+                        GameObject.Find("DrawTileSystem").GetComponent<TileUI>().RemoveTile(m_parentTile);
                         GameObject.Destroy(m_GhostTile);
                         m_GhostTile = null;
                     }
@@ -243,6 +256,8 @@ public class MouseScript : MonoBehaviour
         {
             Destroy(m_Tile);
         }
+
+        m_parentTile = gameObject;
         m_Tile = Instantiate(gameObject);
         m_Tile.transform.rotation = Quaternion.Euler(-90, 0, 0);
         m_Tile.transform.position = new Vector3(900, 900, 900);

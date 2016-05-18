@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class DrawTiles : MonoBehaviour
 {
     // Drawing your first Tile after X seconds
-    public float m_startDrawing;
-    // Draw a new Tile every X seconds
     public float m_drawNextTile;
+    // Draw a new Tile every X seconds
+    public float m_drawIntervall;
 
     // Stores all forms of Tiles
     public GameObject m_tileSystem;
@@ -40,7 +40,7 @@ public class DrawTiles : MonoBehaviour
     void Start ()
     {
         // Only start the script and therefor the drawing process after the Main Menu is over and the correct Scene is loaded
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("testScene"))
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("testScene") || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("philippTestScene") || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("michiTestScene") || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("thomasTestScene"))
         {
             // Get the time spend in the Main Menu (needed for the correct drawing intervalls)
             m_timeSpendInMenu = Time.time;
@@ -63,9 +63,9 @@ public class DrawTiles : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if ((Time.time - m_timeSpendInMenu) > m_startDrawing)
+        if ((Time.time - m_timeSpendInMenu) > m_drawNextTile)
         {
-            m_startDrawing = (Time.time - m_timeSpendInMenu) + m_drawNextTile;
+            m_drawNextTile = (Time.time - m_timeSpendInMenu) + m_drawIntervall;
 
             // rndNumber between 0.0f and 1.0f (both included)
             m_rndNumber = Random.Range(0.0f, 1.0f);
@@ -77,9 +77,9 @@ public class DrawTiles : MonoBehaviour
                     float rndRoadTile = Random.Range(0.0f, 1.0f);
                     
                     if(rndRoadTile > 0.5f)
-                        m_drawTileSystem.GetComponent<TileUI>().SetNewTile(m_tileSystem.GetComponent<TileSystem>().m_road);
+                        m_drawTileSystem.GetComponent<TileUI>().SetNewTile(m_tileSystem.GetComponent<TileSystem>().m_buildSpot);
                     else
-                        m_drawTileSystem.GetComponent<TileUI>().SetNewTile(m_tileSystem.GetComponent<TileSystem>().m_curve);
+                        m_drawTileSystem.GetComponent<TileUI>().SetNewTile(m_tileSystem.GetComponent<TileSystem>().m_buildSpot);
                         
                     m_counterCurrentTiles++;
 
@@ -115,7 +115,7 @@ public class DrawTiles : MonoBehaviour
             {
                 if (m_counterCurrentTiles < 3 )
                 {
-                    m_drawTileSystem.GetComponent<TileUI>().SetNewTile(m_tileSystem.GetComponent<TileSystem>().m_grass);
+                    m_drawTileSystem.GetComponent<TileUI>().SetNewTile(m_tileSystem.GetComponent<TileSystem>().m_buildSpot);
                     m_counterCurrentTiles++;
 
                     // The range between getRoad and 1.0f gets bigger, more chance to draw that Tile
