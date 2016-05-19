@@ -45,6 +45,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\GameLogic\CameraControll.cs" />
      <Compile Include="Assets\Scripts\GameLogic\DrawTiles.cs" />
      <Compile Include="Assets\Scripts\GameLogic\EnemySystem\EndPoint.cs" />
      <Compile Include="Assets\Scripts\GameLogic\EnemySystem\MoveEnemyScript.cs" />
