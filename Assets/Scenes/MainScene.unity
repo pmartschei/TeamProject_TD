@@ -149,7 +149,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 421128, guid: 46dbed809b82ae64fb72ce4b2f10cc07, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 11404838, guid: 46dbed809b82ae64fb72ce4b2f10cc07, type: 2}
       propertyPath: m_SimpleInitStreetTile
@@ -1708,7 +1708,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 444030, guid: db6e5c6c4362ce942bae1c4c3eda51dc, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 11423772, guid: db6e5c6c4362ce942bae1c4c3eda51dc, type: 2}
       propertyPath: m_BlankVar1
@@ -1729,7 +1729,7 @@ Prefab:
     - target: {fileID: 11423772, guid: db6e5c6c4362ce942bae1c4c3eda51dc, type: 2}
       propertyPath: m_StreetStraightVar1
       value: 
-      objectReference: {fileID: 161948, guid: 38de04fd10f761e48adde383061f6663, type: 2}
+      objectReference: {fileID: 127506, guid: 1ab63a95bcc18e944b7d5c3527c52586, type: 2}
     - target: {fileID: 11423772, guid: db6e5c6c4362ce942bae1c4c3eda51dc, type: 2}
       propertyPath: m_StreetStraightVar2
       value: 
@@ -1955,7 +1955,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 465640, guid: b3dddc2343416bb48bc82c679c883788, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 11490804, guid: b3dddc2343416bb48bc82c679c883788, type: 2}
       propertyPath: m_villageCamera
@@ -3056,7 +3056,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 419322, guid: ca6027b71514fd242915b3af9780be91, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 11429440, guid: ca6027b71514fd242915b3af9780be91, type: 2}
       propertyPath: m_FieldSystem
@@ -3251,7 +3251,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 409698, guid: 67c27d1f91638c146a917f387e25aac1, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11417644, guid: 67c27d1f91638c146a917f387e25aac1, type: 2}
       propertyPath: m_Camera
