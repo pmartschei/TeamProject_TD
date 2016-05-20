@@ -14,23 +14,25 @@ public class MoveEnemyScript : MonoBehaviour
     void Update()
     {
         PathMoveScript[] pathMoves = GameObject.FindObjectsOfType<PathMoveScript>();
-        Debug.Log(pathMoves.Length);
         foreach (PathMoveScript pathMove in pathMoves)
         {
-            GameObject obj = pathMove.gameObject;
-            if (pathMove.m_CurrentIndex >= pathMove.m_CurrentList.Count)
+            GameObject obj = pathMove.gameObject;//get gameobjekt
+            if (pathMove.m_CurrentIndex >= pathMove.m_CurrentList.Count)//schon zuende gelaufen
                 continue;
-            GameObject target = pathMove.m_CurrentList[pathMove.m_CurrentIndex];
-            Vector3 next = Vector3.MoveTowards(obj.transform.position, target.transform.position, 3 * Time.deltaTime);
-            obj.transform.position = next;
-            if ((obj.transform.position - target.transform.position).magnitude < 0.001)
+            GameObject target = pathMove.m_CurrentList[pathMove.m_CurrentIndex];//wohin soll ich laufen
+            Vector3 next = Vector3.MoveTowards(obj.transform.position, target.transform.position, 3 * Time.deltaTime);//vector dahin
+            obj.transform.position = next;//position setzen
+            if ((obj.transform.position - target.transform.position).magnitude < 0.001)//wenn auf dem punkt
             {
                 pathMove.m_CurrentIndex++;
-                if (pathMove.m_CurrentIndex >= pathMove.m_CurrentList.Count)
+                if (pathMove.m_CurrentIndex >= pathMove.m_CurrentList.Count)//wenn letzer punkt 
                 {
                     PathTileScript script = pathMove.m_CurrentObject.GetComponent<PathTileScript>();
-                    if (script.m_ParentObject.Count==0)
+                    if (script.m_ParentObject.Count == 0)
+                    {
+                        Destroy(obj);
                         return;
+                    }
                     pathMove.m_CurrentObject = script.m_ParentObject[0];
                     pathMove.m_CurrentIndex = 0;
                     PathTileScript nextScript=pathMove.m_CurrentObject.GetComponent<PathTileScript>();

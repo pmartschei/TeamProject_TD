@@ -40,7 +40,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_LevelWidth: 5
-  m_TileSystem: {fileID: 0}
+  m_TileSystem: {fileID: 184922, guid: db6e5c6c4362ce942bae1c4c3eda51dc, type: 2}
   m_SizeX: 0
   m_SizeY: 0
   m_GeneratedRandomValue: 0
