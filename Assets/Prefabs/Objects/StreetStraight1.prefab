@@ -1,0 +1,278 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+<<<<<<< HEAD:Assets/Prefabs/Objects/EndTile.prefab
+--- !u!1 &170570
+=======
+--- !u!1 &133380
+>>>>>>> c796828ceb900ce00a7ed7fa916bcc2d42c6f9a0:Assets/Prefabs/Objects/StreetStraight1.prefab
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+<<<<<<< HEAD:Assets/Prefabs/Objects/EndTile.prefab
+  - 4: {fileID: 400890}
+  - 33: {fileID: 3388926}
+  - 23: {fileID: 2376600}
+  - 95: {fileID: 9560946}
+  - 65: {fileID: 6560644}
+  - 114: {fileID: 11499712}
+  - 114: {fileID: 11448576}
+=======
+  - 4: {fileID: 404714}
+  - 33: {fileID: 3387134}
+  - 23: {fileID: 2335810}
+  - 95: {fileID: 9597848}
+>>>>>>> c796828ceb900ce00a7ed7fa916bcc2d42c6f9a0:Assets/Prefabs/Objects/StreetStraight1.prefab
+  m_Layer: 0
+  m_Name: StreetStraightTileModel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+<<<<<<< HEAD:Assets/Prefabs/Objects/EndTile.prefab
+--- !u!1 &188422
+=======
+--- !u!1 &161948
+>>>>>>> c796828ceb900ce00a7ed7fa916bcc2d42c6f9a0:Assets/Prefabs/Objects/StreetStraight1.prefab
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+<<<<<<< HEAD:Assets/Prefabs/Objects/EndTile.prefab
+  - 4: {fileID: 497140}
+  m_Layer: 0
+  m_Name: West
+=======
+  - 4: {fileID: 416650}
+  - 114: {fileID: 11496898}
+  m_Layer: 0
+  m_Name: StreetStraight1
+>>>>>>> c796828ceb900ce00a7ed7fa916bcc2d42c6f9a0:Assets/Prefabs/Objects/StreetStraight1.prefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+<<<<<<< HEAD:Assets/Prefabs/Objects/EndTile.prefab
+--- !u!1 &199360
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 441860}
+  m_Layer: 0
+  m_Name: Mid
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &400890
+=======
+--- !u!4 &404714
+>>>>>>> c796828ceb900ce00a7ed7fa916bcc2d42c6f9a0:Assets/Prefabs/Objects/StreetStraight1.prefab
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+<<<<<<< HEAD:Assets/Prefabs/Objects/EndTile.prefab
+  m_GameObject: {fileID: 170570}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 42.352055, y: 58.231956, z: -206.91573}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 497140}
+  - {fileID: 441860}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!4 &441860
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199360}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.25, y: -0, z: 0.4000016}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400890}
+  m_RootOrder: 1
+--- !u!4 &497140
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 188422}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.9, y: 0, z: 0.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400890}
+  m_RootOrder: 0
+--- !u!23 &2376600
+=======
+  m_GameObject: {fileID: 133380}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 416650}
+  m_RootOrder: 0
+--- !u!4 &416650
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 161948}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 404714}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!23 &2335810
+>>>>>>> c796828ceb900ce00a7ed7fa916bcc2d42c6f9a0:Assets/Prefabs/Objects/StreetStraight1.prefab
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+<<<<<<< HEAD:Assets/Prefabs/Objects/EndTile.prefab
+  m_GameObject: {fileID: 170570}
+=======
+  m_GameObject: {fileID: 133380}
+>>>>>>> c796828ceb900ce00a7ed7fa916bcc2d42c6f9a0:Assets/Prefabs/Objects/StreetStraight1.prefab
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 2100000, guid: f27b67c876ec3b34aa0a8eafd91355fb, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+<<<<<<< HEAD:Assets/Prefabs/Objects/EndTile.prefab
+--- !u!33 &3388926
+=======
+--- !u!33 &3387134
+>>>>>>> c796828ceb900ce00a7ed7fa916bcc2d42c6f9a0:Assets/Prefabs/Objects/StreetStraight1.prefab
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+<<<<<<< HEAD:Assets/Prefabs/Objects/EndTile.prefab
+  m_GameObject: {fileID: 170570}
+  m_Mesh: {fileID: 4300000, guid: 90c58c3abf3589446911ddc09632fa22, type: 3}
+--- !u!65 &6560644
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 170570}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &9560946
+=======
+  m_GameObject: {fileID: 133380}
+  m_Mesh: {fileID: 4300000, guid: 4d0ace1d0191aa042a04d62e4aad473c, type: 3}
+--- !u!95 &9597848
+>>>>>>> c796828ceb900ce00a7ed7fa916bcc2d42c6f9a0:Assets/Prefabs/Objects/StreetStraight1.prefab
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+<<<<<<< HEAD:Assets/Prefabs/Objects/EndTile.prefab
+  m_GameObject: {fileID: 170570}
+=======
+  m_GameObject: {fileID: 133380}
+>>>>>>> c796828ceb900ce00a7ed7fa916bcc2d42c6f9a0:Assets/Prefabs/Objects/StreetStraight1.prefab
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 4d0ace1d0191aa042a04d62e4aad473c, type: 3}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+<<<<<<< HEAD:Assets/Prefabs/Objects/EndTile.prefab
+--- !u!114 &11448576
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 170570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f299dce2005738141a5fd33a64745f4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11499712
+=======
+--- !u!114 &11496898
+>>>>>>> c796828ceb900ce00a7ed7fa916bcc2d42c6f9a0:Assets/Prefabs/Objects/StreetStraight1.prefab
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+<<<<<<< HEAD:Assets/Prefabs/Objects/EndTile.prefab
+  m_GameObject: {fileID: 170570}
+=======
+  m_GameObject: {fileID: 161948}
+>>>>>>> c796828ceb900ce00a7ed7fa916bcc2d42c6f9a0:Assets/Prefabs/Objects/StreetStraight1.prefab
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dfac81c63e5d6f449d3ec9d0f80f376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_north: 0
+  m_south: 0
+  m_west: 0
+  m_east: 0
+  m_PathNorth: []
+  m_PathEast: []
+  m_PathSouth: []
+  m_PathWest:
+  - {fileID: 188422}
+  - {fileID: 199360}
+  m_ParentObject: []
+  m_ParentDirection: 
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+<<<<<<< HEAD:Assets/Prefabs/Objects/EndTile.prefab
+  m_RootGameObject: {fileID: 170570}
+=======
+  m_RootGameObject: {fileID: 161948}
+>>>>>>> c796828ceb900ce00a7ed7fa916bcc2d42c6f9a0:Assets/Prefabs/Objects/StreetStraight1.prefab
+  m_IsPrefabParent: 1

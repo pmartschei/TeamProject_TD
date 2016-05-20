@@ -95,14 +95,16 @@ public class FieldScript : MonoBehaviour
                 PathTileScript path = null;
                 if (tileRotationValue == 2)
                 {
-                    tile.transform.Rotate(Vector3.forward, 90);
+                    //tile.transform.Rotate(Vector3.forward, 90);
+                    tile.transform.Rotate(0.0f, 90.0f, 0.0f);
                     path = tile.GetComponent<PathTileScript>();
                     if(path != null)
                         path.Rotate();
                 }
                 else if (tileRotationValue == 3)
                 {
-                    tile.transform.Rotate(Vector3.forward, 180);
+                    //tile.transform.Rotate(Vector3.forward, 180);
+                    tile.transform.Rotate(0.0f, 180.0f, 0.0f);
                     path = tile.GetComponent<PathTileScript>();
                     if (path != null)
                     {
@@ -112,7 +114,8 @@ public class FieldScript : MonoBehaviour
                 }
                 else if (tileRotationValue == 4)
                 {
-                    tile.transform.Rotate(Vector3.forward, 270);
+                    //tile.transform.Rotate(Vector3.forward, 270);
+                    tile.transform.Rotate(0.0f, 270.0f, 0.0f);
                     path = tile.GetComponent<PathTileScript>();
                     if (path != null)
                     {
@@ -156,30 +159,30 @@ public class FieldScript : MonoBehaviour
         {
             int[,] tileOrder = new int[,]
             { { 111, 211, 312, 211, 111 },
-              { 111, 111, 413, 411, 111 },
-              { 111, 111, 211, 312, 211 },
-              { 111, 111, 414, 412, 111 },
-              { 111, 211, 512, 211, 111 }};
+              { 121, 111, 423, 421, 111 },
+              { 111, 121, 211, 322, 221 },
+              { 121, 111, 414, 412, 121 },
+              { 111, 221, 512, 211, 111 }};
             return tileOrder;
         }
         else if(scenario == 1)
         {
             int[,] tileOrder = new int[,]
-             { { 111, 211, 312, 211, 111 },
-               { 111, 414, 412, 111, 111 },
-               { 211, 312, 211, 111, 111 },
-               { 111, 413, 411, 111, 111 },
-               { 111, 211, 512, 211, 111 }};
+             { { 111, 211, 312, 211, 121 },
+               { 111, 424, 422, 111, 111 },
+               { 211, 312, 211, 111, 121 },
+               { 111, 413, 411, 111, 121 },
+               { 111, 211, 512, 211, 121 }};
             return tileOrder;
         }
         else
         {
             int[,] tileOrder = new int[,]
-            { { 111, 211, 312, 211, 111 },
-              { 111, 111, 312, 111, 111 },
-              { 111, 211, 312, 211, 111 },
-              { 111, 111, 312, 111, 111 },
-              { 111, 211, 512, 211, 111 }};
+            { { 111, 211, 312, 221, 111 },
+              { 111, 111, 312, 121, 111 },
+              { 111, 211, 322, 221, 121 },
+              { 121, 111, 312, 111, 111 },
+              { 121, 211, 522, 221, 121 }};
             return tileOrder;
         }
     }
