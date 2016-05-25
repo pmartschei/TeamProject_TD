@@ -48,6 +48,7 @@
      <Compile Include="Assets\Scripts\GameLogic\CameraControll.cs" />
      <Compile Include="Assets\Scripts\GameLogic\DrawTiles.cs" />
      <Compile Include="Assets\Scripts\GameLogic\EnemySystem\EndPoint.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\EnemySystem\EnemyScript.cs" />
      <Compile Include="Assets\Scripts\GameLogic\EnemySystem\MoveEnemyScript.cs" />
      <Compile Include="Assets\Scripts\GameLogic\EnemySystem\PathMoveScript.cs" />
      <Compile Include="Assets\Scripts\GameLogic\EnemySystem\PathTileScript.cs" />
@@ -55,6 +56,7 @@
      <Compile Include="Assets\Scripts\GameLogic\EnemySystem\TilePos.cs" />
      <Compile Include="Assets\Scripts\GameLogic\FieldScript.cs" />
      <Compile Include="Assets\Scripts\GameLogic\MouseScript.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\PlayerSystem.cs" />
      <Compile Include="Assets\Scripts\GameLogic\TileSystem.cs" />
      <Compile Include="Assets\Scripts\GameLogic\TileUI.cs" />
      <Compile Include="Assets\Scripts\Grid.cs" />
