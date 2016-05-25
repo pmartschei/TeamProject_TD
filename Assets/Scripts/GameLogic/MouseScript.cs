@@ -20,7 +20,6 @@ public class MouseScript : MonoBehaviour
     void Start()
     {
         // Eventuell woanders hin
-        GameObject.Find("BuildTowerHUD").SetActive(false);
     }
 
     // Update is called once per frame
