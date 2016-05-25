@@ -95,16 +95,16 @@ public class FieldScript : MonoBehaviour
                 PathTileScript path = null;
                 if (tileRotationValue == 2)
                 {
-                    //tile.transform.Rotate(Vector3.forward, 90);
-                    tile.transform.Rotate(0.0f, 90.0f, 0.0f);
+                    tile.transform.Rotate(Vector3.forward, 90);
+                    //tile.transform.Rotate(0.0f, 90.0f, 0.0f);
                     path = tile.GetComponent<PathTileScript>();
                     if(path != null)
                         path.Rotate();
                 }
                 else if (tileRotationValue == 3)
                 {
-                    //tile.transform.Rotate(Vector3.forward, 180);
-                    tile.transform.Rotate(0.0f, 180.0f, 0.0f);
+                    tile.transform.Rotate(Vector3.forward, 180);
+                    //tile.transform.Rotate(0.0f, 180.0f, 0.0f);
                     path = tile.GetComponent<PathTileScript>();
                     if (path != null)
                     {
@@ -114,8 +114,8 @@ public class FieldScript : MonoBehaviour
                 }
                 else if (tileRotationValue == 4)
                 {
-                    //tile.transform.Rotate(Vector3.forward, 270);
-                    tile.transform.Rotate(0.0f, 270.0f, 0.0f);
+                    tile.transform.Rotate(Vector3.forward, 270);
+                    //tile.transform.Rotate(0.0f, 270.0f, 0.0f);
                     path = tile.GetComponent<PathTileScript>();
                     if (path != null)
                     {
