@@ -6,7 +6,6 @@ public class SelectTowerScript : MonoBehaviour
 {
     private Vector3 m_position;
     private GameObject m_selectedTile;
-    private bool m_towerBuild = false;
 
     // Use this for initialization
     void Start()
@@ -58,9 +57,6 @@ public class SelectTowerScript : MonoBehaviour
 
             default: break;
         }
-
-        m_towerBuild = true;
-        m_selectedTile.GetComponent<OpenTowerHUDScript>().setTowerActive(m_towerBuild);
     }
 
     // Gets the position of the selected Buildtile

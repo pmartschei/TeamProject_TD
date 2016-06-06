@@ -43,11 +43,13 @@ public class OpenUpgradeHUDScript : MonoBehaviour
 
     public void OnMouseDown()
     {
-        Vector3 screenPos = m_camera.WorldToScreenPoint(m_target.position);
-        screenPos += new Vector3(0.0f, 10.0f, 0.0f);
-        m_upgradeTowerHUD.transform.position = screenPos;
-        m_upgradeTowerHUD.SetActive(true);
-        m_upgradeTowerHUD.transform.FindChild("Upgrade").GetComponent<SelectUpgradeScript>().setSelectedTower(gameObject);
-        m_upgradeTowerHUD.transform.FindChild("Destroy").GetComponent<SelectUpgradeScript>().setSelectedTower(gameObject);
+        if (!GameObject.Find("HUDCanvas").transform.FindChild("BuildTowerHUD").gameObject.activeSelf)
+        {
+            Vector3 screenPos = m_camera.WorldToScreenPoint(m_target.position);
+            screenPos += new Vector3(0.0f, 10.0f, 0.0f);
+            m_upgradeTowerHUD.transform.position = screenPos;
+            m_upgradeTowerHUD.SetActive(true);
+            m_upgradeTowerHUD.transform.FindChild("Destroy").GetComponent<SelectUpgradeScript>().setSelectedTower(gameObject);
+        }
     }
 }

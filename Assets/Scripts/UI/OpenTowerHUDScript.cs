@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class OpenTowerHUDScript : MonoBehaviour
 {
@@ -14,8 +15,6 @@ public class OpenTowerHUDScript : MonoBehaviour
 
     private Transform m_target;
     private Camera m_camera;
-
-    private bool m_towerActive = false;
 
     // Use this for initialization
     // Get the HUD and MoneySystem
@@ -95,24 +94,19 @@ public class OpenTowerHUDScript : MonoBehaviour
     // transfer the position of the current tile to SelectTowerScript
     public void OnMouseDown()
     {
-        if (!m_towerActive)
+        if (!GameObject.Find("HUDCanvas").transform.Find("UpgradeTowerHUD").gameObject.activeSelf)
         {
             Vector3 screenPos = m_camera.WorldToScreenPoint(m_target.position);
             screenPos += new Vector3(0.0f, 10.0f, 0.0f);
             m_buildTowerHUD.transform.position = screenPos;
             m_buildTowerHUD.SetActive(true);
+
+            GameObject.Find("HUDCanvas").transform.FindChild("UpgradeTowerHUD").FindChild("Destroy").GetComponent<SelectUpgradeScript>().setSelectedTile(gameObject);
+
             m_buildTowerHUD.transform.FindChild("UpperLeftTower").GetComponent<SelectTowerScript>().setPosition(m_target.position, gameObject);
             m_buildTowerHUD.transform.FindChild("UpperRightTower").GetComponent<SelectTowerScript>().setPosition(m_target.position, gameObject);
             m_buildTowerHUD.transform.FindChild("LowerLeftTower").GetComponent<SelectTowerScript>().setPosition(m_target.position, gameObject);
             m_buildTowerHUD.transform.FindChild("LowerRightTower").GetComponent<SelectTowerScript>().setPosition(m_target.position, gameObject);
-
-            GameObject.Find("HUDCanvas").transform.FindChild("UpgradeTowerHUD").FindChild("Upgrade").GetComponent<SelectUpgradeScript>().setSelectedTile(gameObject);
-            GameObject.Find("HUDCanvas").transform.FindChild("UpgradeTowerHUD").FindChild("Destroy").GetComponent<SelectUpgradeScript>().setSelectedTile(gameObject);
-        }
-    }
-
-    public void setTowerActive(bool value)
-    {
-        m_towerActive = value;
+        }        
     }
 }

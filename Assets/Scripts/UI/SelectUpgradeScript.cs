@@ -31,7 +31,6 @@ public class SelectUpgradeScript : MonoBehaviour
     {
         gameObject.transform.parent.gameObject.SetActive(false);
         Destroy(m_selectedTower);
-        m_selectedTile.GetComponent<OpenTowerHUDScript>().setTowerActive(false);
     }
 
     public void setSelectedTower(GameObject tower)

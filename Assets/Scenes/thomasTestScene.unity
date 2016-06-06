@@ -3611,7 +3611,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_lifeTotal: 20
-  m_MoneyTotal: 500
+  m_MoneyTotal: 1500
   m_HeartText: {fileID: 157204646}
   m_MoneyText: {fileID: 137759786}
 --- !u!1 &1304481639
