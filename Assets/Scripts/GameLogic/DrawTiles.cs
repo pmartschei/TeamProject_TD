@@ -37,29 +37,32 @@ public class DrawTiles : MonoBehaviour
 
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         // Only start the script and therefor the drawing process after the Main Menu is over and the correct Scene is loaded
 
-            // Get the time spend in the Main Menu (needed for the correct drawing intervalls)
-            m_timeSpendInMenu = Time.time;
+        GameObject.Find("BuildTowerHUD").SetActive(false);
+        GameObject.Find("UpgradeTowerHUD").SetActive(false);
 
-            // Set up the initial percantages
-            m_getRoad = 0.66f;
-            m_getBlank = 0.33f;
+        // Get the time spend in the Main Menu (needed for the correct drawing intervalls)
+        m_timeSpendInMenu = Time.time;
 
-            // Always add or subtract 25% of the 33% Chance to draw that Tile
-            m_changePercentagesFactor = 0.33f * 0.25f;
+        // Set up the initial percantages
+        m_getRoad = 0.66f;
+        m_getBlank = 0.33f;
 
-            // Initialize variables for the saved Tiles
-            m_maxTiles = 3;
-            m_counterCurrentTiles = 0;
+        // Always add or subtract 25% of the 33% Chance to draw that Tile
+        m_changePercentagesFactor = 0.33f * 0.25f;
 
-            m_drawTileSystem = GameObject.Find("DrawTileSystem");
-	}
-	
-	// Update is called once per frame
-	void Update ()
+        // Initialize variables for the saved Tiles
+        m_maxTiles = 3;
+        m_counterCurrentTiles = 0;
+
+        m_drawTileSystem = GameObject.Find("DrawTileSystem");
+    }
+
+    // Update is called once per frame
+    void Update()
     {
         if ((Time.time - m_timeSpendInMenu) > m_drawNextTile)
         {
@@ -72,13 +75,27 @@ public class DrawTiles : MonoBehaviour
             {
                 if (m_counterCurrentTiles < m_maxTiles)
                 {
-                    float rndRoadTile = Random.Range(0.0f, 1.0f);
-                    
-                    if(rndRoadTile > 0.5f)
-                        m_drawTileSystem.GetComponent<TileUI>().SetNewTile(m_tileSystem.GetComponent<TileSystem>().m_StreetStraightVar1);
-                    else
-                        m_drawTileSystem.GetComponent<TileUI>().SetNewTile(m_tileSystem.GetComponent<TileSystem>().m_StreetCurveVar1);
-                        
+                    int rndRoadTile = Random.Range(1, 4);
+
+                    switch (rndRoadTile)
+                    {
+                        case 1:
+                            m_drawTileSystem.GetComponent<TileUI>().SetNewTile(m_tileSystem.GetComponent<TileSystem>().m_StreetStraightVar1);
+                            break;
+                        case 2:
+                            m_drawTileSystem.GetComponent<TileUI>().SetNewTile(m_tileSystem.GetComponent<TileSystem>().m_StreetStraightVar2);
+                            break;
+                        case 3:
+                            m_drawTileSystem.GetComponent<TileUI>().SetNewTile(m_tileSystem.GetComponent<TileSystem>().m_StreetCurveVar1);
+                            break;
+                        case 4:
+                            m_drawTileSystem.GetComponent<TileUI>().SetNewTile(m_tileSystem.GetComponent<TileSystem>().m_StreetCurveVar2);
+                            break;
+                        default:
+                            m_drawTileSystem.GetComponent<TileUI>().SetNewTile(m_tileSystem.GetComponent<TileSystem>().m_StreetStraightVar1);
+                            break;
+                    }
+
                     m_counterCurrentTiles++;
 
                     // The range between getRoad and 1.0f gets smaller, less chance to draw that Tile
@@ -99,7 +116,20 @@ public class DrawTiles : MonoBehaviour
             {
                 if (m_counterCurrentTiles < 3)
                 {
-                    m_drawTileSystem.GetComponent<TileUI>().SetNewTile(m_tileSystem.GetComponent<TileSystem>().m_TowerBuildSpotVar1);
+                    int rndBuildTile = Random.Range(1, 2);
+
+                    switch (rndBuildTile)
+                    {
+                        case 1:
+                            m_drawTileSystem.GetComponent<TileUI>().SetNewTile(m_tileSystem.GetComponent<TileSystem>().m_TowerBuildSpotVar1);
+                            break;
+                        case 2:
+                            m_drawTileSystem.GetComponent<TileUI>().SetNewTile(m_tileSystem.GetComponent<TileSystem>().m_TowerBuildSpotVar2);
+                            break;
+                        default:
+                            m_drawTileSystem.GetComponent<TileUI>().SetNewTile(m_tileSystem.GetComponent<TileSystem>().m_TowerBuildSpotVar1);
+                            break;
+                    }
                     m_counterCurrentTiles++;
 
                     // The range between getRoad and 1.0f gets bigger, more chance to draw that Tile
@@ -111,9 +141,23 @@ public class DrawTiles : MonoBehaviour
             }
             else
             {
-                if (m_counterCurrentTiles < 3 )
+                if (m_counterCurrentTiles < 3)
                 {
-                    m_drawTileSystem.GetComponent<TileUI>().SetNewTile(m_tileSystem.GetComponent<TileSystem>().m_BlankVar1);
+                    int rndBlankTile = Random.Range(1, 2);
+
+                    switch (rndBlankTile)
+                    {
+                        case 1:
+                            m_drawTileSystem.GetComponent<TileUI>().SetNewTile(m_tileSystem.GetComponent<TileSystem>().m_BlankVar1);
+                            break;
+                        case 2:
+                            m_drawTileSystem.GetComponent<TileUI>().SetNewTile(m_tileSystem.GetComponent<TileSystem>().m_BlankVar2);
+                            break;
+                        default:
+                            m_drawTileSystem.GetComponent<TileUI>().SetNewTile(m_tileSystem.GetComponent<TileSystem>().m_BlankVar1);
+                            break;
+                    }
+
                     m_counterCurrentTiles++;
 
                     // The range between getRoad and 1.0f gets bigger, more chance to draw that Tile
