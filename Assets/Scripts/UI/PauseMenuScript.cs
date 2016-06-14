@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEditor;
+using UnityEngine.UI;
 
 public class PauseMenuScript : MonoBehaviour
 {
     private GameObject[] m_pauseObjects;
+    public Slider soundSlider;
 
 	// Use this for initialization
 	void Start ()
@@ -56,8 +59,19 @@ public class PauseMenuScript : MonoBehaviour
         }
     }
 
+    public void adjustSound()
+    {
+        AudioListener.volume = soundSlider.value;
+    }
+
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+    }
+
+    public void QuitGame()
+    {
+        EditorApplication.isPlaying = false; // Nur zum testen, löschen später!!!
+        Application.Quit();
     }
 }
