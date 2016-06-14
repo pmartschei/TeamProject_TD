@@ -51,7 +51,7 @@ public class TileUI : MonoBehaviour
     void Update()
     {
         // Enables the rotation around the z-axis
-        if (m_counterCurrentTiles > 0)
+        if ((m_counterCurrentTiles > 0) && (Time.timeScale != 0))
         {
             for (int i = 0; i < m_counterCurrentTiles; i++)
             {

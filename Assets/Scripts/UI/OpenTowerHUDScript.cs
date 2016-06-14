@@ -39,54 +39,62 @@ public class OpenTowerHUDScript : MonoBehaviour
     // Check for every tower option if enough money is available to build it, if not decrease alpha values and disable the button
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Time.timeScale != 0)
+        {
+            if (Input.GetMouseButtonDown(1))
+                m_buildTowerHUD.SetActive(false);
+
+
+            if (!(m_lifeAndMoneySystem.GetComponent<LifeAndMoneyScript>().isMoneyDecreasePossible(m_firstTowerCost)))
+            {
+                m_buildTowerHUD.transform.FindChild("UpperLeftTower").transform.FindChild("TowerButton").GetComponent<Button>().interactable = false;
+                m_buildTowerHUD.transform.FindChild("UpperLeftTower").transform.FindChild("CircleImage").GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 0.6f);
+            }
+            else
+            {
+                m_buildTowerHUD.transform.FindChild("UpperLeftTower").transform.FindChild("TowerButton").GetComponent<Button>().interactable = true;
+                m_buildTowerHUD.transform.FindChild("UpperLeftTower").transform.FindChild("CircleImage").GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
+            }
+
+
+            if (!(m_lifeAndMoneySystem.GetComponent<LifeAndMoneyScript>().isMoneyDecreasePossible(m_secondTowerCost)))
+            {
+                m_buildTowerHUD.transform.FindChild("UpperRightTower").transform.FindChild("TowerButton").GetComponent<Button>().interactable = false;
+                m_buildTowerHUD.transform.FindChild("UpperRightTower").transform.FindChild("CircleImage").GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 0.6f);
+            }
+            else
+            {
+                m_buildTowerHUD.transform.FindChild("UpperRightTower").transform.FindChild("TowerButton").GetComponent<Button>().interactable = true;
+                m_buildTowerHUD.transform.FindChild("UpperRightTower").transform.FindChild("CircleImage").GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
+            }
+
+
+            if (!(m_lifeAndMoneySystem.GetComponent<LifeAndMoneyScript>().isMoneyDecreasePossible(m_thirdTowerCost)))
+            {
+                m_buildTowerHUD.transform.FindChild("LowerLeftTower").transform.FindChild("TowerButton").GetComponent<Button>().interactable = false;
+                m_buildTowerHUD.transform.FindChild("LowerLeftTower").transform.FindChild("CircleImage").GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 0.6f);
+            }
+            else
+            {
+                m_buildTowerHUD.transform.FindChild("LowerLeftTower").transform.FindChild("TowerButton").GetComponent<Button>().interactable = true;
+                m_buildTowerHUD.transform.FindChild("LowerLeftTower").transform.FindChild("CircleImage").GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
+            }
+
+
+            if (!(m_lifeAndMoneySystem.GetComponent<LifeAndMoneyScript>().isMoneyDecreasePossible(m_fourthTowerCost)))
+            {
+                m_buildTowerHUD.transform.FindChild("LowerRightTower").transform.FindChild("TowerButton").GetComponent<Button>().interactable = false;
+                m_buildTowerHUD.transform.FindChild("LowerRightTower").transform.FindChild("CircleImage").GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 0.6f);
+            }
+            else
+            {
+                m_buildTowerHUD.transform.FindChild("LowerRightTower").transform.FindChild("TowerButton").GetComponent<Button>().interactable = true;
+                m_buildTowerHUD.transform.FindChild("LowerRightTower").transform.FindChild("CircleImage").GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
+            }
+        }
+        else
+        {
             m_buildTowerHUD.SetActive(false);
-
-        if (!(m_lifeAndMoneySystem.GetComponent<LifeAndMoneyScript>().isMoneyDecreasePossible(m_firstTowerCost)))
-        {
-            m_buildTowerHUD.transform.FindChild("UpperLeftTower").transform.FindChild("TowerButton").GetComponent<Button>().interactable = false;
-            m_buildTowerHUD.transform.FindChild("UpperLeftTower").transform.FindChild("CircleImage").GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 0.6f);
-        }
-        else
-        {
-            m_buildTowerHUD.transform.FindChild("UpperLeftTower").transform.FindChild("TowerButton").GetComponent<Button>().interactable = true;
-            m_buildTowerHUD.transform.FindChild("UpperLeftTower").transform.FindChild("CircleImage").GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
-        }
-
-
-        if (!(m_lifeAndMoneySystem.GetComponent<LifeAndMoneyScript>().isMoneyDecreasePossible(m_secondTowerCost)))
-        {
-            m_buildTowerHUD.transform.FindChild("UpperRightTower").transform.FindChild("TowerButton").GetComponent<Button>().interactable = false;
-            m_buildTowerHUD.transform.FindChild("UpperRightTower").transform.FindChild("CircleImage").GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 0.6f);
-        }
-        else
-        {
-            m_buildTowerHUD.transform.FindChild("UpperRightTower").transform.FindChild("TowerButton").GetComponent<Button>().interactable = true;
-            m_buildTowerHUD.transform.FindChild("UpperRightTower").transform.FindChild("CircleImage").GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
-        }
-
-
-        if (!(m_lifeAndMoneySystem.GetComponent<LifeAndMoneyScript>().isMoneyDecreasePossible(m_thirdTowerCost)))
-        {
-            m_buildTowerHUD.transform.FindChild("LowerLeftTower").transform.FindChild("TowerButton").GetComponent<Button>().interactable = false;
-            m_buildTowerHUD.transform.FindChild("LowerLeftTower").transform.FindChild("CircleImage").GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 0.6f);
-        }
-        else
-        {
-            m_buildTowerHUD.transform.FindChild("LowerLeftTower").transform.FindChild("TowerButton").GetComponent<Button>().interactable = true;
-            m_buildTowerHUD.transform.FindChild("LowerLeftTower").transform.FindChild("CircleImage").GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
-        }
-
-
-        if (!(m_lifeAndMoneySystem.GetComponent<LifeAndMoneyScript>().isMoneyDecreasePossible(m_fourthTowerCost)))
-        {
-            m_buildTowerHUD.transform.FindChild("LowerRightTower").transform.FindChild("TowerButton").GetComponent<Button>().interactable = false;
-            m_buildTowerHUD.transform.FindChild("LowerRightTower").transform.FindChild("CircleImage").GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 0.6f);
-        }
-        else
-        {
-            m_buildTowerHUD.transform.FindChild("LowerRightTower").transform.FindChild("TowerButton").GetComponent<Button>().interactable = true;
-            m_buildTowerHUD.transform.FindChild("LowerRightTower").transform.FindChild("CircleImage").GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
         }
     }
 
@@ -94,19 +102,22 @@ public class OpenTowerHUDScript : MonoBehaviour
     // transfer the position of the current tile to SelectTowerScript
     public void OnMouseDown()
     {
-        if (!GameObject.Find("HUDCanvas").transform.Find("UpgradeTowerHUD").gameObject.activeSelf)
+        if (Time.timeScale != 0)
         {
-            Vector3 screenPos = m_camera.WorldToScreenPoint(m_target.position);
-            screenPos += new Vector3(0.0f, 10.0f, 0.0f);
-            m_buildTowerHUD.transform.position = screenPos;
-            m_buildTowerHUD.SetActive(true);
+            if (!GameObject.Find("HUDCanvas").transform.Find("UpgradeTowerHUD").gameObject.activeSelf)
+            {
+                Vector3 screenPos = m_camera.WorldToScreenPoint(m_target.position);
+                screenPos += new Vector3(0.0f, 10.0f, 0.0f);
+                m_buildTowerHUD.transform.position = screenPos;
+                m_buildTowerHUD.SetActive(true);
 
-            GameObject.Find("HUDCanvas").transform.FindChild("UpgradeTowerHUD").FindChild("Destroy").GetComponent<SelectUpgradeScript>().setSelectedTile(gameObject);
+                // GameObject.Find("HUDCanvas").transform.FindChild("UpgradeTowerHUD").FindChild("Destroy").GetComponent<SelectUpgradeScript>().setSelectedTile(gameObject);
 
-            m_buildTowerHUD.transform.FindChild("UpperLeftTower").GetComponent<SelectTowerScript>().setPosition(m_target.position, gameObject);
-            m_buildTowerHUD.transform.FindChild("UpperRightTower").GetComponent<SelectTowerScript>().setPosition(m_target.position, gameObject);
-            m_buildTowerHUD.transform.FindChild("LowerLeftTower").GetComponent<SelectTowerScript>().setPosition(m_target.position, gameObject);
-            m_buildTowerHUD.transform.FindChild("LowerRightTower").GetComponent<SelectTowerScript>().setPosition(m_target.position, gameObject);
-        }        
+                m_buildTowerHUD.transform.FindChild("UpperLeftTower").GetComponent<SelectTowerScript>().setPosition(m_target.position, gameObject);
+                m_buildTowerHUD.transform.FindChild("UpperRightTower").GetComponent<SelectTowerScript>().setPosition(m_target.position, gameObject);
+                m_buildTowerHUD.transform.FindChild("LowerLeftTower").GetComponent<SelectTowerScript>().setPosition(m_target.position, gameObject);
+                m_buildTowerHUD.transform.FindChild("LowerRightTower").GetComponent<SelectTowerScript>().setPosition(m_target.position, gameObject);
+            }
+        }    
     }
 }

@@ -7,7 +7,7 @@ public class UIManagerScript : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("testScene");
+        SceneManager.LoadScene("MainScene");
     }
 
 }

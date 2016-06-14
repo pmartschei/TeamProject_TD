@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class SelectUpgradeScript : MonoBehaviour
 {
     private GameObject m_selectedTower;
-    private GameObject m_selectedTile;
 
     // Use this for initialization
     void Start ()
@@ -21,25 +20,26 @@ public class SelectUpgradeScript : MonoBehaviour
 
     public void Upgrade()
     {
-        string value = gameObject.transform.FindChild("UpgradeCostText").GetComponent<Text>().text;
-        int amount = int.Parse(value);
-        GameObject.Find("LifeAndMoneySystem").GetComponent<LifeAndMoneyScript>().decreaseMoney(amount);
-        gameObject.transform.parent.gameObject.SetActive(false);
+        if (Time.timeScale != 0)
+        {
+            string value = gameObject.transform.FindChild("UpgradeCostText").GetComponent<Text>().text;
+            int amount = int.Parse(value);
+            GameObject.Find("LifeAndMoneySystem").GetComponent<LifeAndMoneyScript>().decreaseMoney(amount);
+            gameObject.transform.parent.gameObject.SetActive(false);
+        }
     }
 
     public void Destroy()
     {
-        gameObject.transform.parent.gameObject.SetActive(false);
-        Destroy(m_selectedTower);
+        if (Time.timeScale != 0)
+        {
+            gameObject.transform.parent.gameObject.SetActive(false);
+            Destroy(m_selectedTower);
+        }
     }
 
     public void setSelectedTower(GameObject tower)
     {
         m_selectedTower = tower;
-    }
-
-    public void setSelectedTile(GameObject tile)
-    {
-        m_selectedTile = tile;
     }
 }
