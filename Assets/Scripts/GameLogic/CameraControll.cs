@@ -7,6 +7,8 @@ public class CameraControll : MonoBehaviour {
     public GameObject m_villageCamera;
 
     public float m_cameraSpeed = 5.0f;
+    public int m_cameraBorderFactor = 10;
+    public float m_cameraVelocityFactor = 30.0f;
 
     //values for the position and rotation of the main camera
     private float m_translationX1 = -3.0f;
@@ -35,14 +37,36 @@ public class CameraControll : MonoBehaviour {
 
         setVillageCamera();
         m_villageCamera.SetActive(false);
+
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if (Input.GetKeyUp(KeyCode.Space))
+        //Steuerung mit der Maus
+
+        if (m_mainCamera.activeSelf)
         {
-            if (m_mainCamera.activeSelf)
+            Vector3 mousePos = Input.mousePosition;
+
+            if (mousePos.x < (Screen.width / m_cameraBorderFactor))
+            {
+                float value = (Screen.width / m_cameraBorderFactor) - mousePos.x;
+                float speed = m_cameraSpeed * (value / m_cameraVelocityFactor);
+                m_mainCamera.transform.position += new Vector3(0.0f, 0.0f, speed * Time.deltaTime);
+            }
+            else if (mousePos.x > (Screen.width - (Screen.width / m_cameraBorderFactor)))
+            {
+                float value = mousePos.x - (Screen.width - (Screen.width / m_cameraBorderFactor));
+                float speed = m_cameraSpeed * (value / m_cameraVelocityFactor);
+                m_mainCamera.transform.position += new Vector3(0.0f, 0.0f, -speed * Time.deltaTime);
+            }
+        }
+
+        //Mausrad drücken
+        if(Input.GetMouseButtonUp(2))
+        {
+            if(m_mainCamera.activeSelf)
             {
                 m_mainCamera.SetActive(false);
                 setVillageCamera();
@@ -55,33 +79,50 @@ public class CameraControll : MonoBehaviour {
             }
         }
 
-        if (m_mainCamera.activeSelf)
-        {
-            if (Input.GetKey(KeyCode.A))
-            {
-                //transform.Translate(new Vector3(-(m_cameraSpeed * Time.deltaTime), 0.0f, 0.0f));
-                m_mainCamera.transform.position += new Vector3(0.0f, 0.0f, m_cameraSpeed * Time.deltaTime);
-            }
-            if (Input.GetKey(KeyCode.D))
-            {
-                //Vector3 currPos = m_mainCamera.transform.position;
-                //Vector3 toAdd = new Vector3(0.0f, 0.0f, -(m_cameraSpeed * Time.deltaTime));
-                //Vector3 toGoTo = currPos + toAdd;
-                //m_mainCamera.transform.position = Vector3.Lerp(currPos, toGoTo, Time.deltaTime * 50f);
-                m_mainCamera.transform.position += new Vector3(0.0f, 0.0f, -(m_cameraSpeed * Time.deltaTime));
-            }
-        }
-        else
-        {
-            if (Input.GetKey(KeyCode.W))
-            {
-                m_villageCamera.transform.position += new Vector3(0.0f, 0.0f, m_cameraSpeed * Time.deltaTime);
-            }
-            if (Input.GetKey(KeyCode.S))
-            {
-                m_villageCamera.transform.position += new Vector3(0.0f, 0.0f, -(m_cameraSpeed * Time.deltaTime));
-            }
-        }
+
+        //ALT: Steuerung mit der Tastatur
+        //if (Input.GetKeyUp(KeyCode.Space))
+        //{
+        //    if (m_mainCamera.activeSelf)
+        //    {
+        //        m_mainCamera.SetActive(false);
+        //        setVillageCamera();
+        //        m_villageCamera.SetActive(true);
+        //    }
+        //    else
+        //    {
+        //        m_mainCamera.SetActive(true);
+        //        m_villageCamera.SetActive(false);
+        //    }
+        //}
+
+        //if (m_mainCamera.activeSelf)
+        //{
+        //    if (Input.GetKey(KeyCode.A))
+        //    {
+        //        //transform.Translate(new Vector3(-(m_cameraSpeed * Time.deltaTime), 0.0f, 0.0f));
+        //        m_mainCamera.transform.position += new Vector3(0.0f, 0.0f, m_cameraSpeed * Time.deltaTime);
+        //    }
+        //    if (Input.GetKey(KeyCode.D))
+        //    {
+        //        //Vector3 currPos = m_mainCamera.transform.position;
+        //        //Vector3 toAdd = new Vector3(0.0f, 0.0f, -(m_cameraSpeed * Time.deltaTime));
+        //        //Vector3 toGoTo = currPos + toAdd;
+        //        //m_mainCamera.transform.position = Vector3.Lerp(currPos, toGoTo, Time.deltaTime * 50f);
+        //        m_mainCamera.transform.position += new Vector3(0.0f, 0.0f, -(m_cameraSpeed * Time.deltaTime));
+        //    }
+        //}
+        //else
+        //{
+        //    if (Input.GetKey(KeyCode.W))
+        //    {
+        //        m_villageCamera.transform.position += new Vector3(0.0f, 0.0f, m_cameraSpeed * Time.deltaTime);
+        //    }
+        //    if (Input.GetKey(KeyCode.S))
+        //    {
+        //        m_villageCamera.transform.position += new Vector3(0.0f, 0.0f, -(m_cameraSpeed * Time.deltaTime));
+        //    }
+        //}
 	}
 
     private void setVillageCamera()
