@@ -22,7 +22,7 @@ public class CameraControll : MonoBehaviour {
     //values for the position and rotation of the village camera
     private float m_translationXVillage = 5.0f;
     private float m_translationYVillage = 5.0f;
-    private float m_translationZVillage = -4.0f;
+    private float m_translationZVillage = -5.0f;
 
     private float m_rotationXVillage = 50.0f;
     private float m_rotationYVillage = 0.0f;

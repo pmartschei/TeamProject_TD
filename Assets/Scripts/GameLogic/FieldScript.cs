@@ -18,6 +18,7 @@ public class FieldScript : MonoBehaviour
     public int m_GeneratedRandomValue;
 
     private GameObject[][] m_TileArray;
+    private GameObject[][] m_villageArray;
 
     void Start()
     {
@@ -25,6 +26,12 @@ public class FieldScript : MonoBehaviour
         for (int i = 0; i < m_TileArray.Length; i++)
         {
             m_TileArray[i] = new GameObject[m_LevelWidth];
+        }
+
+        m_villageArray = new GameObject[2][];
+        for (int i = 0; i < m_villageArray.Length; ++i)
+        {
+            m_villageArray[i] = new GameObject[3];
         }
 
         Init();
@@ -38,7 +45,46 @@ public class FieldScript : MonoBehaviour
 
         m_GeneratedRandomValue = scenario;
 
+        CreateVillage();
+
         CreateScenario(scenario/33);
+    }
+
+    private void CreateVillage()
+    {
+        GameObject tile = null;
+
+        tile = Instantiate(m_TileSystem.GetComponent<TileSystem>().m_StreetEndVar1);
+        tile.transform.Rotate(Vector3.forward, 90);
+        AddVillagePart(tile, 1, 0);
+
+        tile = Instantiate(m_TileSystem.GetComponent<TileSystem>().m_VillagePart1);
+        tile.transform.Rotate(Vector3.forward, 180);
+        AddVillagePart(tile, 1, -1);
+
+        tile = Instantiate(m_TileSystem.GetComponent<TileSystem>().m_VillagePart1);
+        AddVillagePart(tile, 1, 1);
+
+        tile = Instantiate(m_TileSystem.GetComponent<TileSystem>().m_VillagePart1);
+        tile.transform.Rotate(Vector3.forward, 90);
+        AddVillagePart(tile, 0, -1);
+
+        tile = Instantiate(m_TileSystem.GetComponent<TileSystem>().m_VillagePart1);
+        tile.transform.Rotate(Vector3.forward, 90);
+        AddVillagePart(tile, 0, 0);
+
+        tile = Instantiate(m_TileSystem.GetComponent<TileSystem>().m_VillagePart1);
+        tile.transform.Rotate(Vector3.forward, 90);
+        AddVillagePart(tile, 0, 1);
+    }
+
+    private void AddVillagePart(GameObject tile, int x, int y)
+    {
+        float xValue = x - 2;
+        float yValue = y + 2;
+        tile.transform.position = new Vector3(yValue * m_SizeX + m_SizeX / 2.0f, 0.0f, xValue * m_SizeY + m_SizeY / 2.0f);
+        tile.transform.parent = this.transform;
+        m_villageArray[x][y + 1] = tile;
     }
 
     private void CreateScenario(int scenario)
@@ -207,6 +253,7 @@ public class FieldScript : MonoBehaviour
                 }
             }
         }
+
         x = -1;
         y = -1;
         return;
