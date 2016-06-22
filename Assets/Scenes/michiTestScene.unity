@@ -15,7 +15,7 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 6
   m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_FogColor: {r: 0.83823526, g: 0.08628891, b: 0.08628891, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.01
   m_LinearFogStart: 0
@@ -339,7 +339,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 421128, guid: 46dbed809b82ae64fb72ce4b2f10cc07, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 11404838, guid: 46dbed809b82ae64fb72ce4b2f10cc07, type: 2}
       propertyPath: m_SimpleInitStreetTile
@@ -1264,7 +1264,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 465640, guid: b3dddc2343416bb48bc82c679c883788, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 11490804, guid: b3dddc2343416bb48bc82c679c883788, type: 2}
       propertyPath: m_villageCamera
@@ -1362,7 +1362,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!1 &308327415
 GameObject:
   m_ObjectHideFlags: 0
@@ -2034,7 +2034,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 444030, guid: db6e5c6c4362ce942bae1c4c3eda51dc, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 11423772, guid: db6e5c6c4362ce942bae1c4c3eda51dc, type: 2}
       propertyPath: m_BlankVar1
@@ -2092,6 +2092,10 @@ Prefab:
       propertyPath: m_Name
       value: TileSystem
       objectReference: {fileID: 0}
+    - target: {fileID: 11423772, guid: db6e5c6c4362ce942bae1c4c3eda51dc, type: 2}
+      propertyPath: m_VillagePart1
+      value: 
+      objectReference: {fileID: 158374, guid: d442a39655d889b4db2baf8ad5ca6afa, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: db6e5c6c4362ce942bae1c4c3eda51dc, type: 2}
   m_IsPrefabParent: 0
@@ -2213,7 +2217,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 445782, guid: d5cefbad3a73ceb42a5e9b3f3488b8c8, type: 2}
       propertyPath: m_RootOrder
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5cefbad3a73ceb42a5e9b3f3488b8c8, type: 2}
@@ -2691,7 +2695,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!1 &540166838
 GameObject:
   m_ObjectHideFlags: 0
@@ -3350,7 +3354,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 451044, guid: 14f85a047a21d3a4990b2ed50745ff97, type: 2}
       propertyPath: m_RootOrder
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 11420732, guid: 14f85a047a21d3a4990b2ed50745ff97, type: 2}
       propertyPath: m_savedTile1
@@ -4869,7 +4873,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 419322, guid: ca6027b71514fd242915b3af9780be91, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 11429440, guid: ca6027b71514fd242915b3af9780be91, type: 2}
       propertyPath: m_FieldSystem
@@ -6066,7 +6070,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 409698, guid: 67c27d1f91638c146a917f387e25aac1, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 11417644, guid: 67c27d1f91638c146a917f387e25aac1, type: 2}
       propertyPath: m_Camera
@@ -6962,7 +6966,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 405012, guid: c67810d82a41dda439585906fcc00468, type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 154772, guid: c67810d82a41dda439585906fcc00468, type: 2}
       propertyPath: m_Name
