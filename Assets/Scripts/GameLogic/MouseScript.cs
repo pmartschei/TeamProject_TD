@@ -25,6 +25,7 @@ public class MouseScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Time.timeScale == 0.0f) return;
         if (m_Tile != null)
         {
             if (Input.GetMouseButtonDown(1))//Rechtsklick

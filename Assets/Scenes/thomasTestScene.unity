@@ -1815,7 +1815,7 @@ MonoBehaviour:
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
-  m_FillCenter: 0
+  m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
   m_FillClockwise: 1
@@ -6968,6 +6968,22 @@ Prefab:
       propertyPath: m_Name
       value: TowerSystem
       objectReference: {fileID: 0}
+    - target: {fileID: 11448670, guid: c67810d82a41dda439585906fcc00468, type: 2}
+      propertyPath: m_tower1
+      value: 
+      objectReference: {fileID: 187918, guid: 77a599bd67f72e24999e1d5d60f433d0, type: 2}
+    - target: {fileID: 11448670, guid: c67810d82a41dda439585906fcc00468, type: 2}
+      propertyPath: m_tower2
+      value: 
+      objectReference: {fileID: 187918, guid: 77a599bd67f72e24999e1d5d60f433d0, type: 2}
+    - target: {fileID: 11448670, guid: c67810d82a41dda439585906fcc00468, type: 2}
+      propertyPath: m_tower3
+      value: 
+      objectReference: {fileID: 187918, guid: 77a599bd67f72e24999e1d5d60f433d0, type: 2}
+    - target: {fileID: 11448670, guid: c67810d82a41dda439585906fcc00468, type: 2}
+      propertyPath: m_tower4
+      value: 
+      objectReference: {fileID: 187918, guid: 77a599bd67f72e24999e1d5d60f433d0, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c67810d82a41dda439585906fcc00468, type: 2}
   m_IsPrefabParent: 0
