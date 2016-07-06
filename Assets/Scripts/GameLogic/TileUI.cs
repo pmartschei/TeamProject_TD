@@ -39,9 +39,9 @@ public class TileUI : MonoBehaviour
         m_currentTiles = new GameObject[m_maxTiles];
 
         // Different rotations for the different positions else the tiles look off
-        m_tileSlot0_rotation = Quaternion.Euler(-120, 0, 0);
-        m_tileSlot1_rotation = Quaternion.Euler(-130, 0, 0);
-        m_tileSlot2_rotation = Quaternion.Euler(-140, 0, 0);
+        m_tileSlot0_rotation = Quaternion.Euler(-160, 0, 0);
+        m_tileSlot1_rotation = Quaternion.Euler(-160, 0, 0);
+        m_tileSlot2_rotation = Quaternion.Euler(-160, 0, 0);
 
         m_displayedText = GameObject.Find("TilesText").GetComponent<Text>();
         m_drawTilesSystem = GameObject.Find("DrawTileSystem");
@@ -107,7 +107,7 @@ public class TileUI : MonoBehaviour
     public void RemoveTile(GameObject tile)
     {
         // Determine the tile that was used with its y - axis
-        switch ((int)tile.transform.position.y)
+        switch ((int)tile.transform.position.x)
         {
             case 997:
                 // The first tile was used -> move the second and third tile down one spot
