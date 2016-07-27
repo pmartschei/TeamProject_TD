@@ -16,6 +16,8 @@ public class OpenTowerHUDScript : MonoBehaviour
     private Transform m_target;
     private Camera m_camera;
 
+    private Vector3 m_screenpos;
+
     // Use this for initialization
     // Get the HUD and MoneySystem
     // Get the amount for each tower
@@ -106,9 +108,9 @@ public class OpenTowerHUDScript : MonoBehaviour
         {
             if (!GameObject.Find("HUDCanvas").transform.Find("UpgradeTowerHUD").gameObject.activeSelf)
             {
-                Vector3 screenPos = m_camera.WorldToScreenPoint(m_target.position);
-                screenPos += new Vector3(0.0f, 10.0f, 0.0f);
-                m_buildTowerHUD.transform.position = screenPos;
+                m_screenpos = m_camera.WorldToScreenPoint(m_target.position);
+                m_screenpos += new Vector3(0.0f, 10.0f, 0.0f);
+                m_buildTowerHUD.transform.position = m_screenpos;
                 m_buildTowerHUD.SetActive(true);
 
                 // GameObject.Find("HUDCanvas").transform.FindChild("UpgradeTowerHUD").FindChild("Destroy").GetComponent<SelectUpgradeScript>().setSelectedTile(gameObject);
