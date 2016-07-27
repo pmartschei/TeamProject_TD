@@ -14,7 +14,20 @@ public class EnemyScript : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+    void Update () {
 	
 	}
+
+    public void DoDamage(float dmg)
+    {
+        m_Hp -= dmg;//leben abziehen
+        if (m_Hp <= 0.0f)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+    public bool Dead()
+    {
+        return m_Hp <= 0.0f;
+    }
 }

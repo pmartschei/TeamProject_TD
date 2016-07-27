@@ -21,5 +21,9 @@ namespace Assets.Scripts.GameLogic.EnemySystem
             TilePos other = (TilePos)obj;
             return x == other.x && y == other.y;
         }
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }

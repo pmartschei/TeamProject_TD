@@ -45,7 +45,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\BulletCollisionScript.cs" />
      <Compile Include="Assets\Scripts\GameLogic\CameraControll.cs" />
      <Compile Include="Assets\Scripts\GameLogic\DrawTiles.cs" />
      <Compile Include="Assets\Scripts\GameLogic\EnemySystem\EndPoint.cs" />
@@ -61,8 +60,14 @@
      <Compile Include="Assets\Scripts\GameLogic\PlayerSystem.cs" />
      <Compile Include="Assets\Scripts\GameLogic\TileSystem.cs" />
      <Compile Include="Assets\Scripts\GameLogic\TileUI.cs" />
-     <Compile Include="Assets\Scripts\GameLogic\TowerSystemScript.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\TowerSystem\MageTower\MageBulletScript.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\TowerSystem\MageTower\MageTowerScript.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\TowerSystem\TowerScript.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\TowerSystem\TowerSystemScript.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\TowerSystem\Upgrade.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\TowerSystem\UpgradeSlot.cs" />
      <Compile Include="Assets\Scripts\Grid.cs" />
+     <Compile Include="Assets\Scripts\SimpleJSON.cs" />
      <Compile Include="Assets\Scripts\UI\GameObjectHitEvent.cs" />
      <Compile Include="Assets\Scripts\UI\LifeHUDScript.cs" />
      <Compile Include="Assets\Scripts\UI\MoneyHUDScript.cs" />
@@ -73,8 +78,6 @@
      <Compile Include="Assets\Scripts\UI\SelectTowerScript.cs" />
      <Compile Include="Assets\Scripts\UI\SelectUpgradeScript.cs" />
      <Compile Include="Assets\Scripts\UI\UIManagerScript.cs" />
-     <Compile Include="Assets\TestForceToTargetScript.cs" />
-     <Compile Include="Assets\TestShootScript.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

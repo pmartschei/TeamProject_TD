@@ -39,13 +39,13 @@ public class SpawnEnemyScript : MonoBehaviour
         if (m_EndTile == null)
             return null;
 
-        int x;
-        int y;
-        m_FieldSystem.GetTilePos(m_EndTile, out x, out y);
-        if (x == -1 || y == -1)
-            return null;
-
-        m_ToProcess = processTiles(x, y);
+        m_ToProcess = processTiles(m_FieldSystem.m_LevelWidth/2,0);
+        
+        //endtile hinzufügen
+        GameObject first = m_FieldSystem.GetTileFrom(m_FieldSystem.m_LevelWidth / 2,0);
+        PathTileScript firstScript = first.GetComponent<PathTileScript>();
+        firstScript.m_ParentDirection.Add(PathTileScript.NORTH);
+        firstScript.m_ParentObject.Add(m_EndTile);
 
         if (m_ToProcess.Count == 0)
             return null;
@@ -53,54 +53,41 @@ public class SpawnEnemyScript : MonoBehaviour
     }
     private void SpawnEnemyOn(TilePos spawnPos)
     {
+        //if (spawnPos == null) return;
         GameObject spawn = m_FieldSystem.GetTileFrom(spawnPos.x, spawnPos.y);
         PathTileScript pathScript = spawn.GetComponent<PathTileScript>();
+        GameObject copy = GameObject.Instantiate(m_EnemyTest);
+        copy.transform.parent = this.transform;
+        PathMoveScript pathMove = copy.GetComponent<PathMoveScript>();
+        if (pathMove == null)
+            return;
+        pathMove.m_CurrentObject = spawn;
         if (pathScript.m_north && m_FieldSystem.GetTileFrom(spawnPos.x, spawnPos.y + 1)==null)
         {
-            GameObject copy = GameObject.Instantiate(m_EnemyTest);
             copy.transform.position = pathScript.m_PathNorth[0].transform.position;
-            PathMoveScript pathMove = copy.GetComponent<PathMoveScript>();
-            if (pathMove == null)
-                return;
             pathMove.m_CurrentIndex = 1;
             pathMove.m_CurrentList = pathScript.m_PathNorth;
-            pathMove.m_CurrentObject = spawn;
         }
 
         if (pathScript.m_south && m_FieldSystem.GetTileFrom(spawnPos.x, spawnPos.y - 1) == null)
         {
-            GameObject copy = GameObject.Instantiate(m_EnemyTest);
             copy.transform.position = pathScript.m_PathSouth[0].transform.position;
-            PathMoveScript pathMove = copy.GetComponent<PathMoveScript>();
-            if (pathMove == null)
-                return;
             pathMove.m_CurrentIndex = 1;
             pathMove.m_CurrentList = pathScript.m_PathSouth;
-            pathMove.m_CurrentObject = spawn;
         }
 
         if (pathScript.m_east && m_FieldSystem.GetTileFrom(spawnPos.x+1, spawnPos.y) == null)
         {
-            GameObject copy = GameObject.Instantiate(m_EnemyTest);
             copy.transform.position = pathScript.m_PathEast[0].transform.position;
-            PathMoveScript pathMove = copy.GetComponent<PathMoveScript>();
-            if (pathMove == null)
-                return;
             pathMove.m_CurrentIndex = 1;
             pathMove.m_CurrentList = pathScript.m_PathEast;
-            pathMove.m_CurrentObject = spawn;
         }
 
         if (pathScript.m_west && m_FieldSystem.GetTileFrom(spawnPos.x-1, spawnPos.y) == null)
         {
-            GameObject copy = GameObject.Instantiate(m_EnemyTest);
             copy.transform.position = pathScript.m_PathWest[0].transform.position;
-            PathMoveScript pathMove = copy.GetComponent<PathMoveScript>();
-            if (pathMove == null)
-                return;
             pathMove.m_CurrentIndex = 1;
             pathMove.m_CurrentList = pathScript.m_PathWest;
-            pathMove.m_CurrentObject = spawn;
         }
     }
 
@@ -147,20 +134,23 @@ public class SpawnEnemyScript : MonoBehaviour
 
             if (pathScript.m_south)
             {
-                if (m_FieldSystem.GetTileFrom(pos.x, pos.y - 1) == null)
+                if (pos.y != 0 && pos.x != m_FieldSystem.m_LevelWidth / 2)
                 {
-                    spawnPos.Add(pos);
-                }
-                else
-                {
-                    TilePos newPos = new TilePos(pos.x, pos.y - 1);
-                    if (!m_AlreadyChecked.Contains(newPos))
+                    if (m_FieldSystem.GetTileFrom(pos.x, pos.y - 1) == null)
                     {
-                        GameObject tile = m_FieldSystem.GetTileFrom(newPos.x, newPos.y);
-                        PathTileScript script = tile.GetComponent<PathTileScript>();
-                        script.m_ParentObject.Add(objToCheck);
-                        script.m_ParentDirection.Add(PathTileScript.SOUTH);
-                        list.Add(newPos);
+                        spawnPos.Add(pos);
+                    }
+                    else
+                    {
+                        TilePos newPos = new TilePos(pos.x, pos.y - 1);
+                        if (!m_AlreadyChecked.Contains(newPos))
+                        {
+                            GameObject tile = m_FieldSystem.GetTileFrom(newPos.x, newPos.y);
+                            PathTileScript script = tile.GetComponent<PathTileScript>();
+                            script.m_ParentObject.Add(objToCheck);
+                            script.m_ParentDirection.Add(PathTileScript.SOUTH);
+                            list.Add(newPos);
+                        }
                     }
                 }
             }

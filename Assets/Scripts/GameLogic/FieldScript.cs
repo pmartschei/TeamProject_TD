@@ -56,6 +56,11 @@ public class FieldScript : MonoBehaviour
 
         tile = Instantiate(m_TileSystem.GetComponent<TileSystem>().m_StreetEndVar1);
         tile.transform.Rotate(Vector3.forward, 90);
+        PathTileScript path = tile.GetComponent<PathTileScript>();
+        if (path != null)
+        {
+            path.Rotate();
+        }
         AddVillagePart(tile, 1, 0);
 
         tile = Instantiate(m_TileSystem.GetComponent<TileSystem>().m_VillagePart1);
@@ -81,7 +86,7 @@ public class FieldScript : MonoBehaviour
     private void AddVillagePart(GameObject tile, int x, int y)
     {
         float xValue = x - 2;
-        float yValue = y + 2;
+        float yValue = y + m_LevelWidth/2;
         tile.transform.position = new Vector3(yValue * m_SizeX + m_SizeX / 2.0f, 0.0f, xValue * m_SizeY + m_SizeY / 2.0f);
         tile.transform.parent = this.transform;
         m_villageArray[x][y + 1] = tile;
@@ -208,7 +213,7 @@ public class FieldScript : MonoBehaviour
               { 121, 111, 423, 421, 111 },
               { 111, 121, 211, 322, 221 },
               { 121, 111, 414, 412, 121 },
-              { 111, 221, 512, 211, 111 }};
+              { 111, 221, 312, 211, 111 }};
             return tileOrder;
         }
         else if(scenario == 1)
@@ -218,7 +223,7 @@ public class FieldScript : MonoBehaviour
                { 111, 424, 422, 111, 111 },
                { 211, 312, 211, 111, 121 },
                { 111, 413, 411, 111, 121 },
-               { 111, 211, 512, 211, 121 }};
+               { 111, 211, 312, 211, 121 }};
             return tileOrder;
         }
         else
@@ -228,7 +233,7 @@ public class FieldScript : MonoBehaviour
               { 111, 111, 312, 121, 111 },
               { 111, 211, 322, 221, 121 },
               { 121, 111, 312, 111, 111 },
-              { 121, 211, 522, 221, 121 }};
+              { 121, 211, 322, 221, 121 }};
             return tileOrder;
         }
     }
@@ -243,14 +248,15 @@ public class FieldScript : MonoBehaviour
     {
         for (int i = 0; i < m_LevelWidth; i++)
         {
-            for (int j = 0; j < m_TileArray[i].Length; i++)
+            for (int j = 0; j < m_TileArray[i].Length; j++)
             {
-                if (m_TileArray[i][j].Equals(go))
+                if (m_TileArray[i][j]!=null && m_TileArray[i][j].Equals(go))
                 {
                     x = i;
                     y = j;
                     return;
                 }
+                
             }
         }
 

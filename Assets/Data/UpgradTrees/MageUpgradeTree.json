@@ -1,0 +1,3 @@
+{"m_Upgrade":{"m_Type":0,"m_Cost":100,"m_Additive":true,"m_Modifier":0.5,"m_SpecialId":0},"m_FollowingUpgrades":[
+{"m_Upgrade":{"m_Type":0,"m_Cost":100,"m_Additive":true,"m_Modifier":0.5,"m_SpecialId":0},"m_FollowingUpgrades":[]},
+{"m_Upgrade":{"m_Type":0,"m_Cost":200,"m_Additive":false,"m_Modifier":1.5,"m_SpecialId":0},"m_FollowingUpgrades":[]}]}

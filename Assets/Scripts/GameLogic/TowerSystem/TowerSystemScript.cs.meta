@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 5543da1621adb3a40851e716e7096161
+timeCreated: 1469458203
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - m_tower1: {instanceID: 0}
+  - m_tower1UpgradeAsset: {fileID: 4900000, guid: c263116401913e44993eada5781144a2,
+      type: 3}
+  - m_tower2: {instanceID: 0}
+  - m_tower3: {instanceID: 0}
+  - m_tower4: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
