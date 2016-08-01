@@ -66,8 +66,9 @@ public class SelectTowerScript : MonoBehaviour
     // Move the Object on the y-axis to align it with the surface of the tile
     public void setPosition(Vector3 position, GameObject tile)
     {
-        //m_selectedTile = tile;
+        // m_selectedTile = tile;
+        // pos stimmt nur für tower 1 (mage tower)
         m_position = position;
-        m_position += new Vector3(0.0f, 0.7f, 0.0f);
+        m_position += new Vector3(0.0f, 0.25f, 0.0f);
     }
 }
