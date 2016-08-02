@@ -44,7 +44,7 @@ public class TowerSystemScript : MonoBehaviour
 
         foreach (TowerScript tower in towers)
         {
-            if (!tower.CanShoot()) break;//wenn der Tower nicht schießen kann dann zum nächsten
+			if (!tower.CanShoot()) continue;//wenn der Tower nicht schießen kann dann zum nächsten
             GameObject towerObj = tower.gameObject;
             Collider[] colliders = Physics.OverlapSphere(towerObj.transform.position, tower.Radius);//alle Collider im Radius erhalten
             foreach (Collider collider in colliders)

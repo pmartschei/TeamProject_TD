@@ -11,6 +11,7 @@ public class SpawnEnemyScript : MonoBehaviour
 
     private GameObject m_EndTile;
     public TilePos m_SpawnPos;
+	public List<IWave> m_Waves=new List<IWave>();
     public GameObject m_EnemyTest;
     public float m_Timer;
 
@@ -19,19 +20,30 @@ public class SpawnEnemyScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+		Wave second = new Wave (10, m_EnemyTest, 0.3f);
+		Wave first = new Wave (5, m_EnemyTest, 1);
+		WaveGroup wg = new WaveGroup ();
+		wg.m_Waves.Add (first);
+		m_Waves.Add (wg);
+		m_Waves.Add (second);
     }
 
     // Update is called once per frame
     void Update()
     {
-        m_Timer += Time.deltaTime;
-        if (m_Timer > 1)
-        {
-            m_SpawnPos = GetSpawn();
-            SpawnEnemyOn(m_SpawnPos);
-            m_Timer = 0;
-        }
+		if (m_Waves.Count > 0) {
+			//hole alle GameObjekte von den Wellen
+			GameObject[] gos = m_Waves [0].Update ();
+			if (gos != null) {
+				m_SpawnPos = GetSpawn ();//Spawnpunkt holen
+				foreach (GameObject go in gos) {
+					SpawnEnemyOn (go, m_SpawnPos);//Alle GameObjekte Spawnen
+				}
+				if (m_Waves [0].Clear ()) {//Wenn Welle fertig
+					m_Waves.RemoveAt (0);
+				}
+			}
+		}
     }
     private TilePos GetSpawn()
     {
@@ -40,6 +52,8 @@ public class SpawnEnemyScript : MonoBehaviour
             return null;
 
         m_ToProcess = processTiles(m_FieldSystem.m_LevelWidth/2,0);
+
+		//waves?!?
         
         //endtile hinzufügen
         GameObject first = m_FieldSystem.GetTileFrom(m_FieldSystem.m_LevelWidth / 2,0);
@@ -51,12 +65,12 @@ public class SpawnEnemyScript : MonoBehaviour
             return null;
         return m_ToProcess[0];
     }
-    private void SpawnEnemyOn(TilePos spawnPos)
+    private void SpawnEnemyOn(GameObject go,TilePos spawnPos)
     {
         //if (spawnPos == null) return;
         GameObject spawn = m_FieldSystem.GetTileFrom(spawnPos.x, spawnPos.y);
         PathTileScript pathScript = spawn.GetComponent<PathTileScript>();
-        GameObject copy = GameObject.Instantiate(m_EnemyTest);
+        GameObject copy = GameObject.Instantiate(go);
         copy.transform.parent = this.transform;
         PathMoveScript pathMove = copy.GetComponent<PathMoveScript>();
         if (pathMove == null)
