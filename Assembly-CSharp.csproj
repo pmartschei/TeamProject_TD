@@ -71,6 +71,7 @@
      <Compile Include="Assets\Scripts\GameLogic\TowerSystem\UpgradeSlot.cs" />
      <Compile Include="Assets\Scripts\Grid.cs" />
      <Compile Include="Assets\Scripts\SimpleJSON.cs" />
+     <Compile Include="Assets\Scripts\UI\EnemyHealthScript.cs" />
      <Compile Include="Assets\Scripts\UI\GameObjectHitEvent.cs" />
      <Compile Include="Assets\Scripts\UI\LifeHUDScript.cs" />
      <Compile Include="Assets\Scripts\UI\MoneyHUDScript.cs" />
@@ -81,6 +82,7 @@
      <Compile Include="Assets\Scripts\UI\SelectTowerScript.cs" />
      <Compile Include="Assets\Scripts\UI\SelectUpgradeScript.cs" />
      <Compile Include="Assets\Scripts\UI\UIManagerScript.cs" />
+     <Compile Include="Assets\Scripts\UI\UISystemScript.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

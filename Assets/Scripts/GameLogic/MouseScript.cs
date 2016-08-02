@@ -31,13 +31,13 @@ public class MouseScript : MonoBehaviour
             if (Input.GetMouseButtonDown(1))//Rechtsklick
             {
                 PathTileScript script = m_Tile.GetComponent<PathTileScript>();
+                m_Tile.transform.Rotate(Vector3.forward, 90);//Rotieren
                 if (script != null)
                 {
-                    m_Tile.transform.Rotate(Vector3.forward, 90);//Rotieren
                     script.Rotate();//rotieren von den teilen
-                    Destroy(m_GhostTile);
-                    m_GhostTile = null;
                 }
+                Destroy(m_GhostTile);
+                m_GhostTile = null;
             }
             if (m_GhostTile == null)
             {

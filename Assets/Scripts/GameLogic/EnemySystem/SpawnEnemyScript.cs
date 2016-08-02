@@ -21,7 +21,7 @@ public class SpawnEnemyScript : MonoBehaviour
     void Start()
     {
 		Wave second = new Wave (10, m_EnemyTest, 0.3f);
-		Wave first = new Wave (5, m_EnemyTest, 1);
+		Wave first = new Wave (50000, m_EnemyTest, 1);
 		WaveGroup wg = new WaveGroup ();
 		wg.m_Waves.Add (first);
 		m_Waves.Add (wg);
