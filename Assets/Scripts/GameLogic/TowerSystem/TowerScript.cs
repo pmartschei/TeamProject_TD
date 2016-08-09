@@ -9,9 +9,9 @@ namespace Assets.Scripts.GameLogic.TowerSystem
     public abstract class TowerScript : MonoBehaviour
     {
         public int m_Lvl = 1;
-        private float m_BaseDamage;
-        private float m_BaseCooldown;
-        private float m_BaseRadius;
+        public float m_BaseDamage;
+        public float m_BaseCooldown;
+        public float m_BaseRadius;
         public List<int> m_UpdateIndices;
         public float m_Damage;
         public float m_Radius;
