@@ -35,6 +35,7 @@ public class EnemyHealthScript : MonoBehaviour
         m_healthBar.transform.position = gameObject.transform.position + m_offset;
         m_healthBar.GetComponent<Slider>().value = gameObject.GetComponent<EnemyScript>().m_Hp;
         float percent = (1-gameObject.GetComponent<EnemyScript>().m_Hp / gameObject.GetComponent<EnemyScript>().m_MaxHp);
-        m_Fill.color = new Color(percent, (1 - percent), 0);
+        if (m_Fill!=null)
+            m_Fill.color = new Color(percent, (1 - percent), 0);
 	}
 }

@@ -37,6 +37,17 @@ namespace Assets.Scripts.GameLogic.TowerSystem
         public Upgrade[] GetNextUpgrades()
         {
             UpgradeSlot baseSlot = FindObjectOfType<TowerSystemScript>().GetUpgradeSlotFor(this.GetType());
+            foreach (int updateIndex in m_UpdateIndices)
+            {
+                if (updateIndex >= 0 && updateIndex < baseSlot.m_FollowingUpgrades.Length)
+                {
+                    baseSlot = baseSlot.m_FollowingUpgrades[updateIndex];
+                }
+                else
+                {
+                    break;//invalid updateIndex
+                }
+            }
             Upgrade[] nextUpgrades = new Upgrade[baseSlot.m_FollowingUpgrades.Length];
             for (int i=0;i<baseSlot.m_FollowingUpgrades.Length;i++)
             {
@@ -47,6 +58,7 @@ namespace Assets.Scripts.GameLogic.TowerSystem
 
         public void AddUpgrade(int index){
             m_UpdateIndices.Add(index);
+            m_Lvl++;
             RecalculateAttributes();
         }
 
@@ -56,14 +68,15 @@ namespace Assets.Scripts.GameLogic.TowerSystem
             float currentCooldown = m_BaseCooldown;
             float currentRadius = m_BaseRadius;
             UpgradeSlot baseSlot = FindObjectOfType<TowerSystemScript>().GetUpgradeSlotFor(this.GetType());
+            Upgrade upgrade;
             foreach (int updateIndex in m_UpdateIndices)
             {
-                Upgrade upgrade = baseSlot.m_Upgrade;
+                upgrade = baseSlot.m_Upgrade;
                 if (upgrade != null)
                 {
                     ProcessUpgrade(upgrade, ref currentDamage, ref currentCooldown, ref currentRadius);
                 }
-                if (updateIndex > 0 && updateIndex < baseSlot.m_FollowingUpgrades.Length)
+                if (updateIndex >= 0 && updateIndex < baseSlot.m_FollowingUpgrades.Length)
                 {
                     baseSlot = baseSlot.m_FollowingUpgrades[updateIndex];
                 }
@@ -72,6 +85,14 @@ namespace Assets.Scripts.GameLogic.TowerSystem
                     break;//invalid updateIndex
                 }
             }
+            upgrade = baseSlot.m_Upgrade;
+            if (upgrade != null)
+            {
+                ProcessUpgrade(upgrade, ref currentDamage, ref currentCooldown, ref currentRadius);
+            }
+            m_Damage = currentDamage;
+            m_Radius = currentRadius;
+            m_Cooldown = currentCooldown;
         }
 
         private void ProcessUpgrade(Upgrade upgrade,ref float damage,ref float cooldown,ref float radius){

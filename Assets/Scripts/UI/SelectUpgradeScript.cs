@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using Assets.Scripts.GameLogic.TowerSystem;
 
 public class SelectUpgradeScript : MonoBehaviour
 {
@@ -18,14 +19,20 @@ public class SelectUpgradeScript : MonoBehaviour
 	
 	}
 
-    public void Upgrade()
+    public void Upgrade(GameObject upgrade)
     {
         if (Time.timeScale != 0)
         {
-            string value = gameObject.transform.FindChild("UpgradeCostText").GetComponent<Text>().text;
+            int index = int.Parse(upgrade.name.Substring(upgrade.name.Length - 1));
+            string value = upgrade.transform.FindChild("UpgradeCostText").GetComponent<Text>().text;
             int amount = int.Parse(value);
             GameObject.Find("LifeAndMoneySystem").GetComponent<LifeAndMoneyScript>().decreaseMoney(amount);
-            gameObject.transform.parent.gameObject.SetActive(false);
+            this.gameObject.SetActive(false);
+            TowerScript ts= m_selectedTower.GetComponent<TowerScript>();
+            if (ts != null)
+            {
+                ts.AddUpgrade(index);
+            }
         }
     }
 
@@ -33,7 +40,7 @@ public class SelectUpgradeScript : MonoBehaviour
     {
         if (Time.timeScale != 0)
         {
-            gameObject.transform.parent.gameObject.SetActive(false);
+            this.gameObject.SetActive(false);
             Destroy(m_selectedTower);
         }
     }
