@@ -47,10 +47,12 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\GameLogic\CameraControll.cs" />
      <Compile Include="Assets\Scripts\GameLogic\DrawTiles.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\EnemySystem\DragonScript.cs" />
      <Compile Include="Assets\Scripts\GameLogic\EnemySystem\EndPoint.cs" />
      <Compile Include="Assets\Scripts\GameLogic\EnemySystem\EnemyScript.cs" />
      <Compile Include="Assets\Scripts\GameLogic\EnemySystem\IWave.cs" />
      <Compile Include="Assets\Scripts\GameLogic\EnemySystem\MoveEnemyScript.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\EnemySystem\MummyScript.cs" />
      <Compile Include="Assets\Scripts\GameLogic\EnemySystem\PathMoveScript.cs" />
      <Compile Include="Assets\Scripts\GameLogic\EnemySystem\PathTileScript.cs" />
      <Compile Include="Assets\Scripts\GameLogic\EnemySystem\SpawnEnemyScript.cs" />
@@ -69,6 +71,7 @@
      <Compile Include="Assets\Scripts\GameLogic\TowerSystem\TowerSystemScript.cs" />
      <Compile Include="Assets\Scripts\GameLogic\TowerSystem\Upgrade.cs" />
      <Compile Include="Assets\Scripts\GameLogic\TowerSystem\UpgradeSlot.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\TreeScript.cs" />
      <Compile Include="Assets\Scripts\Grid.cs" />
      <Compile Include="Assets\Scripts\SimpleJSON.cs" />
      <Compile Include="Assets\Scripts\UI\EnemyHealthScript.cs" />
@@ -83,6 +86,31 @@
      <Compile Include="Assets\Scripts\UI\SelectUpgradeScript.cs" />
      <Compile Include="Assets\Scripts\UI\UIManagerScript.cs" />
      <Compile Include="Assets\Scripts\UI\UISystemScript.cs" />
+     <Compile Include="Assets\xAssetStore\BattleDragon\Colosseum\Dust\ParticleSystems\Scripts\AfterburnerPhysicsForce.cs" />
+     <Compile Include="Assets\xAssetStore\BattleDragon\Colosseum\Dust\ParticleSystems\Scripts\ExplosionFireAndDebris.cs" />
+     <Compile Include="Assets\xAssetStore\BattleDragon\Colosseum\Dust\ParticleSystems\Scripts\ExplosionPhysicsForce.cs" />
+     <Compile Include="Assets\xAssetStore\BattleDragon\Colosseum\Dust\ParticleSystems\Scripts\ExtinguishableParticleSystem.cs" />
+     <Compile Include="Assets\xAssetStore\BattleDragon\Colosseum\Dust\ParticleSystems\Scripts\FireLight.cs" />
+     <Compile Include="Assets\xAssetStore\BattleDragon\Colosseum\Dust\ParticleSystems\Scripts\Hose.cs" />
+     <Compile Include="Assets\xAssetStore\BattleDragon\Colosseum\Dust\ParticleSystems\Scripts\ParticleSystemMultiplier.cs" />
+     <Compile Include="Assets\xAssetStore\BattleDragon\Colosseum\Dust\ParticleSystems\Scripts\SmokeParticles.cs" />
+     <Compile Include="Assets\xAssetStore\BattleDragon\Colosseum\Dust\ParticleSystems\Scripts\WaterHoseParticles.cs" />
+     <Compile Include="Assets\xAssetStore\BattleDragon\Dragons\Scripts\Camera\CameraFollow.cs" />
+     <Compile Include="Assets\xAssetStore\BattleDragon\Dragons\Scripts\animator_controller.cs" />
+     <Compile Include="Assets\xAssetStore\BattleDragon\Dragons\Scripts\animator_settor.cs" />
+     <Compile Include="Assets\xAssetStore\BattleDragon\Dragons\Scripts\player_attack.cs" />
+     <Compile Include="Assets\xAssetStore\BattleDragon\Dragons\Scripts\player_movement.cs" />
+     <Compile Include="Assets\xAssetStore\BattleDragon\Scripts\CameraController.cs" />
+     <Compile Include="Assets\xAssetStore\Campfire\Script\FireLightScript.cs" />
+     <Compile Include="Assets\xAssetStore\Chibi Mummy\Scripts\anims_controls.cs" />
+     <Compile Include="Assets\xAssetStore\Chibi Mummy\Scripts\control_script.cs" />
+     <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
+     <None Include="Assets\xAssetStore\BattleDragon\Colosseum\Dust\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />
+     <None Include="Assets\xAssetStore\BattleDragon\readme.txt" />
+     <None Include="Assets\xAssetStore\BattleDragon\Colosseum\Dust\ParticleSystems\Shaders\PriorityParticleAddSoft.shader" />
+     <None Include="Assets\xAssetStore\Chibi Mummy\readme.txt" />
+     <None Include="Assets\xAssetStore\BattleDragon\Colosseum\Dust\ParticleSystems\Shaders\PriorityParticleAdd.shader" />
+     <None Include="Assets\xAssetStore\Campfire\License.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

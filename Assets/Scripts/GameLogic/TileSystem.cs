@@ -13,6 +13,7 @@ public class TileSystem : MonoBehaviour {
     public GameObject m_StreetCurveVar2;
     public GameObject m_StreetEndVar1;
     public GameObject m_StreetEndVar2;
+    public GameObject m_villageLocked;
     public GameObject m_VillagePart1;
     public GameObject m_VillagePart2;
     public GameObject m_VillagePart3;
