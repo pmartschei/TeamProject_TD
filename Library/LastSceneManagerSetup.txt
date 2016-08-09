@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/PhilippScene.unity
+=======
+- path: Assets/Scenes/MichisScene.unity
+>>>>>>> 0aba9f357886cc7bd45486cf96b3f7ede3c30d49
   isLoaded: 1
   isActive: 1

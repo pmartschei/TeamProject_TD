@@ -12,7 +12,8 @@ public class SpawnEnemyScript : MonoBehaviour
     private GameObject m_EndTile;
     public TilePos m_SpawnPos;
 	public List<IWave> m_Waves=new List<IWave>();
-    public GameObject m_EnemyTest;
+    public GameObject m_firstEnemy;
+    public GameObject m_secondEnemy;
     public float m_Timer;
 
     private List<TilePos> m_ToProcess = new List<TilePos>();
@@ -20,8 +21,8 @@ public class SpawnEnemyScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-		Wave second = new Wave (10, m_EnemyTest, 0.3f);
-		Wave first = new Wave (50000, m_EnemyTest, 1);
+		Wave second = new Wave (10, m_firstEnemy, 0.3f);
+		Wave first = new Wave (5, m_secondEnemy, 1);
 		WaveGroup wg = new WaveGroup ();
 		wg.m_Waves.Add (first);
 		m_Waves.Add (wg);

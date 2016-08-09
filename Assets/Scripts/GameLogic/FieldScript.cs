@@ -63,22 +63,26 @@ public class FieldScript : MonoBehaviour
         }
         AddVillagePart(tile, 1, 0);
 
-        tile = Instantiate(m_TileSystem.GetComponent<TileSystem>().m_VillagePart1);
+        //tile = Instantiate(m_TileSystem.GetComponent<TileSystem>().m_VillagePart2);
+        tile = Instantiate(m_TileSystem.GetComponent<TileSystem>().m_villageLocked);
         tile.transform.Rotate(Vector3.forward, 180);
         AddVillagePart(tile, 1, -1);
 
-        tile = Instantiate(m_TileSystem.GetComponent<TileSystem>().m_VillagePart1);
+        //tile = Instantiate(m_TileSystem.GetComponent<TileSystem>().m_VillagePart3);
+        tile = Instantiate(m_TileSystem.GetComponent<TileSystem>().m_villageLocked);
         AddVillagePart(tile, 1, 1);
 
-        tile = Instantiate(m_TileSystem.GetComponent<TileSystem>().m_VillagePart1);
-        tile.transform.Rotate(Vector3.forward, 90);
+        //tile = Instantiate(m_TileSystem.GetComponent<TileSystem>().m_VillagePart4);
+        tile = Instantiate(m_TileSystem.GetComponent<TileSystem>().m_villageLocked);
+        tile.transform.Rotate(Vector3.forward, 270);
         AddVillagePart(tile, 0, -1);
 
         tile = Instantiate(m_TileSystem.GetComponent<TileSystem>().m_VillagePart1);
         tile.transform.Rotate(Vector3.forward, 90);
         AddVillagePart(tile, 0, 0);
 
-        tile = Instantiate(m_TileSystem.GetComponent<TileSystem>().m_VillagePart1);
+        //tile = Instantiate(m_TileSystem.GetComponent<TileSystem>().m_VillagePart5);
+        tile = Instantiate(m_TileSystem.GetComponent<TileSystem>().m_villageLocked);
         tile.transform.Rotate(Vector3.forward, 90);
         AddVillagePart(tile, 0, 1);
     }

@@ -10,6 +10,8 @@ public class CameraControll : MonoBehaviour {
     public int m_cameraBorderFactor = 10;
     public float m_cameraVelocityFactor = 30.0f;
 
+    public int m_offsetBottom = 300;
+
     //values for the position and rotation of the main camera
     private float m_translationX1 = -3.0f;
     private float m_translationY1 = 7.0f;
@@ -49,13 +51,13 @@ public class CameraControll : MonoBehaviour {
         {
             Vector3 mousePos = Input.mousePosition;
 
-            if (mousePos.x < (Screen.width / m_cameraBorderFactor))
+            if (mousePos.x < (Screen.width / m_cameraBorderFactor) && mousePos.y > m_offsetBottom)
             {
                 float value = (Screen.width / m_cameraBorderFactor) - mousePos.x;
                 float speed = m_cameraSpeed * (value / m_cameraVelocityFactor);
                 m_mainCamera.transform.position += new Vector3(0.0f, 0.0f, speed * Time.deltaTime);
             }
-            else if (mousePos.x > (Screen.width - (Screen.width / m_cameraBorderFactor)))
+            else if (mousePos.x > (Screen.width - (Screen.width / m_cameraBorderFactor)) && mousePos.y > m_offsetBottom)
             {
                 float value = mousePos.x - (Screen.width - (Screen.width / m_cameraBorderFactor));
                 float speed = m_cameraSpeed * (value / m_cameraVelocityFactor);

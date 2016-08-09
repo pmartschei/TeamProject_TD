@@ -4,6 +4,8 @@ using System.Collections;
 public class MoveEnemyScript : MonoBehaviour
 {
 
+    private Animation anim;
+
     // Use this for initialization
     void Start()
     {
