@@ -70,13 +70,12 @@ public class DrawTiles : MonoBehaviour
 
             // rndNumber between 0.0f and 1.0f (both included)
             m_rndNumber = Random.Range(0.0f, 1.0f);
-
+            
             if (m_rndNumber >= m_getRoad)
             {
                 if (m_counterCurrentTiles < m_maxTiles)
                 {
-                    int rndRoadTile = Random.Range(1, 4);
-
+                    int rndRoadTile = Random.Range(1, 5);
                     switch (rndRoadTile)
                     {
                         case 1:

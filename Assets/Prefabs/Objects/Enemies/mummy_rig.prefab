@@ -1189,7 +1189,7 @@ MonoBehaviour:
   m_MaxHp: 4
   m_Hp: 4
   m_DmgToBase: 1
-  m_Speed: 0
+  m_Speed: 1
 --- !u!114 &114000013638994740
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1204,6 +1204,8 @@ MonoBehaviour:
   m_CurrentObject: {fileID: 0}
   m_CurrentIndex: 0
   m_CurrentList: []
+  m_rotationToNext: {x: 0, y: 0, z: 0}
+  m_rotationPos: {x: 0, y: 0, z: 0}
 --- !u!114 &114000014005152380
 MonoBehaviour:
   m_ObjectHideFlags: 1

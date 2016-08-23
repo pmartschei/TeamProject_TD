@@ -41,11 +41,14 @@ public class MouseScript : MonoBehaviour
             }
             if (m_GhostTile == null)
             {
-                m_GhostTile = Instantiate(m_Tile);
+                m_GhostTile = (GameObject)Instantiate(m_Tile,new Vector3(-100,-100,-100),m_Tile.transform.rotation);
                 m_GhostTile.name = "GhostTile";
-                m_GhostTile.transform.position = new Vector3(-100, -100, -100);
-                Material ghostMaterial = m_GhostTile.GetComponent<Renderer>().material;
-                ghostMaterial.color = new Color(1.0f, 1.0f, 1.0f, 0.25f);
+                Renderer[] renderers = m_GhostTile.GetComponents<Renderer>();
+                foreach (Renderer renderer in renderers)
+                {
+                    Material ghostMaterial = renderer.material;
+                    ghostMaterial.color = new Color(1.0f, 1.0f, 1.0f, 0.25f);
+                }
             }
             //Mesh mesh = m_GhostTile.GetComponent<MeshFilter>().mesh;
             //Vector3 size = mesh.bounds.size;//Mesh size
@@ -85,10 +88,15 @@ public class MouseScript : MonoBehaviour
                 Vector3 pos = new Vector3(x * m_Field.m_SizeX + m_Field.m_SizeX / 2.0f * xMultiplier, 0.0f, y * m_Field.m_SizeY + m_Field.m_SizeY / 2.0f * yMultiplier);
                 m_GhostTile.transform.position = pos;
                 //Ghosttile verschieben
-                Material ghostMaterial = m_GhostTile.GetComponent<Renderer>().material;
+
+                Renderer[] renderers = m_GhostTile.GetComponents<Renderer>();
                 if (checkValidStreet(x, y))
                 {
-                    ghostMaterial.color = new Color(1.0f, 1.0f, 1.0f, 0.25f);
+                    foreach (Renderer renderer in renderers)
+                    {
+                        Material ghostMaterial = renderer.material;
+                        ghostMaterial.color = new Color(1.0f, 1.0f, 1.0f, 0.25f);
+                    }
                     if (Input.GetMouseButtonDown(0))
                     {
                         GameObject rb = m_Tile;
@@ -100,13 +108,6 @@ public class MouseScript : MonoBehaviour
                             t.position = pos;
                         }
 
-                        // Löschen, nur zum testen so geregelt!!!
-                        // Collidorbox zu groß!
-                        if (m_Tile.name.Equals("BuildingLotTile(Clone)(Clone)"))
-                        {
-                            m_Tile.AddComponent<OpenTowerHUDScript>();
-                        }
-
                         m_Tile = null;
                         GameObject.Find("DrawTileSystem").GetComponent<TileUI>().RemoveTile(m_parentTile);
                         GameObject.Destroy(m_GhostTile);
@@ -115,7 +116,11 @@ public class MouseScript : MonoBehaviour
                 }
                 else//if invalides Tile
                 {
-                    ghostMaterial.color = new Color(1.0f, 0.0f, 0.0f, 0.25f);
+                    foreach (Renderer renderer in renderers)
+                    {
+                        Material ghostMaterial = renderer.material;
+                        ghostMaterial.color = new Color(1.0f, 0.0f, 0.0f, 0.25f);
+                    }
                 }
             }
             else

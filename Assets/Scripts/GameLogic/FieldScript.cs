@@ -14,6 +14,8 @@ public class FieldScript : MonoBehaviour
     public float m_SizeX;
     public float m_SizeY;
 
+    public int m_currentLvl = int.MaxValue;
+
     //to see which number was generated
     public int m_GeneratedRandomValue;
 
@@ -48,6 +50,130 @@ public class FieldScript : MonoBehaviour
         CreateVillage();
 
         CreateScenario(scenario/33);
+
+        CreateLevel(10);
+    }
+
+    internal void LevelFinished(int y)
+    {
+        if (m_currentLvl <= y)
+        {
+            CreateLevel(m_currentLvl + UnityEngine.Random.Range(5, 10));
+        }
+    }
+
+    private void CreateLevel(int y)
+    {
+        m_currentLvl = y;
+        int startX = UnityEngine.Random.Range(0, m_LevelWidth);
+        int endX = UnityEngine.Random.Range(0, m_LevelWidth);
+        int currentX = startX;
+        for (int depth = 0; depth <= 1; depth++)
+        {
+            bool horizontally = false;
+            for (int i = 0; i < m_LevelWidth; i++)
+            {
+                int correctI = i;
+                if (startX > endX)
+                {
+                    correctI = m_LevelWidth - i - 1;
+                }
+                bool curve = UnityEngine.Random.Range(0.0f, 1.0f) > 0.5f;
+                if (depth==1 && horizontally)
+                {
+                    curve = false;
+                }else if (depth == 1 && currentX != endX)
+                {
+                    curve = true;
+                }
+                if (currentX == endX)
+                {
+                    if (!horizontally)
+                    {
+                        curve = false;
+                    }else
+                    {
+                        curve = true;
+                    }
+                }
+                GameObject t;
+                t = GameObject.Instantiate(m_TileSystem.GetComponent<TileSystem>().m_BlankVar1);
+                if (correctI == currentX)
+                {
+                    if (curve)
+                    {
+                        if (!horizontally)
+                        {
+                            if (startX > endX)
+                            {
+                                currentX--;
+                            }
+                            else
+                            {
+                                currentX++;
+                            }
+                        }
+                        t = GameObject.Instantiate(m_TileSystem.GetComponent<TileSystem>().m_StreetCurveVar1);
+                        PathTileScript path = t.GetComponent<PathTileScript>();
+                        if (startX <= endX)
+                        {
+                            t.transform.Rotate(Vector3.forward, 90);
+                            if (path != null)
+                            {
+                                path.Rotate();
+                            }
+                        }else
+                        {
+                            t.transform.Rotate(Vector3.forward, 180);
+                            if (path != null)
+                            {
+                                path.Rotate();
+                                path.Rotate();
+                            }
+                        }
+                        if (!horizontally)
+                        {
+                            t.transform.Rotate(Vector3.forward, 180);
+                            if (path != null)
+                            {
+                                path.Rotate();
+                                path.Rotate();
+                            }
+                        }
+                        horizontally = !horizontally;
+                    }
+                    else
+                    {
+                        if (horizontally)
+                        {
+                            if (startX > endX)
+                            {
+                                currentX--;
+                            }
+                            else
+                            {
+                                currentX++;
+                            }
+                        }
+                        t = GameObject.Instantiate(m_TileSystem.GetComponent<TileSystem>().m_StreetStraightVar1);
+                        if (!horizontally)
+                        {
+                            t.transform.Rotate(Vector3.forward, 90);
+                            PathTileScript path = t.GetComponent<PathTileScript>();
+                            if (path != null)
+                            {
+                                path.Rotate();
+                            }
+                        }
+                    }
+                }
+                int realY = y + depth;
+                t.transform.position = new Vector3(correctI * m_SizeX + m_SizeX / 2.0f, 0.0f, realY * m_SizeY + m_SizeY / 2.0f);
+                t.transform.parent = this.transform;
+                AddTileTo(t, correctI, realY);
+            }
+        }
+
     }
 
     private void CreateVillage()

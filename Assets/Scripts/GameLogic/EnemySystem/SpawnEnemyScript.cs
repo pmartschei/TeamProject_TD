@@ -21,7 +21,7 @@ public class SpawnEnemyScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-		Wave second = new Wave (10, m_firstEnemy, 0.3f);
+		Wave second = new Wave (1000, m_firstEnemy, 0.3f);
 		Wave first = new Wave (5, m_secondEnemy, 1);
 		WaveGroup wg = new WaveGroup ();
 		wg.m_Waves.Add (first);
@@ -35,9 +35,11 @@ public class SpawnEnemyScript : MonoBehaviour
 		if (m_Waves.Count > 0) {
 			//hole alle GameObjekte von den Wellen
 			GameObject[] gos = m_Waves [0].Update ();
-			if (gos != null) {
-				m_SpawnPos = GetSpawn ();//Spawnpunkt holen
-				foreach (GameObject go in gos) {
+			if (gos != null)
+            {
+                m_SpawnPos = GetSpawn();//Spawnpunkt holen
+                m_FieldSystem.LevelFinished(m_SpawnPos.y);
+                foreach (GameObject go in gos) {
 					SpawnEnemyOn (go, m_SpawnPos);//Alle GameObjekte Spawnen
 				}
 				if (m_Waves [0].Clear ()) {//Wenn Welle fertig
@@ -53,8 +55,6 @@ public class SpawnEnemyScript : MonoBehaviour
             return null;
 
         m_ToProcess = processTiles(m_FieldSystem.m_LevelWidth/2,0);
-
-		//waves?!?
         
         //endtile hinzufügen
         GameObject first = m_FieldSystem.GetTileFrom(m_FieldSystem.m_LevelWidth / 2,0);
@@ -77,33 +77,32 @@ public class SpawnEnemyScript : MonoBehaviour
         if (pathMove == null)
             return;
         pathMove.m_CurrentObject = spawn;
+        pathMove.m_CurrentIndex = 1;
         if (pathScript.m_north && m_FieldSystem.GetTileFrom(spawnPos.x, spawnPos.y + 1)==null)
         {
             copy.transform.position = pathScript.m_PathNorth[0].transform.position;
-            pathMove.m_CurrentIndex = 1;
             pathMove.m_CurrentList = pathScript.m_PathNorth;
         }
 
         if (pathScript.m_south && m_FieldSystem.GetTileFrom(spawnPos.x, spawnPos.y - 1) == null)
         {
             copy.transform.position = pathScript.m_PathSouth[0].transform.position;
-            pathMove.m_CurrentIndex = 1;
             pathMove.m_CurrentList = pathScript.m_PathSouth;
         }
 
         if (pathScript.m_east && m_FieldSystem.GetTileFrom(spawnPos.x+1, spawnPos.y) == null)
         {
             copy.transform.position = pathScript.m_PathEast[0].transform.position;
-            pathMove.m_CurrentIndex = 1;
             pathMove.m_CurrentList = pathScript.m_PathEast;
         }
 
         if (pathScript.m_west && m_FieldSystem.GetTileFrom(spawnPos.x-1, spawnPos.y) == null)
         {
             copy.transform.position = pathScript.m_PathWest[0].transform.position;
-            pathMove.m_CurrentIndex = 1;
             pathMove.m_CurrentList = pathScript.m_PathWest;
         }
+        pathMove.m_rotationToNext = pathMove.m_CurrentList[pathMove.m_CurrentIndex].transform.position- pathMove.transform.position;
+        pathMove.m_rotationPos = pathMove.transform.position;
     }
 
     private List<TilePos> processTiles(int x, int y)
