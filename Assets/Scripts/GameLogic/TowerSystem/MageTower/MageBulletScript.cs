@@ -18,7 +18,7 @@ public class MageBulletScript : MonoBehaviour
     void OnTriggerEnter(Collider obj)
     {
         EnemyScript enemy = obj.gameObject.GetComponent<EnemyScript>();
-        if (enemy != null)//wenn enemy
+        if (enemy != null && enemy==m_target)//wenn enemy
         {
             //enemy beschädigen
             enemy.DoDamage(m_damage);

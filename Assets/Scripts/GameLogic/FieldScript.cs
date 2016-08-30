@@ -58,7 +58,27 @@ public class FieldScript : MonoBehaviour
     {
         if (m_currentLvl <= y)
         {
+            RemoveGeneratedValue();
             CreateLevel(m_currentLvl + UnityEngine.Random.Range(5, 10));
+        }
+    }
+
+    private void RemoveGeneratedValue()
+    {
+        for (int x = 0; x < m_LevelWidth; x++)
+        {
+            for (int y = 0; y < m_TileArray[x].Length; y++)
+            {
+                GameObject go = m_TileArray[x][y];
+                if (go != null)
+                {
+                    TileScript ts = go.GetComponent<TileScript>();
+                    if (ts != null)
+                    {
+                        ts.m_IsGenerated = false;
+                    }
+                }
+            }
         }
     }
 
@@ -166,6 +186,11 @@ public class FieldScript : MonoBehaviour
                             }
                         }
                     }
+                }
+                TileScript ts = t.GetComponent<TileScript>();
+                if (ts != null)
+                {
+                    ts.m_IsGenerated = true;
                 }
                 int realY = y + depth;
                 t.transform.position = new Vector3(correctI * m_SizeX + m_SizeX / 2.0f, 0.0f, realY * m_SizeY + m_SizeY / 2.0f);
@@ -517,7 +542,17 @@ public class FieldScript : MonoBehaviour
         {
             if (y >= 0 && y < m_TileArray[x].Length)
             {
-                return m_TileArray[x][y] != null;
+                GameObject go = m_TileArray[x][y];
+                if (go == null) return false;
+
+                TileScript ts = go.GetComponent<TileScript>();
+
+                if (ts != null)
+                {
+                    return !ts.m_IsGenerated;
+                }
+
+                return true;
             }
         }
         return false;

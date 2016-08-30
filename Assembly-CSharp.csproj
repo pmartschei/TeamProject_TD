@@ -57,6 +57,7 @@
      <Compile Include="Assets\Scripts\GameLogic\EnemySystem\PathTileScript.cs" />
      <Compile Include="Assets\Scripts\GameLogic\EnemySystem\SpawnEnemyScript.cs" />
      <Compile Include="Assets\Scripts\GameLogic\EnemySystem\TilePos.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\EnemySystem\TileScript.cs" />
      <Compile Include="Assets\Scripts\GameLogic\EnemySystem\Wave.cs" />
      <Compile Include="Assets\Scripts\GameLogic\EnemySystem\WaveGroup.cs" />
      <Compile Include="Assets\Scripts\GameLogic\FieldScript.cs" />
