@@ -3105,12 +3105,12 @@ Prefab:
     - target: {fileID: 11423772, guid: db6e5c6c4362ce942bae1c4c3eda51dc, type: 2}
       propertyPath: m_StreetEndVar1
       value: 
-      objectReference: {fileID: 1000013459992010, guid: c16ba404201150445b5eec08cfe16293,
+      objectReference: {fileID: 1000013400037586, guid: c16ba404201150445b5eec08cfe16293,
         type: 2}
     - target: {fileID: 11423772, guid: db6e5c6c4362ce942bae1c4c3eda51dc, type: 2}
       propertyPath: m_StreetEndVar2
       value: 
-      objectReference: {fileID: 1000013459992010, guid: c16ba404201150445b5eec08cfe16293,
+      objectReference: {fileID: 1000013400037586, guid: c16ba404201150445b5eec08cfe16293,
         type: 2}
     - target: {fileID: 11423772, guid: db6e5c6c4362ce942bae1c4c3eda51dc, type: 2}
       propertyPath: m_StreetCurveVar1

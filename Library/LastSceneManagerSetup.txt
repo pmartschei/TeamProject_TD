@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/MichiScene.unity
+- path: Assets/Scenes/MainScene.unity
   isLoaded: 1
   isActive: 1

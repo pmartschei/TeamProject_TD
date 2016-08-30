@@ -38,6 +38,7 @@ public class SpawnEnemyScript : MonoBehaviour
 			if (gos != null)
             {
                 m_SpawnPos = GetSpawn();//Spawnpunkt holen
+                if (m_SpawnPos == null) return;
                 m_FieldSystem.LevelFinished(m_SpawnPos.y);
                 foreach (GameObject go in gos) {
 					SpawnEnemyOn (go, m_SpawnPos);//Alle GameObjekte Spawnen
