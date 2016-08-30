@@ -24,6 +24,7 @@ GameObject:
   - 95: {fileID: 95000011072558668}
   - 65: {fileID: 65000012161404938}
   - 114: {fileID: 114000013654119674}
+  - 114: {fileID: 114000011785871514}
   m_Layer: 0
   m_Name: StreetCurveTileModel 2 1
   m_TagString: Untagged
@@ -263,6 +264,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000011785871514
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010003171884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02c76cf913dbb8746acb75b784bca063, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGenerated: 0
 --- !u!114 &114000013654119674
 MonoBehaviour:
   m_ObjectHideFlags: 1
