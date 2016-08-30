@@ -19,6 +19,13 @@ public class OpenUpgradeHUDScript : MonoBehaviour
 
     private Transform m_target;
 
+    private LineRenderer m_line;
+    public int m_segments = 20;
+    public float m_zValue = 3.0f;
+    public float m_xRadius = 100.0f;
+    public float m_yRadius = 100.0f;
+    public float m_angle = 2.0f;
+
     // Use this for initialization
     void Start()
     {
@@ -26,6 +33,10 @@ public class OpenUpgradeHUDScript : MonoBehaviour
         m_lifeAndMoneySystem = GameObject.Find("LifeAndMoneySystem");
 
         m_target = gameObject.transform;
+
+        m_line = GetComponent<LineRenderer>();
+        m_line.SetVertexCount(0);
+        m_line.useWorldSpace = false;
     }
 
     // Update is called once per frame
@@ -34,7 +45,10 @@ public class OpenUpgradeHUDScript : MonoBehaviour
         if (Time.timeScale != 0)
         {
             if (Input.GetMouseButtonDown(1))
+            {
                 m_upgradeTowerHUD.SetActive(false);
+                m_line.SetVertexCount(0);
+            }
         }
         else
         {
@@ -56,6 +70,9 @@ public class OpenUpgradeHUDScript : MonoBehaviour
 
                 showUpgrades(upgrades);
             }
+
+            showProps();
+
         }
     }
 
@@ -107,5 +124,22 @@ public class OpenUpgradeHUDScript : MonoBehaviour
             upgradeHUD.SetActive(false);
         }
 
+    }
+
+    private void showProps()
+    {
+        m_line.SetVertexCount(m_segments + 1);
+
+        float x, y;
+
+        for (int i = 0; i < (m_segments + 1); ++i)
+        {
+            x = Mathf.Sin(Mathf.Deg2Rad * m_angle) * m_xRadius;
+            y = Mathf.Cos(Mathf.Deg2Rad * m_angle) * m_yRadius;
+
+            m_line.SetPosition(i, new Vector3(x, m_zValue, y));
+
+            m_angle += (360.0f / m_segments);
+        }
     }
 }

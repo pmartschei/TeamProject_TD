@@ -61,6 +61,7 @@
      <Compile Include="Assets\Scripts\GameLogic\EnemySystem\WaveGroup.cs" />
      <Compile Include="Assets\Scripts\GameLogic\FieldScript.cs" />
      <Compile Include="Assets\Scripts\GameLogic\LifeAndMoneyScript.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\LumberjackScript.cs" />
      <Compile Include="Assets\Scripts\GameLogic\MouseScript.cs" />
      <Compile Include="Assets\Scripts\GameLogic\PlayerSystem.cs" />
      <Compile Include="Assets\Scripts\GameLogic\TileSystem.cs" />
@@ -109,7 +110,9 @@
      <None Include="Assets\xAssetStore\BattleDragon\readme.txt" />
      <None Include="Assets\xAssetStore\BattleDragon\Colosseum\Dust\ParticleSystems\Shaders\PriorityParticleAddSoft.shader" />
      <None Include="Assets\xAssetStore\Chibi Mummy\readme.txt" />
+     <None Include="Assets\xAssetStore\Medieval_Toon_Character\ReadMe.txt" />
      <None Include="Assets\xAssetStore\BattleDragon\Colosseum\Dust\ParticleSystems\Shaders\PriorityParticleAdd.shader" />
+     <None Include="Assets\xAssetStore\WatchTower\ReadMe.txt" />
      <None Include="Assets\xAssetStore\Campfire\License.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

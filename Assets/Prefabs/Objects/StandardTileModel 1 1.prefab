@@ -11,6 +11,7 @@ GameObject:
   - 33: {fileID: 3333390}
   - 23: {fileID: 2365602}
   - 114: {fileID: 114000013835410768}
+  - 65: {fileID: 65000011357956046}
   m_Layer: 0
   m_Name: tree_f
   m_TagString: Untagged
@@ -48,6 +49,7 @@ GameObject:
   - 33: {fileID: 3399916}
   - 23: {fileID: 2353070}
   - 114: {fileID: 114000010906818420}
+  - 65: {fileID: 65000013583607998}
   m_Layer: 0
   m_Name: tree_i
   m_TagString: Untagged
@@ -245,6 +247,30 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 166028}
   m_IsPrefabParent: 1
+--- !u!65 &65000011357956046
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 113898}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.148126, y: 6.1783314, z: 3.3591378}
+  m_Center: {x: 0.005189061, y: 2.8024507, z: -0.06309395}
+--- !u!65 &65000013583607998
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 168044}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.478381, y: 7.7718225, z: 3.6506507}
+  m_Center: {x: -0.12681949, y: 3.5991962, z: -0.05940741}
 --- !u!114 &114000010906818420
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -256,6 +282,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 452b0ebf9017e954b8e3048f2e69289d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Lumberjack: {fileID: 1000013657251542, guid: 2ea06012b74163a43aad4eacf2580535,
+    type: 2}
 --- !u!114 &114000013835410768
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -267,3 +295,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 452b0ebf9017e954b8e3048f2e69289d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Lumberjack: {fileID: 1000013657251542, guid: 2ea06012b74163a43aad4eacf2580535,
+    type: 2}
