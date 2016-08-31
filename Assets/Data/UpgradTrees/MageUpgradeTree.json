@@ -1,6 +1,6 @@
 {"m_FollowingUpgrades":[
-	{"m_Upgrade":{"m_Type":0,"m_Cost":120,"m_Additive":true,"m_Modifier":0.5,"m_SpecialId":0},"m_FollowingUpgrades":[
-		{"m_Upgrade":{"m_Type":0,"m_Cost":500,"m_Additive":false,"m_Modifier":1.5,"m_SpecialId":0},"m_FollowingUpgrades":[
+	{"m_Upgrade":{"m_Type":2,"m_Cost":120,"m_Additive":true,"m_Modifier":0.5,"m_SpecialId":0},"m_FollowingUpgrades":[
+		{"m_Upgrade":{"m_Type":2,"m_Cost":500,"m_Additive":false,"m_Modifier":1.5,"m_SpecialId":0},"m_FollowingUpgrades":[
 			{"m_Upgrade":{"m_Type":0,"m_Cost":1,"m_Additive":true,"m_Modifier":0.5,"m_SpecialId":0},"m_FollowingUpgrades":[]},
 			{"m_Upgrade":{"m_Type":0,"m_Cost":2,"m_Additive":false,"m_Modifier":1.5,"m_SpecialId":0},"m_FollowingUpgrades":[]},
 			{"m_Upgrade":{"m_Type":0,"m_Cost":3,"m_Additive":false,"m_Modifier":1.5,"m_SpecialId":0},"m_FollowingUpgrades":[]}

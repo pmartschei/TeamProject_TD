@@ -504,11 +504,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e351ac72e573f2459b5765c8eb3b22d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_segments: 100
-  m_zValue: 1
-  m_xRadius: 10
-  m_yRadius: 10
-  m_angle: 20
+  m_segments: 90
+  m_zValue: 0.1
+  m_xRadius: 1
+  m_yRadius: 1
+  m_angle: 4
 --- !u!114 &11410558
 MonoBehaviour:
   m_ObjectHideFlags: 1

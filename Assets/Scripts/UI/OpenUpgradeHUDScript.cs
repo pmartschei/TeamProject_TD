@@ -47,7 +47,7 @@ public class OpenUpgradeHUDScript : MonoBehaviour
             if (Input.GetMouseButtonDown(1))
             {
                 m_upgradeTowerHUD.SetActive(false);
-                m_line.SetVertexCount(0);
+                unshowProps();
             }
         }
         else
@@ -126,20 +126,36 @@ public class OpenUpgradeHUDScript : MonoBehaviour
 
     }
 
-    private void showProps()
+    public void showProps()
     {
         m_line.SetVertexCount(m_segments + 1);
+
+        float towerRadius = 0.0f;
+
+        TowerScript ts = GetComponent<TowerScript>();
+        if (ts != null)
+        {
+            towerRadius = ts.Radius;
+        }
+
+
+        if (towerRadius == 0.0f) towerRadius = 1.0f;
 
         float x, y;
 
         for (int i = 0; i < (m_segments + 1); ++i)
         {
-            x = Mathf.Sin(Mathf.Deg2Rad * m_angle) * m_xRadius;
-            y = Mathf.Cos(Mathf.Deg2Rad * m_angle) * m_yRadius;
+            x = Mathf.Sin(Mathf.Deg2Rad * m_angle) * towerRadius;
+            y = Mathf.Cos(Mathf.Deg2Rad * m_angle) * towerRadius;
 
             m_line.SetPosition(i, new Vector3(x, m_zValue, y));
+            m_line.SetWidth(m_zValue, m_zValue);
 
             m_angle += (360.0f / m_segments);
         }
+    }
+    public void unshowProps()
+    {
+        m_line.SetVertexCount(0);
     }
 }

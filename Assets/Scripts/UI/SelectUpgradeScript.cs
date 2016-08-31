@@ -33,6 +33,11 @@ public class SelectUpgradeScript : MonoBehaviour
             {
                 ts.AddUpgrade(index);
             }
+            OpenUpgradeHUDScript openUpgrade = m_selectedTower.GetComponent<OpenUpgradeHUDScript>();
+            if (openUpgrade != null)
+            {
+                openUpgrade.unshowProps();
+            }
         }
     }
 
