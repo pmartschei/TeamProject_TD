@@ -45,20 +45,31 @@ public class CameraControll : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        //Vector3 v = Input.mousePosition;
+        //Vector3 vNew = Camera.main.ScreenToWorldPoint(v);
+        //
+        //Debug.Log(v.x + " " + v.y + " " + v.z + " --- " + vNew.x + " " + vNew.y + " " + vNew.z);
+
+        //Debug.Log(Input.mousePosition.x + " " + Input.mousePosition.y);
+
         //Steuerung mit der Maus
 
         if (m_mainCamera.activeSelf)
         {
             Vector3 mousePos = Input.mousePosition;
 
-            if (mousePos.x < (Screen.width / m_cameraBorderFactor) && mousePos.y > m_offsetBottom)
+            Vector3 worldCoordinates = Camera.main.ScreenToWorldPoint(mousePos);
+
+            if (mousePos.x < (Screen.width / m_cameraBorderFactor) && mousePos.y > m_offsetBottom) //links
             {
                 float value = (Screen.width / m_cameraBorderFactor) - mousePos.x;
                 float speed = m_cameraSpeed * (value / m_cameraVelocityFactor);
                 m_mainCamera.transform.position += new Vector3(0.0f, 0.0f, speed * Time.deltaTime);
             }
-            else if (mousePos.x > (Screen.width - (Screen.width / m_cameraBorderFactor)) && mousePos.y > m_offsetBottom)
+            else if (mousePos.x > (Screen.width - (Screen.width / m_cameraBorderFactor)) && mousePos.y > m_offsetBottom) //rechts
             {
+                if (worldCoordinates.z < -10)
+                    return;
                 float value = mousePos.x - (Screen.width - (Screen.width / m_cameraBorderFactor));
                 float speed = m_cameraSpeed * (value / m_cameraVelocityFactor);
                 m_mainCamera.transform.position += new Vector3(0.0f, 0.0f, -speed * Time.deltaTime);
