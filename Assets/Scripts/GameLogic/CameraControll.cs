@@ -30,6 +30,9 @@ public class CameraControll : MonoBehaviour {
     private float m_rotationYVillage = 0.0f;
     private float m_rotationZVillage = 0.0f;
 
+    public GameObject m_fieldSystem;
+    private FieldScript m_fieldScript;
+
 	// Use this for initialization
 	void Start () 
     {
@@ -40,18 +43,12 @@ public class CameraControll : MonoBehaviour {
         setVillageCamera();
         m_villageCamera.SetActive(false);
 
+        m_fieldScript = m_fieldSystem.GetComponent<FieldScript>();
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-        //Vector3 v = Input.mousePosition;
-        //Vector3 vNew = Camera.main.ScreenToWorldPoint(v);
-        //
-        //Debug.Log(v.x + " " + v.y + " " + v.z + " --- " + vNew.x + " " + vNew.y + " " + vNew.z);
-
-        //Debug.Log(Input.mousePosition.x + " " + Input.mousePosition.y);
-
         //Steuerung mit der Maus
 
         if (m_mainCamera.activeSelf)
@@ -62,6 +59,8 @@ public class CameraControll : MonoBehaviour {
 
             if (mousePos.x < (Screen.width / m_cameraBorderFactor) && mousePos.y > m_offsetBottom) //links
             {
+                if (worldCoordinates.z > m_fieldScript.GetCameraMax())
+                    return;
                 float value = (Screen.width / m_cameraBorderFactor) - mousePos.x;
                 float speed = m_cameraSpeed * (value / m_cameraVelocityFactor);
                 m_mainCamera.transform.position += new Vector3(0.0f, 0.0f, speed * Time.deltaTime);

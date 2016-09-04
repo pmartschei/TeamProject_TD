@@ -22,6 +22,9 @@ public class FieldScript : MonoBehaviour
     private GameObject[][] m_TileArray;
     private GameObject[][] m_villageArray;
 
+    //info for camera
+    private float m_maxCamera;
+
     void Start()
     {
         m_TileArray = new GameObject[m_LevelWidth][];
@@ -187,6 +190,7 @@ public class FieldScript : MonoBehaviour
                         }
                     }
                 }
+
                 TileScript ts = t.GetComponent<TileScript>();
                 if (ts != null)
                 {
@@ -195,6 +199,10 @@ public class FieldScript : MonoBehaviour
                 int realY = y + depth;
                 t.transform.position = new Vector3(correctI * m_SizeX + m_SizeX / 2.0f, 0.0f, realY * m_SizeY + m_SizeY / 2.0f);
                 t.transform.parent = this.transform;
+
+                if(t.transform.position.z > m_maxCamera)
+                    m_maxCamera = t.transform.position.z;
+
                 AddTileTo(t, correctI, realY);
             }
         }
@@ -568,5 +576,10 @@ public class FieldScript : MonoBehaviour
         {
             return null;
         }
+    }
+
+    public float GetCameraMax()
+    {
+        return m_maxCamera;
     }
 }
