@@ -3,17 +3,22 @@ using System.Collections;
 
 public class LumberjackScript : MonoBehaviour {
 
-    private int m_NumberOfLumberjacks;
+    private Animator anim;
 
 	// Use this for initialization
 	void Start () 
     {
-        m_NumberOfLumberjacks = 0;
+        anim = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
 	void Update () 
     {
-	
+        //anim.Play("Turn");
+
+        if(transform.position.y < -20)
+        {
+            Destroy(gameObject);
+        }
 	}
 }
