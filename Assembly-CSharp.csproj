@@ -45,6 +45,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\CircleRender.cs" />
      <Compile Include="Assets\Scripts\GameLogic\CameraControll.cs" />
      <Compile Include="Assets\Scripts\GameLogic\DrawTiles.cs" />
      <Compile Include="Assets\Scripts\GameLogic\EnemySystem\DragonScript.cs" />
@@ -106,7 +107,9 @@
      <Compile Include="Assets\xAssetStore\Campfire\Script\FireLightScript.cs" />
      <Compile Include="Assets\xAssetStore\Chibi Mummy\Scripts\anims_controls.cs" />
      <Compile Include="Assets\xAssetStore\Chibi Mummy\Scripts\control_script.cs" />
+     <Compile Include="Assets\xAssetStore\LightningBolt\LightningBoltScript.cs" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
+     <None Include="Assets\xAssetStore\LightningBolt\Readme.txt" />
      <None Include="Assets\xAssetStore\BattleDragon\Colosseum\Dust\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />
      <None Include="Assets\xAssetStore\BattleDragon\readme.txt" />
      <None Include="Assets\xAssetStore\BattleDragon\Colosseum\Dust\ParticleSystems\Shaders\PriorityParticleAddSoft.shader" />

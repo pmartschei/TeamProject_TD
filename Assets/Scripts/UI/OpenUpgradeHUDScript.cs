@@ -142,6 +142,7 @@ public class OpenUpgradeHUDScript : MonoBehaviour
         if (towerRadius == 0.0f) towerRadius = 1.0f;
 
         float x, y;
+        m_line.SetWidth(m_zValue, m_zValue);
 
         for (int i = 0; i < (m_segments + 1); ++i)
         {
@@ -149,7 +150,6 @@ public class OpenUpgradeHUDScript : MonoBehaviour
             y = Mathf.Cos(Mathf.Deg2Rad * m_angle) * towerRadius;
 
             m_line.SetPosition(i, new Vector3(x, m_zValue, y));
-            m_line.SetWidth(m_zValue, m_zValue);
 
             m_angle += (360.0f / m_segments);
         }

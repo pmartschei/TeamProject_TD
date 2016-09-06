@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine.Events;
+using System;
 
 public class MouseScript : MonoBehaviour
 {
@@ -26,6 +27,24 @@ public class MouseScript : MonoBehaviour
     void Update()
     {
         if (Time.timeScale == 0.0f) return;
+        Ray r = m_Camera.ScreenPointToRay(Input.mousePosition);//Ray von der Maus
+        Vector3 hit = r.origin + Mathf.Abs(r.origin.y / r.direction.y+0.5f) * r.direction;//Auf Y=0 Achse den hit suchen
+        if (Input.GetMouseButton(0))
+        {
+            Collider[] colliders = Physics.OverlapSphere(hit, 1);
+            foreach(Collider collider in colliders)
+            {
+                EnemyScript es = collider.GetComponent<EnemyScript>();
+                if (es!=null)
+                {
+                    es.DoDamage(1);
+                }
+            }
+        }
+        transform.Find("SimpleLightningBoltAnimatedPrefab").gameObject.SetActive(Input.GetMouseButton(0));
+        transform.position = hit;
+        Vector3 randomPos = GenerateRandomCirclePos(1.0f);
+        transform.Find("SimpleLightningBoltAnimatedPrefab").Find("LightningEnd").localPosition = randomPos;
         if (m_Tile != null)
         {
             if (Input.GetMouseButtonDown(1))//Rechtsklick
@@ -59,8 +78,8 @@ public class MouseScript : MonoBehaviour
             //float ratioY = size.y / floorMesh.bounds.size.y;
             //floorPlane.transform.position = new Vector3(0, 0, 0);
             //floorPlane.transform.localScale = new Vector3(ratioX*5, 0, ratioY*5);
-            Ray r = m_Camera.ScreenPointToRay(Input.mousePosition);//Ray von der Maus
-            Vector3 hit = r.origin + Mathf.Abs(r.origin.y / r.direction.y) * r.direction;//Auf Y=0 Achse den hit suchen
+            hit = r.origin + Mathf.Abs(r.origin.y / r.direction.y) * r.direction;//Auf Y=0 Achse den hit suchen
+
             bool xNegative;
             bool yNegative;
             xNegative = hit.x < 0.0f;
@@ -130,6 +149,17 @@ public class MouseScript : MonoBehaviour
             }
         }
     }
+
+    private Vector3 GenerateRandomCirclePos(float v)
+    {
+        float t = 2 * (float)Math.PI * UnityEngine.Random.Range(0.0f, 1.0f);
+        float u = UnityEngine.Random.Range(0.0f, 1.0f) + UnityEngine.Random.Range(0.0f, 1.0f);
+
+        float r = u > 1 ? 2 - u : u;
+
+        return new Vector3(r * (float)Math.Cos(t), r * (float)Math.Sin(t));
+    }
+
     /// <summary>
     /// Checks if the Tile can be a Valid Street
     /// </summary>
