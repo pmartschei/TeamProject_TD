@@ -430,6 +430,11 @@ public class FieldScript : MonoBehaviour
 
     public bool AddTileTo(GameObject go, int x, int y)
     {
+        Collider[] colliders = go.GetComponentsInChildren<Collider>();
+        foreach(Collider collider in colliders)
+        {
+            collider.enabled = true;
+        }
         CheckArraySize(ref m_TileArray[x], y+1);
         if (IsValid(x, y))
         {
