@@ -29,7 +29,7 @@ public class TreeScript : MonoBehaviour {
         if (m_infoScript.AddLumberjackPossible())
         {
             GameObject obj = GameObject.Instantiate(m_Lumberjack);
-            obj.transform.position = new Vector3(5, 3, -2); //new Vector3(transform.position.x, transform.position.y, transform.position.z);
+            obj.transform.position = new Vector3(5, 0.25f, -2); //new Vector3(transform.position.x, transform.position.y, transform.position.z);
             m_infoScript.IncrementLumberjacks();
         }
     }
