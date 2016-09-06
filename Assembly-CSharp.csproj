@@ -65,6 +65,7 @@
      <Compile Include="Assets\Scripts\GameLogic\LifeAndMoneyScript.cs" />
      <Compile Include="Assets\Scripts\GameLogic\LumberjackScript.cs" />
      <Compile Include="Assets\Scripts\GameLogic\MouseScript.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\OverallInformation.cs" />
      <Compile Include="Assets\Scripts\GameLogic\PlayerSystem.cs" />
      <Compile Include="Assets\Scripts\GameLogic\TileSystem.cs" />
      <Compile Include="Assets\Scripts\GameLogic\TileUI.cs" />
