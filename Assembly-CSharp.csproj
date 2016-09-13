@@ -93,6 +93,7 @@
      <Compile Include="Assets\Scripts\UI\SelectUpgradeScript.cs" />
      <Compile Include="Assets\Scripts\UI\UIManagerScript.cs" />
      <Compile Include="Assets\Scripts\UI\UISystemScript.cs" />
+     <Compile Include="Assets\SpawnLumberjackScript.cs" />
      <Compile Include="Assets\xAssetStore\BattleDragon\Colosseum\Dust\ParticleSystems\Scripts\AfterburnerPhysicsForce.cs" />
      <Compile Include="Assets\xAssetStore\BattleDragon\Colosseum\Dust\ParticleSystems\Scripts\ExplosionFireAndDebris.cs" />
      <Compile Include="Assets\xAssetStore\BattleDragon\Colosseum\Dust\ParticleSystems\Scripts\ExplosionPhysicsForce.cs" />
