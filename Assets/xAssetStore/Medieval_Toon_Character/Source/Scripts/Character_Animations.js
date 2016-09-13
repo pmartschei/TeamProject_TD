@@ -12,9 +12,9 @@ function Update () {
 	v=Input.GetAxis("Vertical");
 	h=Input.GetAxis("Horizontal");
 	if (animator.GetFloat("Run")==0.2){
-		//if (Input.GetKeyDown("space")){
-		//	animator.SetBool("Jump",true);
-		//}
+		if (Input.GetKeyDown("space")){
+			animator.SetBool("Jump",true);
+		}
 	}
 	Sprinting();
 	
