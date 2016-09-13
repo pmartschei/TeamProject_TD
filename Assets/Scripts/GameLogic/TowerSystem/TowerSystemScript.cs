@@ -8,6 +8,7 @@ public class TowerSystemScript : MonoBehaviour
     public GameObject m_tower1;
     public TextAsset m_tower1UpgradeAsset;
     public GameObject m_tower2;
+    public TextAsset m_tower2UpgradeAsset;
     public GameObject m_tower3;
     public GameObject m_tower4;
 
@@ -17,7 +18,8 @@ public class TowerSystemScript : MonoBehaviour
 	void Start ()
     {
         LoadUpgradeTree(m_tower1,m_tower1UpgradeAsset);
-	}
+        LoadUpgradeTree(m_tower2, m_tower2UpgradeAsset);
+    }
 
     private void LoadUpgradeTree(GameObject go,TextAsset upgradeAsset)
     {

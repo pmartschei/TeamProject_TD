@@ -11,43 +11,99 @@ public class SpawnEnemyScript : MonoBehaviour
 
     private GameObject m_EndTile;
     public TilePos m_SpawnPos;
-	public List<IWave> m_Waves=new List<IWave>();
+    public List<IWave> m_Waves = new List<IWave>();
     public GameObject m_firstEnemy;
     public GameObject m_secondEnemy;
     public float m_Timer;
 
     private List<TilePos> m_ToProcess = new List<TilePos>();
     private List<TilePos> m_AlreadyChecked = new List<TilePos>();
+
+    public int m_WaveDifficultyPoints = 100;
+    public int m_WavesStored = 5;
+    public int m_CurrentWaveIndex = 0;
+    [Range(0.01f, 1.00f)]
+    public float m_Difficulty = 0.05f;
+    public Enemies m_Enemies;
+
+    public int m_WaveDelayBetween = 5;
+    private float m_CurrentDelayBetween = 0.0f;
+
     // Use this for initialization
     void Start()
     {
-		Wave second = new Wave (1000, m_firstEnemy, 0.3f);
-		Wave first = new Wave (5, m_secondEnemy, 1);
-		WaveGroup wg = new WaveGroup ();
-		wg.m_Waves.Add (first);
-		m_Waves.Add (wg);
-		m_Waves.Add (second);
+        for (int i = 0; i < m_WavesStored; i++)
+        {
+            m_Waves.Add(CreateNewWave(i));
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
 		if (m_Waves.Count > 0) {
-			//hole alle GameObjekte von den Wellen
-			GameObject[] gos = m_Waves [0].Update ();
-			if (gos != null)
+            //hole alle GameObjekte von den Wellen
+            if (m_CurrentDelayBetween <= 0.0f)
             {
-                m_SpawnPos = GetSpawn();//Spawnpunkt holen
-                if (m_SpawnPos == null) return;
-                m_FieldSystem.LevelFinished(m_SpawnPos.y);
-                foreach (GameObject go in gos) {
-					SpawnEnemyOn (go, m_SpawnPos);//Alle GameObjekte Spawnen
-				}
-				if (m_Waves [0].Clear ()) {//Wenn Welle fertig
-					m_Waves.RemoveAt (0);
-				}
-			}
+                GameObject[] gos = m_Waves[0].Update();
+                if (gos != null)
+                {
+                    m_SpawnPos = GetSpawn();//Spawnpunkt holen
+                    if (m_SpawnPos == null) return;
+                    m_FieldSystem.LevelFinished(m_SpawnPos.y);
+                    foreach (GameObject go in gos)
+                    {
+                        SpawnEnemyOn(go, m_SpawnPos);//Alle GameObjekte Spawnen
+                    }
+                    if (m_Waves[0].Clear())
+                    {//Wenn Welle fertig
+                        m_Waves.RemoveAt(0);
+                        m_Waves.Add(CreateNewWave(m_CurrentWaveIndex + m_WavesStored));
+                        m_CurrentWaveIndex++;
+                        m_CurrentDelayBetween = m_WaveDelayBetween;
+                    }
+                }
+            }
+            else
+            {
+                m_CurrentDelayBetween -= Time.deltaTime;
+            }
 		}
+    }
+
+    private IWave CreateNewWave(int difficulty,int usedWavePoints = 0,GameObject enemy = null)
+    {
+        float multiplier = 1.0f + difficulty * m_Difficulty;
+        float wavePoints = m_WaveDifficultyPoints * multiplier;
+        if (usedWavePoints != 0)
+        {
+            wavePoints = usedWavePoints * multiplier;
+        }
+        if (Random.Range(0f,1f)<0.9f || enemy!=null)
+        {
+            if (enemy == null)
+            {
+                enemy = m_Enemies.GetRandomEnemy();
+            }
+            enemy.transform.SetParent(this.transform);
+            EnemyScript es = enemy.GetComponent<EnemyScript>();
+            es.IncreaseDifficulty(difficulty);
+            if (es == null) throw new System.Exception("ERROR : No EnemyScript");
+            int count = (int)(wavePoints / es.m_WavePoints) + 1;
+            float delay = Random.Range(0.75f / es.m_Speed, 2f / es.m_Speed);
+            Wave w = new Wave(count,enemy,delay);
+            return w;
+        }
+        else
+        {
+            GameObject[] enemies = m_Enemies.GetRandomEnemies(2);
+            WaveGroup wg = new WaveGroup();
+            for (int i = 0; i < 2; i++)
+            {
+                wg.m_Waves.Add(CreateNewWave(difficulty, (int)(usedWavePoints / 2.0f), enemies[i]));
+            }
+            return wg;
+        }
     }
     private TilePos GetSpawn()
     {

@@ -50,6 +50,7 @@
      <Compile Include="Assets\Scripts\GameLogic\DrawTiles.cs" />
      <Compile Include="Assets\Scripts\GameLogic\EnemySystem\DragonScript.cs" />
      <Compile Include="Assets\Scripts\GameLogic\EnemySystem\EndPoint.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\EnemySystem\Enemies.cs" />
      <Compile Include="Assets\Scripts\GameLogic\EnemySystem\EnemyScript.cs" />
      <Compile Include="Assets\Scripts\GameLogic\EnemySystem\IWave.cs" />
      <Compile Include="Assets\Scripts\GameLogic\EnemySystem\MoveEnemyScript.cs" />
@@ -75,6 +76,8 @@
      <Compile Include="Assets\Scripts\GameLogic\TowerSystem\TowerSystemScript.cs" />
      <Compile Include="Assets\Scripts\GameLogic\TowerSystem\Upgrade.cs" />
      <Compile Include="Assets\Scripts\GameLogic\TowerSystem\UpgradeSlot.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\TowerSystem\WatchTower\WatchBulletScript.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\TowerSystem\WatchTower\WatchTowerScript.cs" />
      <Compile Include="Assets\Scripts\GameLogic\TreeScript.cs" />
      <Compile Include="Assets\Scripts\Grid.cs" />
      <Compile Include="Assets\Scripts\SimpleJSON.cs" />

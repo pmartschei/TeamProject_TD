@@ -48,10 +48,14 @@ namespace Assets.Scripts.GameLogic.TowerSystem
                     break;//invalid updateIndex
                 }
             }
-            Upgrade[] nextUpgrades = new Upgrade[baseSlot.m_FollowingUpgrades.Length];
-            for (int i=0;i<baseSlot.m_FollowingUpgrades.Length;i++)
+            Upgrade[] nextUpgrades =new Upgrade[0];
+            if (baseSlot.m_FollowingUpgrades != null)
             {
-                nextUpgrades[i] = baseSlot.m_FollowingUpgrades[i].m_Upgrade;
+                nextUpgrades = new Upgrade[baseSlot.m_FollowingUpgrades.Length];
+                for (int i = 0; i < baseSlot.m_FollowingUpgrades.Length; i++)
+                {
+                    nextUpgrades[i] = baseSlot.m_FollowingUpgrades[i].m_Upgrade;
+                }
             }
             return nextUpgrades;
         }
