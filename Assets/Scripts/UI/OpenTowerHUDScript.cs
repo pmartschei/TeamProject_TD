@@ -11,9 +11,23 @@ public class OpenTowerHUDScript : MonoBehaviour
     private int m_firstTowerCost;
     private int m_secondTowerCost;
     private int m_thirdTowerCost;
-    private int m_fourthTowerCost;
 
-   private Transform m_target;
+    private GameObject m_upgradeTower;
+
+    private GameObject m_upperLeftTower;
+    private GameObject m_upperRightTower;
+    private GameObject m_lowerTower;
+
+    private GameObject m_upperLeftTowerCircle;
+    private GameObject m_upperRightTowerCircle;
+    private GameObject m_lowerTowerCircle;
+
+    private GameObject m_upperLeftTowerButton;
+    private GameObject m_upperRightTowerButton;
+    private GameObject m_lowerTowerButton;
+
+    private Transform m_target;
+    private Camera m_camera;
 
     // Use this for initialization
     // Get the HUD and MoneySystem
@@ -21,15 +35,29 @@ public class OpenTowerHUDScript : MonoBehaviour
     // Get the main Camera and the position of the tile for the correct view
     void Start()
     {
-        m_buildTowerHUD = GameObject.Find("WorldSpaceHUDCanvas").transform.FindChild("BuildTowerHUD").gameObject;
+        m_buildTowerHUD = GameObject.Find("HUDCanvas").transform.FindChild("BuildTowerHUD").gameObject;
         m_lifeAndMoneySystem = GameObject.Find("LifeAndMoneySystem");
 
-        m_firstTowerCost = int.Parse(m_buildTowerHUD.transform.FindChild("UpperLeftTower").transform.FindChild("TowerCostText").GetComponent<Text>().text);
-        m_secondTowerCost = int.Parse(m_buildTowerHUD.transform.FindChild("UpperRightTower").transform.FindChild("TowerCostText").GetComponent<Text>().text);
-        m_thirdTowerCost = int.Parse(m_buildTowerHUD.transform.FindChild("LowerLeftTower").transform.FindChild("TowerCostText").GetComponent<Text>().text);
-        m_fourthTowerCost = int.Parse(m_buildTowerHUD.transform.FindChild("LowerRightTower").transform.FindChild("TowerCostText").GetComponent<Text>().text);
+        m_upperLeftTower = m_buildTowerHUD.transform.FindChild("UpperLeftTower").gameObject;
+        m_upperRightTower = m_buildTowerHUD.transform.FindChild("UpperRightTower").gameObject;
+        m_lowerTower = m_buildTowerHUD.transform.FindChild("LowerTower").gameObject;
+
+        m_firstTowerCost = int.Parse(m_upperLeftTower.transform.FindChild("TowerCostText").GetComponent<Text>().text);
+        m_secondTowerCost = int.Parse(m_upperRightTower.transform.FindChild("TowerCostText").GetComponent<Text>().text);
+        m_thirdTowerCost = int.Parse(m_lowerTower.transform.FindChild("TowerCostText").GetComponent<Text>().text);
+
+        m_upgradeTower = GameObject.Find("HUDCanvas").transform.Find("UpgradeTowerHUD").gameObject;
+
+        m_upperLeftTowerButton = m_upperLeftTower.transform.FindChild("TowerButton").gameObject;
+        m_upperRightTowerButton = m_upperRightTower.transform.FindChild("TowerButton").gameObject;
+        m_lowerTowerButton = m_lowerTower.transform.FindChild("TowerButton").gameObject;
+
+        m_upperLeftTowerCircle = m_upperLeftTower.transform.FindChild("CircleImage").gameObject;
+        m_upperRightTowerCircle = m_upperRightTower.transform.FindChild("CircleImage").gameObject;
+        m_lowerTowerCircle = m_lowerTower.transform.FindChild("CircleImage").gameObject;
 
         m_target = gameObject.transform;
+        m_camera = Camera.main;
     }
 
     // Update is called once per frame
@@ -39,7 +67,7 @@ public class OpenTowerHUDScript : MonoBehaviour
     {
         if (Time.timeScale != 0)
         {
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonUp(1))
                 m_buildTowerHUD.SetActive(false);
         }
         else
@@ -54,7 +82,7 @@ public class OpenTowerHUDScript : MonoBehaviour
     {
         if (Time.timeScale != 0)
         {
-            if (!GameObject.Find("WorldSpaceHUDCanvas").transform.Find("UpgradeTowerHUD").gameObject.activeSelf)
+            if (!m_upgradeTower.activeSelf)
             {
                 m_buildTowerHUD.transform.position = m_target.position;
                 m_buildTowerHUD.transform.position += new Vector3(0.0f, 0.5f, 0.0f);
@@ -63,58 +91,49 @@ public class OpenTowerHUDScript : MonoBehaviour
 
                 if (!(m_lifeAndMoneySystem.GetComponent<LifeAndMoneyScript>().isMoneyDecreasePossible(m_firstTowerCost)))
                 {
-                    m_buildTowerHUD.transform.FindChild("UpperLeftTower").transform.FindChild("TowerButton").GetComponent<Button>().interactable = false;
-                    m_buildTowerHUD.transform.FindChild("UpperLeftTower").transform.FindChild("CircleImage").GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 0.6f);
+                    m_upperLeftTowerButton.GetComponent<Button>().interactable = false;
+                    m_upperLeftTowerCircle.GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 0.6f);
                 }
                 else
                 {
-                    m_buildTowerHUD.transform.FindChild("UpperLeftTower").transform.FindChild("TowerButton").GetComponent<Button>().interactable = true;
-                    m_buildTowerHUD.transform.FindChild("UpperLeftTower").transform.FindChild("CircleImage").GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
+                    m_upperLeftTowerButton.GetComponent<Button>().interactable = true;
+                    m_upperLeftTowerCircle.GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
                 }
 
 
                 if (!(m_lifeAndMoneySystem.GetComponent<LifeAndMoneyScript>().isMoneyDecreasePossible(m_secondTowerCost)))
                 {
-                    m_buildTowerHUD.transform.FindChild("UpperRightTower").transform.FindChild("TowerButton").GetComponent<Button>().interactable = false;
-                    m_buildTowerHUD.transform.FindChild("UpperRightTower").transform.FindChild("CircleImage").GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 0.6f);
+                    m_upperRightTowerButton.GetComponent<Button>().interactable = false;
+                    m_upperRightTowerCircle.GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 0.6f);
                 }
                 else
                 {
-                    m_buildTowerHUD.transform.FindChild("UpperRightTower").transform.FindChild("TowerButton").GetComponent<Button>().interactable = true;
-                    m_buildTowerHUD.transform.FindChild("UpperRightTower").transform.FindChild("CircleImage").GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
+                    m_upperRightTowerButton.GetComponent<Button>().interactable = true;
+                    m_upperRightTowerCircle.GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
                 }
 
 
                 if (!(m_lifeAndMoneySystem.GetComponent<LifeAndMoneyScript>().isMoneyDecreasePossible(m_thirdTowerCost)))
                 {
-                    m_buildTowerHUD.transform.FindChild("LowerLeftTower").transform.FindChild("TowerButton").GetComponent<Button>().interactable = false;
-                    m_buildTowerHUD.transform.FindChild("LowerLeftTower").transform.FindChild("CircleImage").GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 0.6f);
+                    m_lowerTowerButton.GetComponent<Button>().interactable = false;
+                    m_lowerTowerCircle.GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 0.6f);
                 }
                 else
                 {
-                    m_buildTowerHUD.transform.FindChild("LowerLeftTower").transform.FindChild("TowerButton").GetComponent<Button>().interactable = true;
-                    m_buildTowerHUD.transform.FindChild("LowerLeftTower").transform.FindChild("CircleImage").GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
-                }
-
-
-                if (!(m_lifeAndMoneySystem.GetComponent<LifeAndMoneyScript>().isMoneyDecreasePossible(m_fourthTowerCost)))
-                {
-                    m_buildTowerHUD.transform.FindChild("LowerRightTower").transform.FindChild("TowerButton").GetComponent<Button>().interactable = false;
-                    m_buildTowerHUD.transform.FindChild("LowerRightTower").transform.FindChild("CircleImage").GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 0.6f);
-                }
-                else
-                {
-                    m_buildTowerHUD.transform.FindChild("LowerRightTower").transform.FindChild("TowerButton").GetComponent<Button>().interactable = true;
-                    m_buildTowerHUD.transform.FindChild("LowerRightTower").transform.FindChild("CircleImage").GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
+                    m_lowerTowerButton.GetComponent<Button>().interactable = true;
+                    m_lowerTowerCircle.GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
                 }
 
                 // GameObject.Find("HUDCanvas").transform.FindChild("UpgradeTowerHUD").FindChild("Destroy").GetComponent<SelectUpgradeScript>().setSelectedTile(gameObject);
 
-                m_buildTowerHUD.transform.FindChild("UpperLeftTower").GetComponent<SelectTowerScript>().setPosition(m_target.position, gameObject);
-                m_buildTowerHUD.transform.FindChild("UpperRightTower").GetComponent<SelectTowerScript>().setPosition(m_target.position, gameObject);
-                m_buildTowerHUD.transform.FindChild("LowerLeftTower").GetComponent<SelectTowerScript>().setPosition(m_target.position, gameObject);
-                m_buildTowerHUD.transform.FindChild("LowerRightTower").GetComponent<SelectTowerScript>().setPosition(m_target.position, gameObject);
+                Vector3 screenPos = m_camera.WorldToScreenPoint(m_target.position);
+                screenPos += new Vector3(0.0f, 10.0f, 0.0f);
+                m_buildTowerHUD.transform.position = screenPos;
+
+                m_upperLeftTower.GetComponent<SelectTowerScript>().setPosition(m_target.position, gameObject);
+                m_upperRightTower.GetComponent<SelectTowerScript>().setPosition(m_target.position, gameObject);
+                m_lowerTower.GetComponent<SelectTowerScript>().setPosition(m_target.position, gameObject);
             }
-        }    
+        }
     }
 }

@@ -2,10 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.GameLogic.EnemySystem;
+using UnityEngine.UI;
 
 public class SpawnEnemyScript : MonoBehaviour
 {
-
+    public GameObject m_waveTextBox;
 
     public FieldScript m_FieldSystem;
 
@@ -50,6 +51,7 @@ public class SpawnEnemyScript : MonoBehaviour
                 {
                     m_SpawnPos = GetSpawn();//Spawnpunkt holen
                     if (m_SpawnPos == null) return;
+                    m_waveTextBox.GetComponent<Text>().text = "Current Wave: " + (m_CurrentWaveIndex+1);
                     m_FieldSystem.LevelFinished(m_SpawnPos.y);
                     foreach (GameObject go in gos)
                     {

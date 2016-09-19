@@ -7,10 +7,12 @@ public class SelectTowerScript : MonoBehaviour
     private Vector3 m_position;
     private GameObject m_selectedTile;
 
+    private GameObject m_towerSystem;
+
     // Use this for initialization
     void Start()
     {
-
+        m_towerSystem = GameObject.Find("TowerSystem").gameObject;
     }
 
     // Update is called once per frame
@@ -34,27 +36,27 @@ public class SelectTowerScript : MonoBehaviour
             switch (name)
             {
                 case "UpperLeftTower":
-                    GameObject tower1 = Instantiate(GameObject.Find("TowerSystem").GetComponent<TowerSystemScript>().m_tower1);
+                    GameObject tower1 = Instantiate(m_towerSystem.GetComponent<TowerSystemScript>().m_tower1);
                     tower1.transform.position = m_position;
-                    tower1.transform.parent = GameObject.Find("TowerSystem").gameObject.transform;
+                    tower1.transform.parent = m_towerSystem.gameObject.transform;
                     break;
 
                 case "UpperRightTower":
-                    GameObject tower2 = Instantiate(GameObject.Find("TowerSystem").GetComponent<TowerSystemScript>().m_tower2);
+                    GameObject tower2 = Instantiate(m_towerSystem.GetComponent<TowerSystemScript>().m_tower2);
                     tower2.transform.position = m_position;
-                    tower2.transform.parent = GameObject.Find("TowerSystem").gameObject.transform;
+                    tower2.transform.parent = m_towerSystem.gameObject.transform;
                     break;
 
                 case "LowerRightTower":
-                    GameObject tower3 = Instantiate(GameObject.Find("TowerSystem").GetComponent<TowerSystemScript>().m_tower3);
+                    GameObject tower3 = Instantiate(m_towerSystem.GetComponent<TowerSystemScript>().m_tower3);
                     tower3.transform.position = m_position;
-                    tower3.transform.parent = GameObject.Find("TowerSystem").gameObject.transform;
+                    tower3.transform.parent = m_towerSystem.gameObject.transform;
                     break;
 
                 case "LowerLeftTower":
-                    GameObject tower4 = Instantiate(GameObject.Find("TowerSystem").GetComponent<TowerSystemScript>().m_tower4);
+                    GameObject tower4 = Instantiate(m_towerSystem.GetComponent<TowerSystemScript>().m_tower4);
                     tower4.transform.position = m_position;
-                    tower4.transform.parent = GameObject.Find("TowerSystem").gameObject.transform;
+                    tower4.transform.parent = m_towerSystem.gameObject.transform;
                     break;
 
                 default: break;

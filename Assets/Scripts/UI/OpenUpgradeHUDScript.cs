@@ -17,7 +17,11 @@ public class OpenUpgradeHUDScript : MonoBehaviour
 
     private GameObject m_selectedTile;
 
+    private GameObject m_upgradeButton;
+    private GameObject m_upgradeCircle;
+
     private Transform m_target;
+    private Camera m_camera;
 
     private LineRenderer m_line;
     public int m_segments = 20;
@@ -29,9 +33,10 @@ public class OpenUpgradeHUDScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        m_upgradeTowerHUD = GameObject.Find("WorldSpaceHUDCanvas").transform.Find("UpgradeTowerHUD").gameObject;
+        m_upgradeTowerHUD = GameObject.Find("HUDCanvas").transform.Find("UpgradeTowerHUD").gameObject;
         m_lifeAndMoneySystem = GameObject.Find("LifeAndMoneySystem");
 
+        m_camera = Camera.main;
         m_target = gameObject.transform;
 
         m_line = GetComponent<LineRenderer>();
@@ -60,10 +65,11 @@ public class OpenUpgradeHUDScript : MonoBehaviour
     {
         if (Time.timeScale != 0)
         {
-            if (!GameObject.Find("WorldSpaceHUDCanvas").transform.FindChild("BuildTowerHUD").gameObject.activeSelf)
+            if (!GameObject.Find("HUDCanvas").transform.FindChild("BuildTowerHUD").gameObject.activeSelf)
             {
-                m_upgradeTowerHUD.transform.position = m_target.position;
-                m_upgradeTowerHUD.transform.position += new Vector3(0.0f, 1.0f, 0.0f);
+                Vector3 screenPos = m_camera.WorldToScreenPoint(m_target.position);
+                screenPos += new Vector3(0.0f, 10.0f, 0.0f);
+                m_upgradeTowerHUD.transform.position = screenPos;
                 TowerScript tw = GetComponent<TowerScript>();
                 if (tw == null) return;
                 Upgrade[] upgrades = tw.GetNextUpgrades();
@@ -95,7 +101,7 @@ public class OpenUpgradeHUDScript : MonoBehaviour
             float x = Mathf.Cos(radians * (i + 1) -START_RADIANS);
             float y = Mathf.Sin(radians * (i + 1) - START_RADIANS);
 
-            transform.anchoredPosition = new Vector2(x*UPGRADE_DISTANCE, y*UPGRADE_DISTANCE);
+            transform.anchoredPosition = new Vector2(x*UPGRADE_DISTANCE, (y*UPGRADE_DISTANCE)+65.0f);
 
             upgradeHUD.SetActive(true);
 

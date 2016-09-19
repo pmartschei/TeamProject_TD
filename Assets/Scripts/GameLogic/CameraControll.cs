@@ -11,6 +11,9 @@ public class CameraControll : MonoBehaviour {
     public float m_cameraVelocityFactor = 30.0f;
 
     public int m_offsetBottom = 300;
+    public int m_offsetTop = 760;
+
+    private Vector3 mousePos;
 
     //values for the position and rotation of the main camera
     private float m_translationX1 = -3.0f;
@@ -53,11 +56,11 @@ public class CameraControll : MonoBehaviour {
 
         if (m_mainCamera.activeSelf)
         {
-            Vector3 mousePos = Input.mousePosition;
+            mousePos = Input.mousePosition;
 
             Vector3 worldCoordinates = Camera.main.ScreenToWorldPoint(mousePos);
 
-            if (mousePos.x < (Screen.width / m_cameraBorderFactor) && mousePos.y > m_offsetBottom) //links
+            if (mousePos.x < (Screen.width / m_cameraBorderFactor) && checkYParamters()) //links
             {
                 if (worldCoordinates.z > m_fieldScript.GetCameraMax())
                     return;
@@ -65,7 +68,7 @@ public class CameraControll : MonoBehaviour {
                 float speed = m_cameraSpeed * (value / m_cameraVelocityFactor);
                 m_mainCamera.transform.position += new Vector3(0.0f, 0.0f, speed * Time.deltaTime);
             }
-            else if (mousePos.x > (Screen.width - (Screen.width / m_cameraBorderFactor)) && mousePos.y > m_offsetBottom) //rechts
+            else if (mousePos.x > (Screen.width - (Screen.width / m_cameraBorderFactor)) && checkYParamters()) //rechts
             {
                 if (worldCoordinates.z < -10)
                     return;
@@ -142,4 +145,13 @@ public class CameraControll : MonoBehaviour {
         m_villageCamera.transform.position = new Vector3(m_translationXVillage, m_translationYVillage, m_translationZVillage);
         m_villageCamera.transform.eulerAngles = new Vector3(m_rotationXVillage, m_rotationYVillage, m_rotationZVillage);
     }
+
+    private bool checkYParamters()
+    {
+        if ((mousePos.y > m_offsetBottom) /*&& (mousePos.y < m_offsetTop)*/)
+            return true;
+        
+        return false;
+    }
+
 }

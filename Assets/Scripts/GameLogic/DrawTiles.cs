@@ -169,8 +169,8 @@ public class DrawTiles : MonoBehaviour
         }
     }
 
-    public void DecreaseCurrentTiles()
+    public void DecreaseCurrentTiles(int amount)
     {
-        m_counterCurrentTiles--;
+        m_counterCurrentTiles -= amount;
     }
 }
