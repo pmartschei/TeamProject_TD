@@ -6,8 +6,10 @@ public class LifeAndMoneyScript : MonoBehaviour
 {
     public int m_lifeTotal;
     public int m_MoneyTotal;
+    public int m_woodTotal;
     public GameObject m_HeartText;
     public GameObject m_MoneyText;
+    public GameObject m_WoodText;
 
 	// Use this for initialization
 	void Start ()
@@ -53,6 +55,25 @@ public class LifeAndMoneyScript : MonoBehaviour
         {
             return true;
         }
+
+        return false;
+    }
+
+    public void decreaseWood(int amount)
+    {
+        if (m_woodTotal - amount >= 0)
+            m_woodTotal -= amount;
+    }
+
+    public void increaseWood(int amount)
+    {
+        m_woodTotal += amount;
+    }
+
+    public bool isWoodDecreasePossible(int amount)
+    {
+        if (m_woodTotal - amount >= 0)
+            return true;
 
         return false;
     }

@@ -149,7 +149,17 @@ public class TileUI : MonoBehaviour
 
         // Change the displayed text and inform the draw script that a tile was used
         m_counterCurrentTiles--;
-        m_drawTilesSystem.GetComponent<DrawTiles>().DecreaseCurrentTiles();
+        m_drawTilesSystem.GetComponent<DrawTiles>().DecreaseCurrentTiles(1);
         m_displayedText.text = "" + m_counterCurrentTiles + " / " + m_maxTiles;
+    }
+
+    public void resetTiles()
+    {
+        int tiles = m_counterCurrentTiles;
+        m_counterCurrentTiles -= tiles;
+        m_drawTilesSystem.GetComponent<DrawTiles>().DecreaseCurrentTiles(tiles);
+        m_displayedText.text = "" + m_counterCurrentTiles + " / " + m_maxTiles;
+        for (int i = 0; i < 3; i++)
+            Destroy(m_currentTiles[i]);
     }
 }
