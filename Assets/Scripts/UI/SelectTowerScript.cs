@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using Assets.Scripts.GameLogic.TowerSystem;
 
 public class SelectTowerScript : MonoBehaviour
 {
@@ -33,33 +34,35 @@ public class SelectTowerScript : MonoBehaviour
             gameObject.transform.parent.gameObject.SetActive(false);
 
             string name = gameObject.name;
+            GameObject tower = null;
             switch (name)
             {
                 case "UpperLeftTower":
-                    GameObject tower1 = Instantiate(m_towerSystem.GetComponent<TowerSystemScript>().m_tower1);
-                    tower1.transform.position = m_position;
-                    tower1.transform.parent = m_towerSystem.gameObject.transform;
+                    tower = Instantiate(m_towerSystem.GetComponent<TowerSystemScript>().m_tower1);
                     break;
 
                 case "UpperRightTower":
-                    GameObject tower2 = Instantiate(m_towerSystem.GetComponent<TowerSystemScript>().m_tower2);
-                    tower2.transform.position = m_position;
-                    tower2.transform.parent = m_towerSystem.gameObject.transform;
+                    tower = Instantiate(m_towerSystem.GetComponent<TowerSystemScript>().m_tower2);
                     break;
 
-                case "LowerRightTower":
-                    GameObject tower3 = Instantiate(m_towerSystem.GetComponent<TowerSystemScript>().m_tower3);
-                    tower3.transform.position = m_position;
-                    tower3.transform.parent = m_towerSystem.gameObject.transform;
-                    break;
-
-                case "LowerLeftTower":
-                    GameObject tower4 = Instantiate(m_towerSystem.GetComponent<TowerSystemScript>().m_tower4);
-                    tower4.transform.position = m_position;
-                    tower4.transform.parent = m_towerSystem.gameObject.transform;
+                case "LowerTower":
+                    tower = Instantiate(m_towerSystem.GetComponent<TowerSystemScript>().m_tower3);
                     break;
 
                 default: break;
+            }
+            if (null != tower)
+            {
+
+                tower.transform.position = m_position;
+                tower.transform.parent = m_towerSystem.gameObject.transform;
+                tower.GetComponent<TowerScript>().m_field = m_selectedTile;
+                OpenTowerHUDScript feld = m_selectedTile.GetComponent<OpenTowerHUDScript>();
+                if (feld != null)
+                {
+                    feld.m_towerBuilt = true;
+                    Debug.Log("True");
+                }
             }
         }
     }
@@ -72,5 +75,6 @@ public class SelectTowerScript : MonoBehaviour
         // pos stimmt nur für tower 1 (mage tower)
         m_position = position;
         m_position += new Vector3(0.0f, 0.25f, 0.0f);
+        m_selectedTile = tile;
     }
 }

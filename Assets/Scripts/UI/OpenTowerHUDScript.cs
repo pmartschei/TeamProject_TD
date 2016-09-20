@@ -29,6 +29,8 @@ public class OpenTowerHUDScript : MonoBehaviour
     private Transform m_target;
     private Camera m_camera;
 
+    public bool m_towerBuilt = false;
+
     // Use this for initialization
     // Get the HUD and MoneySystem
     // Get the amount for each tower
@@ -80,7 +82,7 @@ public class OpenTowerHUDScript : MonoBehaviour
     // transfer the position of the current tile to SelectTowerScript
     public void OnMouseDown()
     {
-        if (Time.timeScale != 0)
+        if (Time.timeScale != 0 && !m_towerBuilt)
         {
             if (!m_upgradeTower.activeSelf)
             {

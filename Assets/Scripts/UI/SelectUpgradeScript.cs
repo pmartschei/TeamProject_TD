@@ -45,6 +45,16 @@ public class SelectUpgradeScript : MonoBehaviour
     {
         if (Time.timeScale != 0)
         {
+            OpenTowerHUDScript tower = m_selectedTower.GetComponent<TowerScript>().m_field.GetComponent<OpenTowerHUDScript>();
+            if (tower != null)
+            {
+                tower.m_towerBuilt = false;
+                Debug.Log("False");
+            }
+            else
+            {
+                Debug.Log(m_selectedTower);
+            }
             this.gameObject.SetActive(false);
             Destroy(m_selectedTower);
         }

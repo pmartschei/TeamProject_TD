@@ -18,6 +18,7 @@ namespace Assets.Scripts.GameLogic.TowerSystem
         public float m_Cooldown;
         private float m_CurrentCooldown;
         public GameObject m_Bullet;
+        public GameObject m_field;
 
         public virtual void Start()
         {

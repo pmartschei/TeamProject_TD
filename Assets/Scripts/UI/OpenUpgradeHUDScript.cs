@@ -101,7 +101,7 @@ public class OpenUpgradeHUDScript : MonoBehaviour
             float x = Mathf.Cos(radians * (i + 1) -START_RADIANS);
             float y = Mathf.Sin(radians * (i + 1) - START_RADIANS);
 
-            transform.anchoredPosition = new Vector2(x*UPGRADE_DISTANCE, (y*UPGRADE_DISTANCE)+65.0f);
+            transform.anchoredPosition = new Vector2(x*UPGRADE_DISTANCE, (y*UPGRADE_DISTANCE));
 
             upgradeHUD.SetActive(true);
 
