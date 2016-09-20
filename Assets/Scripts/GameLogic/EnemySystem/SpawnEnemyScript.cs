@@ -9,6 +9,8 @@ public class SpawnEnemyScript : MonoBehaviour
 
     public FieldScript m_FieldSystem;
 
+    public LifeAndMoneyScript m_LifeAndMoney;
+
     private GameObject m_EndTile;
     public TilePos m_SpawnPos;
     public List<IWave> m_Waves = new List<IWave>();
@@ -88,6 +90,7 @@ public class SpawnEnemyScript : MonoBehaviour
             enemy.transform.SetParent(this.transform);
             EnemyScript es = enemy.GetComponent<EnemyScript>();
             es.IncreaseDifficulty(difficulty);
+            es.SetLifeAndMoneySystem(m_LifeAndMoney);
             if (es == null) throw new System.Exception("ERROR : No EnemyScript");
             int count = (int)(wavePoints / es.m_WavePoints) + 1;
             float delay = Random.Range(0.75f / es.m_Speed, 2f / es.m_Speed);

@@ -51,7 +51,7 @@ public class MoveEnemyScript : MonoBehaviour
                     PathTileScript script = pathMove.m_CurrentObject.GetComponent<PathTileScript>();
                     if (script.m_ParentObject.Count == 0)
                     {
-                        Destroy(obj);
+                        enemy.DoDamage(enemy.m_MaxHp, true);
                         return;
                     }
                     pathMove.m_CurrentObject = script.m_ParentObject[0];
