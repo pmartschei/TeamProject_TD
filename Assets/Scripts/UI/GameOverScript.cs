@@ -4,10 +4,10 @@ using UnityEngine.UI;
 
 public class GameOverScript : MonoBehaviour
 {
-    private GameObject m_EnemySystem;
-    private GameObject m_Panel;
-    private GameObject[] m_GameOverObjects;
-    private GameObject[] m_PauseGameObjects;
+    public GameObject m_EnemySystem;
+    public GameObject m_Panel;
+    public GameObject[] m_GameOverObjects;
+    public GameObject[] m_PauseGameObjects;
 
     public GameObject m_checkTextBox;
     public GameObject m_waveTextBox;
@@ -16,9 +16,9 @@ public class GameOverScript : MonoBehaviour
     void Start ()
     {
         m_EnemySystem = GameObject.Find("EnemySystem");
-        m_Panel = GameObject.FindGameObjectWithTag("ShowOnPauseAndGameOver");
+        /*m_Panel = GameObject.FindGameObjectWithTag("ShowOnPauseAndGameOver");
         m_GameOverObjects = GameObject.FindGameObjectsWithTag("ShowOnGameOver");
-        m_PauseGameObjects = GameObject.FindGameObjectsWithTag("ShowOnPause");
+        m_PauseGameObjects = GameObject.FindGameObjectsWithTag("ShowOnPause");*/
     }
 	
 	// Update is called once per frame

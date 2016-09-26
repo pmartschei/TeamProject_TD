@@ -27,6 +27,7 @@ public class CircleRender : MonoBehaviour
 
     void CreatePoints()
     {
+        if (line == null) return;
         float x;
         float y;
         float z = 0f;

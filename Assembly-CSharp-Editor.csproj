@@ -57,7 +57,7 @@
      <None Include="Assets\xAssetStore\WatchTower\ReadMe.txt" />
      <None Include="Assets\xAssetStore\Campfire\License.txt" />
  <Reference Include="Assembly-UnityScript">
- <HintPath>C:/Users/Michi Dahm/Documents/TeamProject_TD/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
+ <HintPath>C:/Users/Philipp/Documents/TeamProject_TD/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll</HintPath>

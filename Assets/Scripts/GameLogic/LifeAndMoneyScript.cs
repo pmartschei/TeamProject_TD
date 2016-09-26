@@ -27,11 +27,8 @@ public class LifeAndMoneyScript : MonoBehaviour
 
     public void decreaseLife(int amount)
     {
-        if(m_lifeTotal - amount >= 0)
-        {
             m_lifeTotal -= amount;
-        }
-
+        if (m_lifeTotal < 0) m_lifeTotal = 0;
         if (m_lifeTotal == 0)
             m_GameOver.GetComponent<GameOverScript>().activate();
     }
