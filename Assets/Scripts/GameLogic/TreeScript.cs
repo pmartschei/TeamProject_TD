@@ -38,11 +38,6 @@ public class TreeScript : MonoBehaviour {
         }
 	}
 
-    //void OnTriggerEnter(Collider other)
-    //{
-    //    Debug.Log("enter");
-    //}
-
     void OnTriggerStay(Collider other)
     {
         if(Input.GetKeyDown(KeyCode.Space))
@@ -50,15 +45,10 @@ public class TreeScript : MonoBehaviour {
             Renderer rend = GetComponent<Renderer>();
             rend.material.color = m_chopDownColor;
 
-            m_infoScript.SetDeletable(true);
+            //m_infoScript.SetDeletable(true);
 
             m_isChopped = true;
             m_startTime = Time.time;
         }
     }
-
-    //void OnTriggerExit(Collider other)
-    //{
-    //    Debug.Log("exit");
-    //}
 }

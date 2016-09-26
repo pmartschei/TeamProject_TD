@@ -25,6 +25,14 @@ public class FieldScript : MonoBehaviour
     //info for camera
     private float m_maxCamera;
 
+
+    public GameObject m_info;
+    //expand background
+    private CreateFloorScript m_floor;
+
+    //set barricade
+    private BarricadeScript m_barricade;
+
     void Start()
     {
         m_TileArray = new GameObject[m_LevelWidth][];
@@ -38,6 +46,9 @@ public class FieldScript : MonoBehaviour
         {
             m_villageArray[i] = new GameObject[3];
         }
+
+        m_floor = m_info.GetComponent<CreateFloorScript>();
+        m_barricade = m_info.GetComponent<BarricadeScript>();
 
         Init();
     }
@@ -207,6 +218,9 @@ public class FieldScript : MonoBehaviour
             }
         }
 
+        m_floor.expandBG();
+        m_barricade.drawBarricade();
+
     }
 
     private void CreateVillage()
@@ -246,7 +260,7 @@ public class FieldScript : MonoBehaviour
         AddVillagePart(tile, 0, 1);
     }
 
-    private void AddVillagePart(GameObject tile, int x, int y)
+    public void AddVillagePart(GameObject tile, int x, int y)
     {
         float xValue = x - 2;
         float yValue = y + m_LevelWidth/2;
