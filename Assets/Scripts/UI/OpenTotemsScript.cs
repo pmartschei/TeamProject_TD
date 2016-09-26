@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 public class OpenTotemsScript : MonoBehaviour
 {
+    private GameObject m_buildTowerHUD;
+    private GameObject m_upgradeTower;
+
     private GameObject m_lifeAndMoneySystem;
 
     private GameObject m_TotemHUD;
@@ -33,6 +36,9 @@ public class OpenTotemsScript : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+        m_buildTowerHUD = GameObject.Find("HUDCanvas").transform.FindChild("BuildTowerHUD").gameObject;
+        m_upgradeTower = GameObject.Find("HUDCanvas").transform.Find("UpgradeTowerHUD").gameObject;
+
         m_TotemHUD = GameObject.Find("HUDCanvas").transform.FindChild("TotemHUD").gameObject;
         m_lifeAndMoneySystem = GameObject.Find("LifeAndMoneySystem");
 
@@ -65,23 +71,8 @@ public class OpenTotemsScript : MonoBehaviour
     {
         if (Time.timeScale != 0)
         {
-            if (Input.GetMouseButtonUp(1))
+            if (Input.GetMouseButtonUp(1) || Input.GetKeyDown(KeyCode.Escape))
                 m_TotemHUD.SetActive(false);
-        }
-        else
-        {
-            m_TotemHUD.SetActive(false);
-        }
-    }
-
-    public void OnMouseDown()
-    {
-        if (Time.timeScale != 0)
-        {
-            m_TotemHUD.transform.position = m_target.position;
-            m_TotemHUD.transform.position += new Vector3(0.0f, 0.5f, 0.0f);
-
-            m_TotemHUD.SetActive(true);
 
             if (!(m_lifeAndMoneySystem.GetComponent<LifeAndMoneyScript>().isWoodDecreasePossible(m_fireTotemCost)))
             {
@@ -128,6 +119,20 @@ public class OpenTotemsScript : MonoBehaviour
                 m_windTotemButton.GetComponent<Button>().interactable = true;
                 m_windTotemCircle.GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
             }
+        }
+    }
+
+    public void OnMouseDown()
+    {
+        if (Time.timeScale != 0)
+        {
+            m_upgradeTower.SetActive(false);
+            m_buildTowerHUD.SetActive(false);
+
+            m_TotemHUD.transform.position = m_target.position;
+            m_TotemHUD.transform.position += new Vector3(0.0f, 0.5f, 0.0f);
+
+            m_TotemHUD.SetActive(true);
 
             Vector3 screenPos = m_camera.WorldToScreenPoint(m_target.position);
             screenPos += new Vector3(0.0f, 40.0f, 0.0f);

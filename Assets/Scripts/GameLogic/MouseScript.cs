@@ -8,6 +8,10 @@ using System;
 
 public class MouseScript : MonoBehaviour
 {
+    private GameObject m_buildTowerHUD;
+    private GameObject m_totemHUD;
+    private GameObject m_upgradeTower;
+    private GameObject m_checkTextField;
 
     // Use this for initialization
     public Camera m_Camera;
@@ -21,6 +25,10 @@ public class MouseScript : MonoBehaviour
     void Start()
     {
         // Eventuell woanders hin
+        m_buildTowerHUD = GameObject.Find("HUDCanvas").transform.FindChild("BuildTowerHUD").gameObject;
+        m_totemHUD = GameObject.Find("HUDCanvas").transform.FindChild("TotemHUD").gameObject;
+        m_upgradeTower = GameObject.Find("HUDCanvas").transform.Find("UpgradeTowerHUD").gameObject;
+        m_checkTextField = GameObject.Find("HUDCanvas").transform.FindChild("CheckTextField").gameObject;
     }
 
     // Update is called once per frame
@@ -47,6 +55,11 @@ public class MouseScript : MonoBehaviour
         transform.Find("SimpleLightningBoltAnimatedPrefab").Find("LightningEnd").localPosition = randomPos;
         if (m_Tile != null)
         {
+            m_upgradeTower.SetActive(false);
+            m_totemHUD.SetActive(false);
+            m_buildTowerHUD.SetActive(false);
+            m_checkTextField.SetActive(false);
+
             if (Input.GetMouseButtonDown(1))//Rechtsklick
             {
                 PathTileScript script = m_Tile.GetComponent<PathTileScript>();
