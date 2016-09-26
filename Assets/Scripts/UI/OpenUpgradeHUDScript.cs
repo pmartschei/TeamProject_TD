@@ -8,6 +8,8 @@ using System;
 
 public class OpenUpgradeHUDScript : MonoBehaviour
 {
+    private GameObject m_buildTowerHUD;
+    private GameObject m_totemHUD;
 
     private static int MAX_UPGRADES = 3;
     private static float UPGRADE_DISTANCE = 100;
@@ -36,6 +38,9 @@ public class OpenUpgradeHUDScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        m_buildTowerHUD = GameObject.Find("HUDCanvas").transform.FindChild("BuildTowerHUD").gameObject;
+        m_totemHUD = GameObject.Find("HUDCanvas").transform.FindChild("TotemHUD").gameObject;
+
         m_upgradeTowerHUD = GameObject.Find("HUDCanvas").transform.Find("UpgradeTowerHUD").gameObject;
         m_lifeAndMoneySystem = GameObject.Find("LifeAndMoneySystem");
         m_ToolTip = GameObject.Find("TooltipTextBox");
@@ -53,15 +58,14 @@ public class OpenUpgradeHUDScript : MonoBehaviour
     {
         if (Time.timeScale != 0)
         {
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape))
             {
                 m_upgradeTowerHUD.SetActive(false);
                 unshowProps();
             }
-        }
-        else
-        {
-            m_upgradeTowerHUD.SetActive(false);
+
+            if (!m_upgradeTowerHUD.activeSelf)
+                unshowProps();
         }
     }
 
@@ -69,18 +73,18 @@ public class OpenUpgradeHUDScript : MonoBehaviour
     {
         if (Time.timeScale != 0)
         {
-            if (!GameObject.Find("HUDCanvas").transform.FindChild("BuildTowerHUD").gameObject.activeSelf)
-            {
-                Vector3 screenPos = m_camera.WorldToScreenPoint(m_target.position);
-                screenPos += new Vector3(0.0f, 10.0f, 0.0f);
-                m_upgradeTowerHUD.transform.position = screenPos;
-                TowerScript tw = GetComponent<TowerScript>();
-                if (tw == null) return;
-                Upgrade[] upgrades = tw.GetNextUpgrades();
+            m_buildTowerHUD.SetActive(false);
+            m_totemHUD.SetActive(false);
 
-                showUpgrades(upgrades);
-            }
+            Vector3 screenPos = m_camera.WorldToScreenPoint(m_target.position);
+            screenPos += new Vector3(0.0f, 10.0f, 0.0f);
+            m_upgradeTowerHUD.transform.position = screenPos;
+            TowerScript tw = GetComponent<TowerScript>();
+            if (tw == null) return;
+            Upgrade[] upgrades = tw.GetNextUpgrades();
 
+            showUpgrades(upgrades);
+ 
             showProps();
 
         }

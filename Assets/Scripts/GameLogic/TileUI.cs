@@ -162,4 +162,9 @@ public class TileUI : MonoBehaviour
         for (int i = 0; i < 3; i++)
             Destroy(m_currentTiles[i]);
     }
+    
+    public int getTileCounter()
+    {
+        return m_counterCurrentTiles;
+    }
 }

@@ -5,19 +5,20 @@ var h:float;
 var run:float;
 
 function Start () {
-	animator=GetComponent (Animator);
+    animator=GetComponent (Animator);
 }
 
 function Update () {
 	v=Input.GetAxis("Vertical");
 	h=Input.GetAxis("Horizontal");
-	if (animator.GetFloat("Run")==0.2){
-		if (Input.GetKeyDown("space")){
-			animator.SetBool("Jump",true);
-		}
-	}
-	Sprinting();
-	
+	//if (animator.GetFloat("Run")==0.2){
+	//	if (Input.GetKeyDown("space")){
+	//		animator.SetBool("Jump",true);
+	//	}
+	//}
+	Sprinting();	
+
+
 }
 
 function FixedUpdate (){

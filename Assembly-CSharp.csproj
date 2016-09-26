@@ -45,6 +45,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\BarricadeScript.cs" />
+     <Compile Include="Assets\CreateFloorScript.cs" />
      <Compile Include="Assets\Scripts\CircleRender.cs" />
      <Compile Include="Assets\Scripts\GameLogic\CameraControll.cs" />
      <Compile Include="Assets\Scripts\GameLogic\DrawTiles.cs" />
@@ -84,6 +86,7 @@
      <Compile Include="Assets\Scripts\UI\CheckTextFieldBevaiourScript.cs" />
      <Compile Include="Assets\Scripts\UI\EnemyHealthScript.cs" />
      <Compile Include="Assets\Scripts\UI\GameObjectHitEvent.cs" />
+     <Compile Include="Assets\Scripts\UI\GameOverScript.cs" />
      <Compile Include="Assets\Scripts\UI\LifeHUDScript.cs" />
      <Compile Include="Assets\Scripts\UI\MoneyHUDScript.cs" />
      <Compile Include="Assets\Scripts\UI\OpenTotemsScript.cs" />

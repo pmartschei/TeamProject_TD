@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -8,6 +8,10 @@ using System;
 
 public class MouseScript : MonoBehaviour
 {
+    private GameObject m_buildTowerHUD;
+    private GameObject m_totemHUD;
+    private GameObject m_upgradeTower;
+    private GameObject m_checkTextField;
 
     // Use this for initialization
     public Camera m_Camera;
@@ -48,6 +52,11 @@ public class MouseScript : MonoBehaviour
         m_LightningEnd = transform.Find("SimpleLightningBoltAnimatedPrefab").Find("LightningEnd").gameObject;
         m_CircleRender = GetComponent<LineRenderer>();
         GetComponent<CircleRender>().SetRadius(m_BoltRadius);
+   
+        m_buildTowerHUD = GameObject.Find("HUDCanvas").transform.FindChild("BuildTowerHUD").gameObject;
+        m_totemHUD = GameObject.Find("HUDCanvas").transform.FindChild("TotemHUD").gameObject;
+        m_upgradeTower = GameObject.Find("HUDCanvas").transform.Find("UpgradeTowerHUD").gameObject;
+        m_checkTextField = GameObject.Find("HUDCanvas").transform.FindChild("CheckTextField").gameObject;
     }
 
     // Update is called once per frame
@@ -104,6 +113,10 @@ public class MouseScript : MonoBehaviour
         else if(m_MouseState==MouseState.BuildTile) {
             if (m_Tile != null)
             {
+            m_upgradeTower.SetActive(false);
+            m_totemHUD.SetActive(false);
+            m_buildTowerHUD.SetActive(false);
+            m_checkTextField.SetActive(false);
                 Ray r = m_Camera.ScreenPointToRay(Input.mousePosition);//Ray von der Maus
                 Vector3 hit = r.origin + Mathf.Abs(r.origin.y / r.direction.y) * r.direction;//Auf Y=0 Achse den hit suchen
                 if (Input.GetMouseButtonDown(1))//Rechtsklick

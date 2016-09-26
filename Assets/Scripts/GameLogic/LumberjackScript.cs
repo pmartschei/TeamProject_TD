@@ -22,6 +22,8 @@ public class LumberjackScript : MonoBehaviour {
     {
         //anim.Play("Turn");
 
+        if (Input.GetKeyDown(KeyCode.M))
+
         if(transform.position.y < -20)
         {
             Destroy(gameObject);

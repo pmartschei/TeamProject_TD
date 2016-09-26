@@ -3,6 +3,10 @@ using System.Collections;
 
 public class CameraControll : MonoBehaviour {
 
+    private GameObject m_buildTowerHUD;
+    private GameObject m_totemHUD;
+    private GameObject m_upgradeTower;
+
     public GameObject m_mainCamera;
     public GameObject m_villageCamera;
 
@@ -39,6 +43,10 @@ public class CameraControll : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
     {
+        m_buildTowerHUD = GameObject.Find("HUDCanvas").transform.FindChild("BuildTowerHUD").gameObject;
+        m_totemHUD = GameObject.Find("HUDCanvas").transform.FindChild("TotemHUD").gameObject;
+        m_upgradeTower = GameObject.Find("HUDCanvas").transform.Find("UpgradeTowerHUD").gameObject;
+
         m_mainCamera.transform.Translate(m_translationX1, m_translationY1, m_translationZ1);
         m_mainCamera.transform.Rotate(m_rotationX1, m_rotationY1, m_rotationZ1);
         m_mainCamera.SetActive(true);
@@ -66,6 +74,14 @@ public class CameraControll : MonoBehaviour {
                     return;
                 float value = (Screen.width / m_cameraBorderFactor) - mousePos.x;
                 float speed = m_cameraSpeed * (value / m_cameraVelocityFactor);
+
+                if(m_buildTowerHUD.activeSelf || m_totemHUD.activeSelf || m_upgradeTower.activeSelf)
+                {
+                    m_buildTowerHUD.SetActive(false);
+                    m_totemHUD.SetActive(false);
+                    m_buildTowerHUD.SetActive(false);
+                }
+
                 m_mainCamera.transform.position += new Vector3(0.0f, 0.0f, speed * Time.deltaTime);
             }
             else if (mousePos.x > (Screen.width - (Screen.width / m_cameraBorderFactor)) && checkYParamters()) //rechts
@@ -74,6 +90,14 @@ public class CameraControll : MonoBehaviour {
                     return;
                 float value = mousePos.x - (Screen.width - (Screen.width / m_cameraBorderFactor));
                 float speed = m_cameraSpeed * (value / m_cameraVelocityFactor);
+
+                if (m_buildTowerHUD.activeSelf || m_totemHUD.activeSelf || m_upgradeTower.activeSelf)
+                {
+                    m_buildTowerHUD.SetActive(false);
+                    m_totemHUD.SetActive(false);
+                    m_buildTowerHUD.SetActive(false);
+                }
+
                 m_mainCamera.transform.position += new Vector3(0.0f, 0.0f, -speed * Time.deltaTime);
             }
         }
