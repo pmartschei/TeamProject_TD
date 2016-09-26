@@ -120,7 +120,29 @@ public class FieldScript : MonoBehaviour
                     }
                 }
                 GameObject t;
-                t = GameObject.Instantiate(m_TileSystem.GetComponent<TileSystem>().m_BlankVar1);
+                switch (UnityEngine.Random.Range(0, 10)) {
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                        t = GameObject.Instantiate(m_TileSystem.GetComponent<TileSystem>().m_BlankVar1);
+                        break;
+                    case 4:
+                    case 5:
+                    case 6:
+                    case 7:
+                        t = GameObject.Instantiate(m_TileSystem.GetComponent<TileSystem>().m_BlankVar2);
+                    break;
+                    case 8:
+                        t = GameObject.Instantiate(m_TileSystem.GetComponent<TileSystem>().m_TowerBuildSpotVar1);
+                        break;
+                    case 9:
+                        t = GameObject.Instantiate(m_TileSystem.GetComponent<TileSystem>().m_TowerBuildSpotVar2);
+                        break;
+                    default:
+                        t = GameObject.Instantiate(m_TileSystem.GetComponent<TileSystem>().m_BlankVar1);
+                        break;
+                }
                 if (correctI == currentX)
                 {
                     if (curve)
@@ -136,6 +158,7 @@ public class FieldScript : MonoBehaviour
                                 currentX++;
                             }
                         }
+                        Destroy(t);
                         t = GameObject.Instantiate(m_TileSystem.GetComponent<TileSystem>().m_StreetCurveVar1);
                         PathTileScript path = t.GetComponent<PathTileScript>();
                         if (startX <= endX)
@@ -178,6 +201,7 @@ public class FieldScript : MonoBehaviour
                                 currentX++;
                             }
                         }
+                        Destroy(t);
                         t = GameObject.Instantiate(m_TileSystem.GetComponent<TileSystem>().m_StreetStraightVar1);
                         if (!horizontally)
                         {
@@ -434,6 +458,11 @@ public class FieldScript : MonoBehaviour
         foreach(Collider collider in colliders)
         {
             collider.enabled = true;
+        }
+        OpenTowerHUDScript script = go.GetComponent<OpenTowerHUDScript>();
+        if (script != null)
+        {
+            script.enabled = true;
         }
         CheckArraySize(ref m_TileArray[x], y+1);
         if (IsValid(x, y))

@@ -29,6 +29,8 @@ public class OpenTowerHUDScript : MonoBehaviour
     private Transform m_target;
     private Camera m_camera;
 
+    public bool m_JustPlaced = true;
+
     public bool m_towerBuilt = false;
 
     // Use this for initialization
@@ -76,13 +78,14 @@ public class OpenTowerHUDScript : MonoBehaviour
         {
             m_buildTowerHUD.SetActive(false);
         }
+        m_JustPlaced = false;
     }
 
     // position the hud at the right place
     // transfer the position of the current tile to SelectTowerScript
     public void OnMouseDown()
     {
-        if (Time.timeScale != 0 && !m_towerBuilt)
+        if (Time.timeScale != 0 && !m_towerBuilt && !m_JustPlaced)
         {
             if (!m_upgradeTower.activeSelf)
             {

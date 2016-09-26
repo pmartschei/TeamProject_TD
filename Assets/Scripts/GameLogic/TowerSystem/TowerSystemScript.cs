@@ -49,18 +49,24 @@ public class TowerSystemScript : MonoBehaviour
 			if (!tower.CanShoot()) continue;//wenn der Tower nicht schießen kann dann zum nächsten
             GameObject towerObj = tower.gameObject;
             Collider[] colliders = Physics.OverlapSphere(towerObj.transform.position, tower.Radius);//alle Collider im Radius erhalten
+            float lowestHp = 1.1f;
+            EnemyScript lowestEnemy = null;
             foreach (Collider collider in colliders)
             {
                 EnemyScript enemy = collider.GetComponent<EnemyScript>();
-                if (enemy != null)//prüfen ob der Collider nen Enemy ist
+                if (enemy != null)
                 {
-                    //TODO: Farest,Highest Hp, Lowest Hp wie die taktik vom turm ist
-
-                    if (tower.Shoot(enemy))//Auf den Enemy schießen
+                    float percentage = enemy.m_Hp / enemy.m_MaxHp;
+                    if (percentage < lowestHp)
                     {
-                        break;
+                        lowestHp = percentage;
+                        lowestEnemy = enemy;
                     }
                 }
+            }
+            if (lowestEnemy != null)
+            {
+                tower.Shoot(lowestEnemy);
             }
         }
 	}

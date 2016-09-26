@@ -3195,7 +3195,7 @@ Transform:
   m_GameObject: {fileID: 1000010928509924}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.075, y: 0.075, z: 0.075}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_Children:
   - {fileID: 4000011633810452}
@@ -3770,13 +3770,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e866c80383051041931b930a0ebb603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MaxHp: 6
-  m_Hp: 6
+  m_MaxHp: 3
+  m_Hp: 3
   m_DmgToBase: 1
-  m_Speed: 3
+  m_Speed: 2.6
   m_WavePoints: 20
   m_EnemyHealthDifficulty: 0.07
   m_EnemySpeedDifficulty: 0.01
+  m_Gold: 1
+  m_LifeAndMoney: {fileID: 0}
 --- !u!114 &114000011468807646
 MonoBehaviour:
   m_ObjectHideFlags: 1

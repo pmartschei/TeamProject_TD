@@ -18,6 +18,12 @@ public class CircleRender : MonoBehaviour
         CreatePoints();
     }
 
+    public void SetRadius(float radius)
+    {
+        xradius = radius;
+        yradius = radius;
+        CreatePoints();
+    }
 
     void CreatePoints()
     {

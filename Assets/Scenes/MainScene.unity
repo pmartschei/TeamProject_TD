@@ -5416,7 +5416,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 686454090}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1489958313}
+        m_MethodName: BoltActivate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &686454090
@@ -6732,7 +6743,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11413728, guid: a84cb58ef7faa67488076810242453b9, type: 2}
       propertyPath: ChaosFactor
-      value: 0
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 11413728, guid: a84cb58ef7faa67488076810242453b9, type: 2}
       propertyPath: Duration
@@ -6752,7 +6763,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 178460, guid: a84cb58ef7faa67488076810242453b9, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 12080208, guid: a84cb58ef7faa67488076810242453b9, type: 2}
+      propertyPath: m_Parameters.startWidth
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 12080208, guid: a84cb58ef7faa67488076810242453b9, type: 2}
+      propertyPath: m_Parameters.endWidth
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a84cb58ef7faa67488076810242453b9, type: 2}
@@ -8477,6 +8496,10 @@ MonoBehaviour:
   - {fileID: 1000010928509924, guid: fc58702f8086f1f48921c5de6189bab6, type: 2}
   - {fileID: 1000010234661866, guid: e44af26230e131743b1f1606546bdb9a, type: 2}
   - {fileID: 1000013896708394, guid: 70e1c66b74c215e42baec62a7023e1c0, type: 2}
+  - {fileID: 1000013040806808, guid: 55cc60ba1aa140645b82f794e52bc146, type: 2}
+  m_Bosses:
+  - {fileID: 1000011821828546, guid: d54aa94f7a55faa4bb4370cff915ee5d, type: 2}
+  - {fileID: 1000011458039414, guid: 77630164d6ec8044693e3a3f0bc67710, type: 2}
 --- !u!1 &1181964965
 GameObject:
   m_ObjectHideFlags: 0
@@ -9856,6 +9879,26 @@ Prefab:
       propertyPath: m_Field
       value: 
       objectReference: {fileID: 1333417137}
+    - target: {fileID: 114000013017066594, guid: 67c27d1f91638c146a917f387e25aac1,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 120000013872324942, guid: 67c27d1f91638c146a917f387e25aac1,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 120000013872324942, guid: 67c27d1f91638c146a917f387e25aac1,
+        type: 2}
+      propertyPath: m_Parameters.endWidth
+      value: 0.075
+      objectReference: {fileID: 0}
+    - target: {fileID: 120000013872324942, guid: 67c27d1f91638c146a917f387e25aac1,
+        type: 2}
+      propertyPath: m_Parameters.startWidth
+      value: 0.075
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 67c27d1f91638c146a917f387e25aac1, type: 2}
   m_IsPrefabParent: 0

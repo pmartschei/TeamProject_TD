@@ -94,6 +94,7 @@
      <Compile Include="Assets\Scripts\UI\SelectTotemScript.cs" />
      <Compile Include="Assets\Scripts\UI\SelectTowerScript.cs" />
      <Compile Include="Assets\Scripts\UI\SelectUpgradeScript.cs" />
+     <Compile Include="Assets\Scripts\UI\TooltipTrigger.cs" />
      <Compile Include="Assets\Scripts\UI\UIManagerScript.cs" />
      <Compile Include="Assets\Scripts\UI\UISystemScript.cs" />
      <Compile Include="Assets\Scripts\UI\UndoButttonBehaviourScript.cs" />

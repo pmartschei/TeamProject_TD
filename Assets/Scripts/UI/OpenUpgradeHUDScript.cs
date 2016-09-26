@@ -2,8 +2,9 @@
 using System.Collections;
 using UnityEngine.UI;
 using Assets.Scripts.GameLogic.TowerSystem;
-
-
+using UnityEngine.EventSystems;
+using Assets.Scripts.UI;
+using System;
 
 public class OpenUpgradeHUDScript : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class OpenUpgradeHUDScript : MonoBehaviour
     private GameObject m_upgradeButton;
     private GameObject m_upgradeCircle;
 
+    private GameObject m_ToolTip;
+
     private Transform m_target;
     private Camera m_camera;
 
@@ -35,6 +38,7 @@ public class OpenUpgradeHUDScript : MonoBehaviour
     {
         m_upgradeTowerHUD = GameObject.Find("HUDCanvas").transform.Find("UpgradeTowerHUD").gameObject;
         m_lifeAndMoneySystem = GameObject.Find("LifeAndMoneySystem");
+        m_ToolTip = GameObject.Find("TooltipTextBox");
 
         m_camera = Camera.main;
         m_target = gameObject.transform;
@@ -106,15 +110,21 @@ public class OpenUpgradeHUDScript : MonoBehaviour
             upgradeHUD.SetActive(true);
 
             upgradeHUD.transform.FindChild("UpgradeCostText").GetComponent<Text>().text = "" + upgrades[i].m_Cost;
-            
+            string tooltip = upgrades[i].m_Text;
+            Transform button = upgradeHUD.transform.FindChild("UpgradeButton");
+            button.GetComponent<EventTrigger>().triggers[0].callback = new EventTrigger.TriggerEvent();
+            button.GetComponent<EventTrigger>().triggers[0].callback.AddListener(new UnityEngine.Events.UnityAction<BaseEventData>(delegate { SetToolTip(tooltip); }));
+
+
+
             if (!(m_lifeAndMoneySystem.GetComponent<LifeAndMoneyScript>().isMoneyDecreasePossible(upgrades[i].m_Cost)))
             {
-                upgradeHUD.transform.FindChild("UpgradeButton").GetComponent<Button>().interactable = false;
+                button.GetComponent<Button>().interactable = false;
                 upgradeHUD.transform.FindChild("CircleImage").GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 0.6f);
             }
             else
             {
-                upgradeHUD.transform.FindChild("UpgradeButton").GetComponent<Button>().interactable = true;
+                button.GetComponent<Button>().interactable = true;
                 upgradeHUD.transform.FindChild("CircleImage").GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
             }
 
@@ -130,6 +140,11 @@ public class OpenUpgradeHUDScript : MonoBehaviour
             upgradeHUD.SetActive(false);
         }
 
+    }
+
+    private void SetToolTip(string tooltip)
+    {
+        m_ToolTip.GetComponent<Text>().text = tooltip;
     }
 
     public void showProps()

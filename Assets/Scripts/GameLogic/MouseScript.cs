@@ -18,134 +18,185 @@ public class MouseScript : MonoBehaviour
     private GameObject m_GhostTile;
     private GameObject m_parentTile;
 
+    private GameObject m_Lightning;
+    private GameObject m_LightningEnd;
+    private LineRenderer m_CircleRender;
+
+    private float m_BoltAnimationDurationLeft = 0.0f;
+
+    public float m_BoltAnimationDuration = 0.5f;
+
+    public float m_BoltDamage = 0.5f;
+
+    public float m_BoltRadius = 2f;
+
+    public float m_BoltCooldown = 60f;
+
+    private float m_CurrentBoltCooldown = 0.0f;
+
+    public MouseState m_MouseState = MouseState.BuildTile;
+
+    public enum MouseState
+    {
+        BuildTile,
+        Bolt,
+        None
+    }
     void Start()
     {
-        // Eventuell woanders hin
+        m_Lightning = transform.Find("SimpleLightningBoltAnimatedPrefab").gameObject;
+        m_LightningEnd = transform.Find("SimpleLightningBoltAnimatedPrefab").Find("LightningEnd").gameObject;
+        m_CircleRender = GetComponent<LineRenderer>();
+        GetComponent<CircleRender>().SetRadius(m_BoltRadius);
     }
 
     // Update is called once per frame
     void Update()
     {
         if (Time.timeScale == 0.0f) return;
-        Ray r = m_Camera.ScreenPointToRay(Input.mousePosition);//Ray von der Maus
-        Vector3 hit = r.origin + Mathf.Abs(r.origin.y / r.direction.y+0.5f) * r.direction;//Auf Y=0 Achse den hit suchen
-        if (Input.GetMouseButton(0))
+        m_CurrentBoltCooldown = Math.Max(m_CurrentBoltCooldown-Time.deltaTime,0);
+        if (m_BoltAnimationDurationLeft > 0.0f)
         {
-            Collider[] colliders = Physics.OverlapSphere(hit, 1);
-            foreach(Collider collider in colliders)
+            m_BoltAnimationDurationLeft -= Time.deltaTime;
+            PlayBoldAnimation();
+            if (m_BoltAnimationDurationLeft <= 0.0f)
             {
-                EnemyScript es = collider.GetComponent<EnemyScript>();
-                if (es!=null)
-                {
-                    es.DoDamage(1);
-                }
+                m_Lightning.SetActive(false);
             }
         }
-        transform.Find("SimpleLightningBoltAnimatedPrefab").gameObject.SetActive(Input.GetMouseButton(0));
-        transform.position = hit;
-        Vector3 randomPos = GenerateRandomCirclePos(1.0f);
-        transform.Find("SimpleLightningBoltAnimatedPrefab").Find("LightningEnd").localPosition = randomPos;
-        if (m_Tile != null)
+        if (Input.GetKey(KeyCode.Escape))
         {
-            if (Input.GetMouseButtonDown(1))//Rechtsklick
+            if (m_Tile != null)
             {
-                PathTileScript script = m_Tile.GetComponent<PathTileScript>();
-                m_Tile.transform.Rotate(Vector3.forward, 90);//Rotieren
-                if (script != null)
-                {
-                    script.Rotate();//rotieren von den teilen
-                }
+                Destroy(m_Tile);
+            }
+            if (m_GhostTile != null)
+            {
                 Destroy(m_GhostTile);
-                m_GhostTile = null;
             }
-            if (m_GhostTile == null)
+            m_Lightning.SetActive(false);
+            m_CircleRender.enabled = false;
+            m_MouseState = MouseState.None;
+        }
+        if (m_MouseState == MouseState.Bolt && m_CurrentBoltCooldown==0.0f)
+        {
+            Ray r = m_Camera.ScreenPointToRay(Input.mousePosition);//Ray von der Maus
+            Vector3 hit = r.origin + Mathf.Abs(r.origin.y / r.direction.y + 0.5f) * r.direction;//Auf Y=0 Achse den hit suchen
+            if (Input.GetMouseButton(0))
             {
-                m_GhostTile = (GameObject)Instantiate(m_Tile,new Vector3(-100,-100,-100),m_Tile.transform.rotation);
-                m_GhostTile.name = "GhostTile";
-                Renderer[] renderers = m_GhostTile.GetComponents<Renderer>();
-                foreach (Renderer renderer in renderers)
+                Collider[] colliders = Physics.OverlapSphere(hit, m_BoltRadius);
+                foreach (Collider collider in colliders)
                 {
-                    Material ghostMaterial = renderer.material;
-                    ghostMaterial.color = new Color(1.0f, 1.0f, 1.0f, 0.25f);
+                    EnemyScript es = collider.GetComponent<EnemyScript>();
+                    if (es != null)
+                    {
+                        es.DoDamage(es.m_MaxHp*m_BoltDamage);
+                        m_BoltAnimationDurationLeft = m_BoltAnimationDuration;
+                        m_CurrentBoltCooldown = m_BoltCooldown;
+                        m_Lightning.SetActive(true);
+                        m_CircleRender.enabled = false;
+                        m_MouseState = MouseState.None;
+                    }
                 }
             }
-            //Mesh mesh = m_GhostTile.GetComponent<MeshFilter>().mesh;
-            //Vector3 size = mesh.bounds.size;//Mesh size
-
-            //GameObject floorPlane = Instantiate(m_FloorPlane);
-            //Mesh floorMesh = floorPlane.GetComponent<MeshFilter>().mesh;
-            //float ratioX = size.x / floorMesh.bounds.size.x;
-            //float ratioY = size.y / floorMesh.bounds.size.y;
-            //floorPlane.transform.position = new Vector3(0, 0, 0);
-            //floorPlane.transform.localScale = new Vector3(ratioX*5, 0, ratioY*5);
-            hit = r.origin + Mathf.Abs(r.origin.y / r.direction.y) * r.direction;//Auf Y=0 Achse den hit suchen
-
-            bool xNegative;
-            bool yNegative;
-            xNegative = hit.x < 0.0f;
-            yNegative = hit.z < 0.0f;
-            int x = (int)(hit.x / m_Field.m_SizeX);
-            int y = (int)(hit.z / m_Field.m_SizeY);
-            if (hit.x < 0 || hit.z < 0)//negativ x und z)
-                return;
-            float xMultiplier = 1.0f;
-            float yMultiplier = 1.0f;
-            if (x <= 0)//für negativ x nicht benötigt aktuell
+            transform.position = hit;
+        }
+        else if(m_MouseState==MouseState.BuildTile) {
+            if (m_Tile != null)
             {
-                if (xNegative)
-                    xMultiplier = -1.0f;
-            }
-            if (y <= 0)//für negativ y nicht benötigt aktuell
-            {
-                if (yNegative)
-                    yMultiplier = -1.0f;
-            }
-            //if Feld nen nachbar hat und es Im Feld existiert
-            if (m_Field.HasNeighbour(x, y) && !m_Field.IsTile(x, y))
-            {
-                //positionsberechnung
-                Vector3 pos = new Vector3(x * m_Field.m_SizeX + m_Field.m_SizeX / 2.0f * xMultiplier, 0.0f, y * m_Field.m_SizeY + m_Field.m_SizeY / 2.0f * yMultiplier);
-                m_GhostTile.transform.position = pos;
-                //Ghosttile verschieben
-
-                Renderer[] renderers = m_GhostTile.GetComponents<Renderer>();
-                if (checkValidStreet(x, y))
+                Ray r = m_Camera.ScreenPointToRay(Input.mousePosition);//Ray von der Maus
+                Vector3 hit = r.origin + Mathf.Abs(r.origin.y / r.direction.y) * r.direction;//Auf Y=0 Achse den hit suchen
+                if (Input.GetMouseButtonDown(1))//Rechtsklick
                 {
+                    PathTileScript script = m_Tile.GetComponent<PathTileScript>();
+                    m_Tile.transform.Rotate(Vector3.forward, 90);//Rotieren
+                    if (script != null)
+                    {
+                        script.Rotate();//rotieren von den teilen
+                    }
+                    Destroy(m_GhostTile);
+                    m_GhostTile = null;
+                }
+                if (m_GhostTile == null)
+                {
+                    m_GhostTile = (GameObject)Instantiate(m_Tile, new Vector3(-100, -100, -100), m_Tile.transform.rotation);
+                    m_GhostTile.name = "GhostTile";
+                    Renderer[] renderers = m_GhostTile.GetComponents<Renderer>();
                     foreach (Renderer renderer in renderers)
                     {
                         Material ghostMaterial = renderer.material;
                         ghostMaterial.color = new Color(1.0f, 1.0f, 1.0f, 0.25f);
                     }
-                    if (Input.GetMouseButtonDown(0))
-                    {
-                        GameObject rb = m_Tile;
-                        m_Field.AddTileTo(rb, x, y);//zum feld hinzufügen
-
-                        Transform t = rb.GetComponent<Transform>();
-                        if (t != null)
-                        {
-                            t.position = pos;
-                        }
-
-                        m_Tile = null;
-                        GameObject.Find("DrawTileSystem").GetComponent<TileUI>().RemoveTile(m_parentTile);
-                        GameObject.Destroy(m_GhostTile);
-                        m_GhostTile = null;
-                    }
                 }
-                else//if invalides Tile
+
+                bool xNegative;
+                bool yNegative;
+                xNegative = hit.x < 0.0f;
+                yNegative = hit.z < 0.0f;
+                int x = (int)(hit.x / m_Field.m_SizeX);
+                int y = (int)(hit.z / m_Field.m_SizeY);
+                if (hit.x < 0 || hit.z < 0)//negativ x und z)
+                    return;
+                float xMultiplier = 1.0f;
+                float yMultiplier = 1.0f;
+                if (x <= 0)//für negativ x nicht benötigt aktuell
                 {
-                    foreach (Renderer renderer in renderers)
+                    if (xNegative)
+                        xMultiplier = -1.0f;
+                }
+                if (y <= 0)//für negativ y nicht benötigt aktuell
+                {
+                    if (yNegative)
+                        yMultiplier = -1.0f;
+                }
+                //if Feld nen nachbar hat und es Im Feld existiert
+                if (m_Field.HasNeighbour(x, y) && !m_Field.IsTile(x, y))
+                {
+                    //positionsberechnung
+                    Vector3 pos = new Vector3(x * m_Field.m_SizeX + m_Field.m_SizeX / 2.0f * xMultiplier, 0.0f, y * m_Field.m_SizeY + m_Field.m_SizeY / 2.0f * yMultiplier);
+                    m_GhostTile.transform.position = pos;
+                    //Ghosttile verschieben
+
+                    Renderer[] renderers = m_GhostTile.GetComponents<Renderer>();
+                    if (checkValidStreet(x, y))
                     {
-                        Material ghostMaterial = renderer.material;
-                        ghostMaterial.color = new Color(1.0f, 0.0f, 0.0f, 0.25f);
+                        foreach (Renderer renderer in renderers)
+                        {
+                            Material ghostMaterial = renderer.material;
+                            ghostMaterial.color = new Color(1.0f, 1.0f, 1.0f, 0.25f);
+                        }
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            GameObject rb = m_Tile;
+                            m_Field.AddTileTo(rb, x, y);//zum feld hinzufügen
+
+                            Transform t = rb.GetComponent<Transform>();
+                            if (t != null)
+                            {
+                                t.position = pos;
+                            }
+
+                            m_MouseState = MouseState.None;
+                            m_Tile = null;
+                            GameObject.Find("DrawTileSystem").GetComponent<TileUI>().RemoveTile(m_parentTile);
+                            GameObject.Destroy(m_GhostTile);
+                            m_GhostTile = null;
+                        }
+                    }
+                    else//if invalides Tile
+                    {
+                        foreach (Renderer renderer in renderers)
+                        {
+                            Material ghostMaterial = renderer.material;
+                            ghostMaterial.color = new Color(1.0f, 0.0f, 0.0f, 0.25f);
+                        }
                     }
                 }
-            }
-            else
-            {
-                GameObject.Destroy(m_GhostTile);
-                m_GhostTile = null;
+                else
+                {
+                    GameObject.Destroy(m_GhostTile);
+                    m_GhostTile = null;
+                }
             }
         }
     }
@@ -285,16 +336,45 @@ public class MouseScript : MonoBehaviour
         return 0;//egal
     }
 
+    private void PlayBoldAnimation()
+    {
+        Vector3 randomPos = GenerateRandomCirclePos(1.0f);
+        m_LightningEnd.transform.localPosition = randomPos;
+    }
+
     public void SetTile(GameObject gameObject)
     {
         if (m_Tile != null)
         {
             Destroy(m_Tile);
         }
-
         m_parentTile = gameObject;
+
+        if (m_GhostTile != null)
+        {
+            Destroy(m_GhostTile);
+        }
+        m_CircleRender.enabled = false;
         m_Tile = Instantiate(gameObject);
         m_Tile.transform.rotation = Quaternion.Euler(-90, 0, 0);
         m_Tile.transform.position = new Vector3(900, 900, 900);
+        m_MouseState = MouseState.BuildTile;
+    }
+
+    public void BoltActivate()
+    {
+        if (m_CurrentBoltCooldown == 0.0f)
+        {
+            if (m_GhostTile != null)
+            {
+                Destroy(m_GhostTile);
+            }
+            if (m_Tile != null)
+            {
+                Destroy(m_Tile);
+            }
+            m_MouseState = MouseState.Bolt;
+            m_CircleRender.enabled = true;
+        }
     }
 }

@@ -22,19 +22,24 @@ public class SpawnEnemyScript : MonoBehaviour
     private List<TilePos> m_ToProcess = new List<TilePos>();
     private List<TilePos> m_AlreadyChecked = new List<TilePos>();
 
+    private int nextBossWave = 0;
+
     public int m_WaveDifficultyPoints = 100;
     public int m_WavesStored = 5;
     public int m_CurrentWaveIndex = 0;
+    public int m_BossWave =2;
     [Range(0.01f, 1.00f)]
     public float m_Difficulty = 0.05f;
     public Enemies m_Enemies;
 
     public int m_WaveDelayBetween = 5;
+    public int m_BossDelayBetween = 15;
     private float m_CurrentDelayBetween = 0.0f;
 
     // Use this for initialization
     void Start()
     {
+        nextBossWave = m_BossWave-1;
         for (int i = 0; i < m_WavesStored; i++)
         {
             m_Waves.Add(CreateNewWave(i));
@@ -63,8 +68,15 @@ public class SpawnEnemyScript : MonoBehaviour
                     {//Wenn Welle fertig
                         m_Waves.RemoveAt(0);
                         m_Waves.Add(CreateNewWave(m_CurrentWaveIndex + m_WavesStored));
+                        if ((m_CurrentWaveIndex + 1) % m_BossWave == 0)
+                        {
+                            m_CurrentDelayBetween = m_BossDelayBetween ;
+                        }
+                        else
+                        {
+                            m_CurrentDelayBetween = m_WaveDelayBetween;
+                        }
                         m_CurrentWaveIndex++;
-                        m_CurrentDelayBetween = m_WaveDelayBetween;
                     }
                 }
             }
@@ -75,8 +87,13 @@ public class SpawnEnemyScript : MonoBehaviour
 		}
     }
 
-    private IWave CreateNewWave(int difficulty,int usedWavePoints = 0,GameObject enemy = null)
+    private IWave CreateNewWave(int difficulty,float usedWavePoints = 0,GameObject enemy = null)
     {
+        if (difficulty == nextBossWave)
+        {
+            nextBossWave += m_BossWave;
+            return CreateBossWave(difficulty);
+        }
         float multiplier = 1.0f + difficulty * m_Difficulty;
         float wavePoints = m_WaveDifficultyPoints * multiplier;
         if (usedWavePoints != 0)
@@ -105,9 +122,37 @@ public class SpawnEnemyScript : MonoBehaviour
             WaveGroup wg = new WaveGroup();
             for (int i = 0; i < 2; i++)
             {
-                wg.m_Waves.Add(CreateNewWave(difficulty, (int)(usedWavePoints / 2.0f), enemies[i]));
+                wg.m_Waves.Add(CreateNewWave(difficulty, usedWavePoints / 2.0f, enemies[i]));
             }
             return wg;
+        }
+    }
+    private IWave CreateBossWave(int difficulty)
+    {
+        float multiplier = 1.0f + difficulty * m_Difficulty;
+        float wavePoints = m_WaveDifficultyPoints * multiplier;
+        bool minions = Random.Range(0.0f, 1.0f) < 0.8f;
+        if (minions)
+        {
+            wavePoints /= 2;
+        }
+        GameObject boss = m_Enemies.GetRandomBoss();
+        boss.transform.SetParent(this.transform);
+        EnemyScript es = boss.GetComponent<EnemyScript>();
+        es.IncreaseDifficulty((int)(difficulty*wavePoints/es.m_WavePoints));
+        es.SetLifeAndMoneySystem(m_LifeAndMoney);
+        if (es == null) throw new System.Exception("ERROR : No EnemyScript");
+        Wave bossW = new Wave(1, boss, 0.0f);
+        if (minions)
+        {
+            WaveGroup wg = new WaveGroup();
+            wg.m_Waves.Add(bossW);
+            wg.m_Waves.Add(CreateNewWave(difficulty, wavePoints));
+            return wg;
+        }
+        else
+        {
+            return bossW;
         }
     }
     private TilePos GetSpawn()
