@@ -11,10 +11,12 @@ public class LifeAndMoneyScript : MonoBehaviour
     public GameObject m_MoneyText;
     public GameObject m_WoodText;
 
+    private GameObject m_GameOver;
+
 	// Use this for initialization
 	void Start ()
     {
-
+        m_GameOver = GameObject.Find("HUDCanvas").transform.FindChild("Panel").transform.FindChild("GameOverMenu").gameObject;
 	}
 	
 	// Update is called once per frame
@@ -29,6 +31,9 @@ public class LifeAndMoneyScript : MonoBehaviour
         {
             m_lifeTotal -= amount;
         }
+
+        if (m_lifeTotal == 0)
+            m_GameOver.GetComponent<GameOverScript>().activate();
     }
 
     public void decreaseMoney(int amount)

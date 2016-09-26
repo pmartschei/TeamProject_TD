@@ -280,4 +280,9 @@ public class SpawnEnemyScript : MonoBehaviour
         }
         return spawnPos;
     }
+
+    public int getCurrentWaveIndex()
+    {
+        return m_CurrentWaveIndex;
+    }
 }
