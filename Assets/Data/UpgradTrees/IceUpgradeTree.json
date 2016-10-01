@@ -1,0 +1,9 @@
+{"m_FollowingUpgrades":[
+	{"m_Upgrade":{"m_Type":0,"m_Cost":60,"m_Additive":true,"m_Modifier":1,"m_SpecialId":0,"m_Text":"Increases Damage by 100% Basedamage"},"m_FollowingUpgrades":[
+		{"m_Upgrade":{"m_Type":2,"m_Cost":70,"m_Additive":false,"m_Modifier":1.4,"m_SpecialId":0,"m_Text":"Increases Radius by 40%"},"m_FollowingUpgrades":[
+			{"m_Upgrade":{"m_Type":2,"m_Cost":140,"m_Additive":false,"m_Modifier":1.6,"m_SpecialId":0,"m_Text":"Decreases Radius by 60%"},"m_FollowingUpgrades":[]},
+			{"m_Upgrade":{"m_Type":0,"m_Cost":160,"m_Additive":true,"m_Modifier":1.5,"m_SpecialId":0,"m_Text":"Increases Damage by 160% Basedamage"},"m_FollowingUpgrades":[]}
+		]}
+	]}
+	]
+}

@@ -9,6 +9,10 @@ public class SelectTotemScript : MonoBehaviour
     public GameObject m_waterTotem;
     public GameObject m_windTotem;
 
+    public GameObject m_tileSystem;
+
+    public GameObject m_totemPlace;
+
     public GameObject m_fieldObj;
     private FieldScript m_field;
 
@@ -33,36 +37,44 @@ public class SelectTotemScript : MonoBehaviour
             GameObject.Find("LifeAndMoneySystem").GetComponent<LifeAndMoneyScript>().decreaseWood(amount);
             gameObject.transform.parent.gameObject.SetActive(false);
 
+            Vector3 pos = m_totemPlace.transform.position;
+            Destroy(m_totemPlace);
             GameObject tile = null;
-
             string name = gameObject.name;
             switch (name)
             {
                 case "FireTotem":
-                    //Debug.Log("Michi bau hier ein was passieren soll!");
-                    //tile = Instantiate(m_fireTotem);
-                    //tile.transform.Rotate(Vector3.forward, 180);
-                    //m_field.AddVillagePart(tile, 1, -1);
+                   
+                    tile = Instantiate(m_tileSystem.GetComponent<TileSystem>().m_VillagePart4);
                     m_fireTotem.SetActive(false);
+                    GameObject.Find("CounterSystem").GetComponent<OverallInformation>().m_FireTotemActive = true;
+                    GameObject.Find("TowerSystem").GetComponent<TowerSystemScript>().RecalculateAttributes();
                     break;
 
                 case "EarthTotem":
-                    Debug.Log("Michi bau hier ein was passieren soll!");
+                    tile = Instantiate(m_tileSystem.GetComponent<TileSystem>().m_VillagePart5);
                     m_earthTotem.SetActive(false);
+                    GameObject.Find("CounterSystem").GetComponent<OverallInformation>().m_EarthTotemActive = true;
                     break;
 
                 case "WaterTotem":
-                    Debug.Log("Michi bau hier ein was passieren soll!");
+                    tile = Instantiate(m_tileSystem.GetComponent<TileSystem>().m_VillagePart3);
                     m_waterTotem.SetActive(false);
+                    GameObject.Find("CounterSystem").GetComponent<OverallInformation>().m_WaterTotemActive = true;
                     break;
 
                 case "WindTotem":
-                    Debug.Log("Michi bau hier ein was passieren soll!");
+                    tile = Instantiate(m_tileSystem.GetComponent<TileSystem>().m_VillagePart2);
                     m_windTotem.SetActive(false);
+                    GameObject.Find("CounterSystem").GetComponent<OverallInformation>().m_AirTotemActive = true;
                     break;
 
                 default: break;
             }
+
+            tile.transform.position = pos;
+            tile.transform.Rotate(Vector3.forward, 180);
+            tile.transform.parent = m_field.transform;
         }
     }
 }

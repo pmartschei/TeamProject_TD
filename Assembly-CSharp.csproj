@@ -72,6 +72,7 @@
      <Compile Include="Assets\Scripts\GameLogic\PlayerSystem.cs" />
      <Compile Include="Assets\Scripts\GameLogic\TileSystem.cs" />
      <Compile Include="Assets\Scripts\GameLogic\TileUI.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\TowerSystem\IceTower\IceTowerScript.cs" />
      <Compile Include="Assets\Scripts\GameLogic\TowerSystem\MageTower\MageBulletScript.cs" />
      <Compile Include="Assets\Scripts\GameLogic\TowerSystem\MageTower\MageTowerScript.cs" />
      <Compile Include="Assets\Scripts\GameLogic\TowerSystem\TowerScript.cs" />

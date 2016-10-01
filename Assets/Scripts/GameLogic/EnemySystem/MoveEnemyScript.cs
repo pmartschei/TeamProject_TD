@@ -24,6 +24,7 @@ public class MoveEnemyScript : MonoBehaviour
             GameObject target = pathMove.m_CurrentList[pathMove.m_CurrentIndex];//wohin soll ich laufen
             float speed = 1;
             EnemyScript enemy = obj.GetComponent<EnemyScript>();
+            enemy.RecalculateAttributes();
             if (enemy != null)
             {
                 speed = enemy.m_Speed;

@@ -67,7 +67,7 @@ namespace Assets.Scripts.GameLogic.TowerSystem
             RecalculateAttributes();
         }
 
-        private void RecalculateAttributes()
+        public virtual void RecalculateAttributes()
         {
             float currentDamage = m_BaseDamage;
             float currentCooldown = m_BaseCooldown;
@@ -95,7 +95,12 @@ namespace Assets.Scripts.GameLogic.TowerSystem
             {
                 ProcessUpgrade(upgrade, ref currentDamage, ref currentCooldown, ref currentRadius);
             }
-            m_Damage = currentDamage;
+            float multiplier = 1.0f;
+            if (GameObject.Find("CounterSystem").GetComponent<OverallInformation>().m_FireTotemActive)
+            {
+                multiplier = GameObject.Find("CounterSystem").GetComponent<OverallInformation>().m_FireTotemMultiplier;
+            }
+            m_Damage = currentDamage*multiplier;
             m_Radius = currentRadius;
             m_Cooldown = currentCooldown;
         }

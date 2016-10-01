@@ -36,6 +36,9 @@ public class MouseScript : MonoBehaviour
 
     public float m_BoltCooldown = 60f;
 
+    public GameObject cooldownPanel;
+    public GameObject cooldownText;
+
     private float m_CurrentBoltCooldown = 0.0f;
 
     public MouseState m_MouseState = MouseState.BuildTile;
@@ -64,6 +67,16 @@ public class MouseScript : MonoBehaviour
     {
         if (Time.timeScale == 0.0f) return;
         m_CurrentBoltCooldown = Math.Max(m_CurrentBoltCooldown-Time.deltaTime,0);
+        if (m_CurrentBoltCooldown != 0)
+        {
+            cooldownPanel.SetActive(true);
+            cooldownText.SetActive(true);
+            cooldownText.GetComponent<Text>().text = (int)m_CurrentBoltCooldown + "";
+        }else
+        {
+            cooldownText.SetActive(false);
+            cooldownPanel.SetActive(false);
+        }
         if (m_BoltAnimationDurationLeft > 0.0f)
         {
             m_BoltAnimationDurationLeft -= Time.deltaTime;
@@ -87,6 +100,15 @@ public class MouseScript : MonoBehaviour
             m_CircleRender.enabled = false;
             m_MouseState = MouseState.None;
         }
+        if (Input.GetMouseButton(1))
+        {
+            m_Lightning.SetActive(false);
+            m_CircleRender.enabled = false;
+            if (MouseState.Bolt==m_MouseState)
+            {
+                m_MouseState = MouseState.None;
+            }
+        }
         if (m_MouseState == MouseState.Bolt && m_CurrentBoltCooldown==0.0f)
         {
             Ray r = m_Camera.ScreenPointToRay(Input.mousePosition);//Ray von der Maus
@@ -99,9 +121,16 @@ public class MouseScript : MonoBehaviour
                     EnemyScript es = collider.GetComponent<EnemyScript>();
                     if (es != null)
                     {
-                        es.DoDamage(es.m_MaxHp*m_BoltDamage);
+                        float multiplier = 0.0f;
+                        if (GameObject.Find("CounterSystem").GetComponent<OverallInformation>().m_AirTotemActive)
+                        {
+                            multiplier = GameObject.Find("CounterSystem").GetComponent<OverallInformation>().m_AirTotemMultiplier;
+                        }
+                        es.DoDamage(es.m_MaxHp*(m_BoltDamage+multiplier));
                         m_BoltAnimationDurationLeft = m_BoltAnimationDuration;
-                        m_CurrentBoltCooldown = m_BoltCooldown;
+
+                        multiplier = 1 - multiplier;
+                        m_CurrentBoltCooldown = m_BoltCooldown * multiplier;
                         m_Lightning.SetActive(true);
                         m_CircleRender.enabled = false;
                         m_MouseState = MouseState.None;
@@ -163,7 +192,7 @@ public class MouseScript : MonoBehaviour
                         yMultiplier = -1.0f;
                 }
                 //if Feld nen nachbar hat und es Im Feld existiert
-                if (m_Field.HasNeighbour(x, y) && !m_Field.IsTile(x, y))
+                if (m_Field.HasNeighbour(x, y) && !m_Field.IsTile(x, y,true))
                 {
                     //positionsberechnung
                     Vector3 pos = new Vector3(x * m_Field.m_SizeX + m_Field.m_SizeX / 2.0f * xMultiplier, 0.0f, y * m_Field.m_SizeY + m_Field.m_SizeY / 2.0f * yMultiplier);
@@ -189,6 +218,11 @@ public class MouseScript : MonoBehaviour
                                 t.position = pos;
                             }
 
+                            Assets.Scripts.GameLogic.EnemySystem.TilePos tp= GameObject.Find("EnemySystem").GetComponent<SpawnEnemyScript>().GetSpawn();
+                            if (tp != null)
+                            {
+                                m_Field.LevelFinished(tp.y);
+                            }
                             m_MouseState = MouseState.None;
                             m_Tile = null;
                             GameObject.Find("DrawTileSystem").GetComponent<TileUI>().RemoveTile(m_parentTile);
@@ -374,6 +408,21 @@ public class MouseScript : MonoBehaviour
         m_MouseState = MouseState.BuildTile;
     }
 
+    public void Deactivate()
+    {
+        if (m_Tile != null)
+        {
+            Destroy(m_Tile);
+        }
+        if (m_GhostTile != null)
+        {
+            Destroy(m_GhostTile);
+        }
+        m_Lightning.SetActive(false);
+        m_CircleRender.enabled = false;
+        m_MouseState = MouseState.None;
+    }
+
     public void BoltActivate()
     {
         if (m_CurrentBoltCooldown == 0.0f)
@@ -388,6 +437,11 @@ public class MouseScript : MonoBehaviour
             }
             m_MouseState = MouseState.Bolt;
             m_CircleRender.enabled = true;
+            m_buildTowerHUD.SetActive(false);
+            m_totemHUD.SetActive(false);
+            m_upgradeTower.SetActive(false);
+            m_upgradeTower.GetComponent<SelectUpgradeScript>().Unshow();
+
         }
     }
 }

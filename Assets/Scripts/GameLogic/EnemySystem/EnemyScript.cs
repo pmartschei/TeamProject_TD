@@ -7,7 +7,8 @@ public class EnemyScript : MonoBehaviour {
     public float m_MaxHp = 1.0f;
     public float m_Hp = 1.0f;
     public int m_DmgToBase = 1;
-    public float m_Speed = 1.0f;
+    public float m_BaseSpeed = 1.0f;
+    public float m_Speed;
     public float m_WavePoints = 1.0f;
     [Range(0.01f,1.0f)]
     public float m_EnemyHealthDifficulty = 0.07f;
@@ -15,14 +16,26 @@ public class EnemyScript : MonoBehaviour {
     public float m_EnemySpeedDifficulty = 0.01f;
     public int m_Gold = 1;
 
+    public float m_AdditionalSpeedMultiplier = 1.0f;
+
     public LifeAndMoneyScript m_LifeAndMoney;
 
     // Use this for initialization
     void Start () {
-	
+        RecalculateAttributes();
 	}
-	
-	// Update is called once per frame
+
+    public void RecalculateAttributes()
+    {
+        float multiplier = 1.0f;
+        if (GameObject.Find("CounterSystem").GetComponent<OverallInformation>().m_EarthTotemActive)
+        {
+            multiplier = GameObject.Find("CounterSystem").GetComponent<OverallInformation>().m_EarthTotemMultiplier;
+        }
+        m_Speed = m_BaseSpeed * multiplier * m_AdditionalSpeedMultiplier;
+    }
+
+    // Update is called once per frame
     void Update () {
 	
 	}

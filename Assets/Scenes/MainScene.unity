@@ -174,8 +174,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -232,6 +232,8 @@ MonoBehaviour:
   m_earthTotem: {fileID: 1183550066}
   m_waterTotem: {fileID: 25422881}
   m_windTotem: {fileID: 542529562}
+  m_tileSystem: {fileID: 208050463}
+  m_totemPlace: {fileID: 0}
   m_fieldObj: {fileID: 188758219}
 --- !u!224 &25422883
 RectTransform:
@@ -1058,7 +1060,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: Hier muss noch was rein!!!
+            m_StringArgument: 'Ice Tower: Damage over Time | Slows'
             m_BoolArgument: 0
           m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
@@ -1900,7 +1902,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: 'Earth Totem: Effekt hier!'
+            m_StringArgument: 'Earth Totem: Slows Enemy by 20%'
             m_BoolArgument: 0
           m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
@@ -3304,7 +3306,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: 'Fire Totem: Effekt hier!'
+            m_StringArgument: 'Fire Totem: Increases Tower Damage by 20%'
             m_BoolArgument: 0
           m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
@@ -4051,7 +4053,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_undoButton: {fileID: 215699750}
-  m_undoCost: 100
+  m_undoCost: 25
 --- !u!224 &423685934
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4375,7 +4377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4395,7 +4397,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 50
+  m_Text: 500
 --- !u!222 &464400270
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4524,7 +4526,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 24b17122523a190498501e167063066c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e41375f864ce3e942b37781f8b3f6b53, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4743,8 +4745,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 203.6, y: -14}
-  m_SizeDelta: {x: 400, y: 8}
+  m_AnchoredPosition: {x: 150, y: -14}
+  m_SizeDelta: {x: 300, y: 8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &523483250
 MonoBehaviour:
@@ -4896,11 +4898,20 @@ Prefab:
     - target: {fileID: 11448670, guid: c67810d82a41dda439585906fcc00468, type: 2}
       propertyPath: m_tower2UpgradeAsset
       value: 
-      objectReference: {fileID: 4900000, guid: c263116401913e44993eada5781144a2, type: 3}
+      objectReference: {fileID: 4900000, guid: 8e0e77cc55c1bb44bab824d7ab1adba9, type: 3}
     - target: {fileID: 11448670, guid: c67810d82a41dda439585906fcc00468, type: 2}
       propertyPath: m_tower2
       value: 
       objectReference: {fileID: 1000010370180714, guid: 2d417c49c40e0754ea2122c3904a2e93,
+        type: 2}
+    - target: {fileID: 11448670, guid: c67810d82a41dda439585906fcc00468, type: 2}
+      propertyPath: m_tower3UpgradeAsset
+      value: 
+      objectReference: {fileID: 4900000, guid: a58a0889f0832f04c973df6384a7a299, type: 3}
+    - target: {fileID: 11448670, guid: c67810d82a41dda439585906fcc00468, type: 2}
+      propertyPath: m_tower3
+      value: 
+      objectReference: {fileID: 1000010854555524, guid: c29cfd07cdf8845459712ebbcd558c7a,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c67810d82a41dda439585906fcc00468, type: 2}
@@ -4963,7 +4974,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 24b17122523a190498501e167063066c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e41375f864ce3e942b37781f8b3f6b53, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5030,6 +5041,8 @@ MonoBehaviour:
   m_earthTotem: {fileID: 1183550066}
   m_waterTotem: {fileID: 25422881}
   m_windTotem: {fileID: 542529562}
+  m_tileSystem: {fileID: 208050463}
+  m_totemPlace: {fileID: 0}
   m_fieldObj: {fileID: 188758219}
 --- !u!1 &545246337
 GameObject:
@@ -5441,7 +5454,7 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 407.6, y: -67.999985}
+  m_AnchoredPosition: {x: 300, y: -67.999985}
   m_SizeDelta: {x: 8, y: 115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &585527969
@@ -5859,8 +5872,8 @@ Camera:
   m_GameObject: {fileID: 633784750}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0.019607844}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.5294118, g: 0.70980394, b: 1, a: 0.019607844}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -6121,7 +6134,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
+  m_Children:
+  - {fileID: 742365258}
+  - {fileID: 1208019745}
   m_Father: {fileID: 354705275}
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.38000003}
@@ -6470,7 +6485,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11420732, guid: 14f85a047a21d3a4990b2ed50745ff97, type: 2}
       propertyPath: m_drawIntervall
-      value: 5
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 14f85a047a21d3a4990b2ed50745ff97, type: 2}
@@ -6679,6 +6694,74 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 727372125}
+--- !u!1 &742365257
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 742365258}
+  - 222: {fileID: 742365260}
+  - 114: {fileID: 742365259}
+  m_Layer: 5
+  m_Name: cooldownPanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &742365258
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 742365257}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 686454087}
+  m_RootOrder: 0
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0.5000076}
+  m_SizeDelta: {x: 12, y: 13}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &742365259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 742365257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &742365260
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 742365257}
 --- !u!1 &744454784 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 102532, guid: d5cefbad3a73ceb42a5e9b3f3488b8c8, type: 2}
@@ -6694,8 +6777,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39eb583335f059448af1ef368326738, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_lifeTotal: 1
-  m_MoneyTotal: 1500
+  m_lifeTotal: 20
+  m_MoneyTotal: 100
   m_woodTotal: 100
   m_HeartText: {fileID: 1601343690}
   m_MoneyText: {fileID: 1818301584}
@@ -6969,8 +7052,8 @@ RectTransform:
   m_RootOrder: 9
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -30}
-  m_SizeDelta: {x: 300, y: 30}
+  m_AnchoredPosition: {x: 0, y: -38}
+  m_SizeDelta: {x: 300, y: 70}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &768764667
 MonoBehaviour:
@@ -6985,7 +7068,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -6998,12 +7081,12 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 1.5
   m_Text: 
 --- !u!222 &768764668
 CanvasRenderer:
@@ -7282,7 +7365,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 150
+  m_Text: 50
 --- !u!222 &781118981
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7346,10 +7429,10 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -7365,8 +7448,8 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 2
   m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_Camera: {fileID: 2058218345}
+  m_PlaneDistance: 0
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -7567,6 +7650,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bbb1fd2bd630cd4f90bcc2530ebc006, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_curretCam: {fileID: 2058218345}
+  m_FireTotemActive: 0
+  m_WaterTotemActive: 0
+  m_AirTotemActive: 0
+  m_EarthTotemActive: 0
+  m_FireTotemMultiplier: 1.2
+  m_EarthTotemMultiplier: 0.8
+  m_AirTotemMultiplier: 0.25
+  m_WaterTotemTimer: 60
 --- !u!4 &816266931
 Transform:
   m_ObjectHideFlags: 0
@@ -8052,7 +8144,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.17569506, g: 0.15614188, b: 0.2794118, a: 0}
+  m_BackGroundColor: {r: 0.4165225, g: 0.46868512, b: 0.5294118, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -8228,7 +8320,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Are you stupid?!
+  m_Text: 
 --- !u!222 &945528515
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8747,8 +8839,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 203.6, y: -121.99999}
-  m_SizeDelta: {x: 400, y: 8}
+  m_AnchoredPosition: {x: 150, y: -121.99999}
+  m_SizeDelta: {x: 300, y: 8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1016336617
 MonoBehaviour:
@@ -9618,6 +9710,8 @@ MonoBehaviour:
   m_earthTotem: {fileID: 1183550066}
   m_waterTotem: {fileID: 25422881}
   m_windTotem: {fileID: 542529562}
+  m_tileSystem: {fileID: 208050463}
+  m_totemPlace: {fileID: 0}
   m_fieldObj: {fileID: 188758219}
 --- !u!224 &1183550068
 RectTransform:
@@ -9709,6 +9803,80 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1205894184}
+--- !u!1 &1208019744
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1208019745}
+  - 222: {fileID: 1208019747}
+  - 114: {fileID: 1208019746}
+  m_Layer: 5
+  m_Name: cooldownText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1208019745
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1208019744}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 686454087}
+  m_RootOrder: 1
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0.6000228}
+  m_SizeDelta: {x: 40, y: 40}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1208019746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1208019744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 60
+--- !u!222 &1208019747
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1208019744}
 --- !u!1 &1210076744
 GameObject:
   m_ObjectHideFlags: 0
@@ -9892,7 +10060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -9912,7 +10080,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 50
+  m_Text: 500
 --- !u!222 &1243547475
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10016,7 +10184,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: 'Wind Totem: Effekt hier!'
+            m_StringArgument: 'Wind Totem: Bolt has 25% less cooldown and +50% Damage'
             m_BoolArgument: 0
           m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
@@ -10209,7 +10377,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 24b17122523a190498501e167063066c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e41375f864ce3e942b37781f8b3f6b53, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10297,6 +10465,30 @@ Prefab:
       propertyPath: m_waveTextBox
       value: 
       objectReference: {fileID: 768764665}
+    - target: {fileID: 11429440, guid: ca6027b71514fd242915b3af9780be91, type: 2}
+      propertyPath: m_Timer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 11429440, guid: ca6027b71514fd242915b3af9780be91, type: 2}
+      propertyPath: m_CurrentDelayBetween
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 11429440, guid: ca6027b71514fd242915b3af9780be91, type: 2}
+      propertyPath: m_BossDelayBetween
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 11429440, guid: ca6027b71514fd242915b3af9780be91, type: 2}
+      propertyPath: m_WaveDelayBetween
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11429440, guid: ca6027b71514fd242915b3af9780be91, type: 2}
+      propertyPath: m_Difficulty
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11429440, guid: ca6027b71514fd242915b3af9780be91, type: 2}
+      propertyPath: m_BossWave
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ca6027b71514fd242915b3af9780be91, type: 2}
   m_IsPrefabParent: 0
@@ -10799,6 +10991,21 @@ Prefab:
       propertyPath: m_Parameters.startWidth
       value: 0.075
       objectReference: {fileID: 0}
+    - target: {fileID: 114000012913917796, guid: 67c27d1f91638c146a917f387e25aac1,
+        type: 2}
+      propertyPath: cooldownPanel
+      value: 
+      objectReference: {fileID: 742365257}
+    - target: {fileID: 114000012913917796, guid: 67c27d1f91638c146a917f387e25aac1,
+        type: 2}
+      propertyPath: cooldownText
+      value: 
+      objectReference: {fileID: 1208019744}
+    - target: {fileID: 114000012913917796, guid: 67c27d1f91638c146a917f387e25aac1,
+        type: 2}
+      propertyPath: m_BoltCooldown
+      value: 60
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 67c27d1f91638c146a917f387e25aac1, type: 2}
   m_IsPrefabParent: 0
@@ -11146,7 +11353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -11166,7 +11373,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 50
+  m_Text: 500
 --- !u!222 &1408941805
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11453,7 +11660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -11473,7 +11680,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 50
+  m_Text: 500
 --- !u!222 &1435142689
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12280,7 +12487,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 24b17122523a190498501e167063066c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e41375f864ce3e942b37781f8b3f6b53, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12443,7 +12650,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: 'Water Totem: Effekt hier'
+            m_StringArgument: 'Water Totem: Gain 1 Life per Minute'
             m_BoolArgument: 0
           m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
@@ -13054,7 +13261,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100
+  m_Text: 40
 --- !u!222 &1657468718
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13264,7 +13471,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 200
+  m_Text: '60
+
+'
 --- !u!222 &1680621791
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13846,7 +14055,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1752151251
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13899,8 +14108,8 @@ RectTransform:
   m_RootOrder: 4
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 203.6, y: -68}
-  m_SizeDelta: {x: 400, y: 100}
+  m_AnchoredPosition: {x: 150, y: -68}
+  m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1767459776
 MonoBehaviour:
@@ -14689,6 +14898,8 @@ MonoBehaviour:
   m_earthTotem: {fileID: 1183550066}
   m_waterTotem: {fileID: 25422881}
   m_windTotem: {fileID: 542529562}
+  m_tileSystem: {fileID: 208050463}
+  m_totemPlace: {fileID: 0}
   m_fieldObj: {fileID: 188758219}
 --- !u!224 &1902363224
 RectTransform:
@@ -15823,8 +16034,8 @@ Camera:
   m_GameObject: {fileID: 2058218341}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0.019607844}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.5294118, g: 0.71241826, b: 1, a: 0.019607844}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0

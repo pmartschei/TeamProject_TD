@@ -61,7 +61,6 @@ public class SelectTowerScript : MonoBehaviour
                 if (feld != null)
                 {
                     feld.m_towerBuilt = true;
-                    Debug.Log("True");
                 }
             }
         }

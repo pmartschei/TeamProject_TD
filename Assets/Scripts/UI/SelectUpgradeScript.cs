@@ -16,7 +16,7 @@ public class SelectUpgradeScript : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-	
+
 	}
 
     public void Upgrade(GameObject upgrade)
@@ -38,6 +38,17 @@ public class SelectUpgradeScript : MonoBehaviour
             {
                 openUpgrade.unshowProps();
             }
+
+        }
+    }
+
+    public void Unshow()
+    {
+        if (m_selectedTower == null) return;
+        OpenUpgradeHUDScript openUpgrade = m_selectedTower.GetComponent<OpenUpgradeHUDScript>();
+        if (openUpgrade != null)
+        {
+            openUpgrade.unshowProps();
         }
     }
 
@@ -63,5 +74,9 @@ public class SelectUpgradeScript : MonoBehaviour
     public void setSelectedTower(GameObject tower)
     {
         m_selectedTower = tower;
+    }
+    public GameObject getSelectedTower()
+    {
+        return m_selectedTower;
     }
 }

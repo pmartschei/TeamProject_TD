@@ -63,7 +63,6 @@ public class OpenTotemsScript : MonoBehaviour
         m_windTotemCircle = m_windTotem.transform.FindChild("CircleImage").gameObject;
 
         m_target = gameObject.transform;
-        m_camera = Camera.main;
     }
 	
 	// Update is called once per frame
@@ -74,7 +73,7 @@ public class OpenTotemsScript : MonoBehaviour
             if (Input.GetMouseButtonUp(1) || Input.GetKeyDown(KeyCode.Escape))
                 m_TotemHUD.SetActive(false);
 
-            if (!(m_lifeAndMoneySystem.GetComponent<LifeAndMoneyScript>().isWoodDecreasePossible(m_fireTotemCost)))
+            if (!(m_lifeAndMoneySystem.GetComponent<LifeAndMoneyScript>().isMoneyDecreasePossible(m_fireTotemCost)))
             {
                 m_fireTotemButton.GetComponent<Button>().interactable = false;
                 m_fireTotemCircle.GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 0.6f);
@@ -86,7 +85,7 @@ public class OpenTotemsScript : MonoBehaviour
             }
 
 
-            if (!(m_lifeAndMoneySystem.GetComponent<LifeAndMoneyScript>().isWoodDecreasePossible(m_earthTotemCost)))
+            if (!(m_lifeAndMoneySystem.GetComponent<LifeAndMoneyScript>().isMoneyDecreasePossible(m_earthTotemCost)))
             {
                 m_earthTotemButton.GetComponent<Button>().interactable = false;
                 m_earthTotemCircle.GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 0.6f);
@@ -98,7 +97,7 @@ public class OpenTotemsScript : MonoBehaviour
             }
 
 
-            if (!(m_lifeAndMoneySystem.GetComponent<LifeAndMoneyScript>().isWoodDecreasePossible(m_waterTotemCost)))
+            if (!(m_lifeAndMoneySystem.GetComponent<LifeAndMoneyScript>().isMoneyDecreasePossible(m_waterTotemCost)))
             {
                 m_waterTotemButton.GetComponent<Button>().interactable = false;
                 m_waterTotemCircle.GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 0.6f);
@@ -109,7 +108,7 @@ public class OpenTotemsScript : MonoBehaviour
                 m_waterTotemCircle.GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
             }
 
-            if (!(m_lifeAndMoneySystem.GetComponent<LifeAndMoneyScript>().isWoodDecreasePossible(m_windTotemCost)))
+            if (!(m_lifeAndMoneySystem.GetComponent<LifeAndMoneyScript>().isMoneyDecreasePossible(m_windTotemCost)))
             {
                 m_windTotemButton.GetComponent<Button>().interactable = false;
                 m_windTotemCircle.GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 0.6f);
@@ -126,6 +125,12 @@ public class OpenTotemsScript : MonoBehaviour
     {
         if (Time.timeScale != 0)
         {
+            if (GameObject.Find("MouseSystem").GetComponent<MouseScript>().m_MouseState == MouseScript.MouseState.BuildTile)
+            {
+                GameObject.Find("MouseSystem").GetComponent<MouseScript>().Deactivate();
+            }
+            else if (GameObject.Find("MouseSystem").GetComponent<MouseScript>().m_MouseState == MouseScript.MouseState.Bolt) { return; }
+            m_upgradeTower.GetComponent<SelectUpgradeScript>().Unshow();
             m_upgradeTower.SetActive(false);
             m_buildTowerHUD.SetActive(false);
 
@@ -134,10 +139,16 @@ public class OpenTotemsScript : MonoBehaviour
 
             m_TotemHUD.SetActive(true);
 
-            Vector3 screenPos = m_camera.WorldToScreenPoint(m_target.position);
+            Camera cam = GameObject.Find("CounterSystem").GetComponent<OverallInformation>().m_curretCam;
+            Vector3 screenPos =cam.WorldToScreenPoint(m_target.position);
             screenPos += new Vector3(0.0f, 40.0f, 0.0f);
             m_TotemHUD.transform.position = screenPos;
-         
+            SelectTotemScript[] scripts = m_TotemHUD.GetComponentsInChildren<SelectTotemScript>();
+            foreach (SelectTotemScript script in scripts)
+            {
+                script.m_totemPlace = this.gameObject;
+            }
+
         }   
     }
 }

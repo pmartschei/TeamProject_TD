@@ -125,6 +125,11 @@ public class OpenTowerHUDScript : MonoBehaviour
     {
         if (Time.timeScale != 0 && !m_towerBuilt && !m_JustPlaced)
         {
+            if (GameObject.Find("MouseSystem").GetComponent<MouseScript>().m_MouseState == MouseScript.MouseState.BuildTile)
+            {
+                GameObject.Find("MouseSystem").GetComponent<MouseScript>().Deactivate();
+            }else if (GameObject.Find("MouseSystem").GetComponent<MouseScript>().m_MouseState==MouseScript.MouseState.Bolt){ return; }
+            m_upgradeTower.GetComponent<SelectUpgradeScript>().Unshow();
             m_upgradeTower.SetActive(false);
             m_totemHUD.SetActive(false);
 
@@ -134,8 +139,8 @@ public class OpenTowerHUDScript : MonoBehaviour
             m_buildTowerHUD.SetActive(true);
 
             // GameObject.Find("HUDCanvas").transform.FindChild("UpgradeTowerHUD").FindChild("Destroy").GetComponent<SelectUpgradeScript>().setSelectedTile(gameObject);
-
-            Vector3 screenPos = m_camera.WorldToScreenPoint(m_target.position);
+            Camera cam = GameObject.Find("CounterSystem").GetComponent<OverallInformation>().m_curretCam;
+            Vector3 screenPos = cam.WorldToScreenPoint(m_target.position);
             screenPos += new Vector3(0.0f, 10.0f, 0.0f);
             m_buildTowerHUD.transform.position = screenPos;
 

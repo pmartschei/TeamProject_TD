@@ -17,7 +17,6 @@ public class SpawnEnemyScript : MonoBehaviour
     public List<IWave> m_Waves = new List<IWave>();
     public GameObject m_firstEnemy;
     public GameObject m_secondEnemy;
-    public float m_Timer;
 
     private List<TilePos> m_ToProcess = new List<TilePos>();
     private List<TilePos> m_AlreadyChecked = new List<TilePos>();
@@ -34,7 +33,9 @@ public class SpawnEnemyScript : MonoBehaviour
 
     public int m_WaveDelayBetween = 5;
     public int m_BossDelayBetween = 15;
-    private float m_CurrentDelayBetween = 0.0f;
+    public float m_CurrentDelayBetween = 0.0f;
+
+    private bool updated = true;
 
     // Use this for initialization
     void Start()
@@ -51,14 +52,18 @@ public class SpawnEnemyScript : MonoBehaviour
     {
 		if (m_Waves.Count > 0) {
             //hole alle GameObjekte von den Wellen
+            m_waveTextBox.GetComponent<Text>().text = "Current Wave: " + (m_CurrentWaveIndex+1);
             if (m_CurrentDelayBetween <= 0.0f)
             {
+                if (!updated) { 
+                    m_CurrentWaveIndex++;
+                    updated = true;
+                }
                 GameObject[] gos = m_Waves[0].Update();
                 if (gos != null)
                 {
                     m_SpawnPos = GetSpawn();//Spawnpunkt holen
                     if (m_SpawnPos == null) return;
-                    m_waveTextBox.GetComponent<Text>().text = "Current Wave: " + (m_CurrentWaveIndex+1);
                     m_FieldSystem.LevelFinished(m_SpawnPos.y);
                     foreach (GameObject go in gos)
                     {
@@ -76,12 +81,21 @@ public class SpawnEnemyScript : MonoBehaviour
                         {
                             m_CurrentDelayBetween = m_WaveDelayBetween;
                         }
-                        m_CurrentWaveIndex++;
+                        updated = false;
                     }
                 }
             }
             else
             {
+                if (m_CurrentWaveIndex+(updated?0:1) == 0)
+                {
+                    m_waveTextBox.GetComponent<Text>().text += "\n" + "First Wave in " + (int)m_CurrentDelayBetween;
+                }
+                else
+                {
+                    m_waveTextBox.GetComponent<Text>().text += "\n" + "Next Wave in " + (int)m_CurrentDelayBetween;
+
+                }
                 m_CurrentDelayBetween -= Time.deltaTime;
             }
 		}
@@ -112,7 +126,7 @@ public class SpawnEnemyScript : MonoBehaviour
             es.SetLifeAndMoneySystem(m_LifeAndMoney);
             if (es == null) throw new System.Exception("ERROR : No EnemyScript");
             int count = (int)(wavePoints / es.m_WavePoints) + 1;
-            float delay = Random.Range(0.75f / es.m_Speed, 2f / es.m_Speed);
+            float delay = Random.Range(1f/ es.m_Speed, 2f / es.m_Speed);
             Wave w = new Wave(count,enemy,delay);
             return w;
         }
@@ -131,7 +145,7 @@ public class SpawnEnemyScript : MonoBehaviour
     {
         float multiplier = 1.0f + difficulty * m_Difficulty;
         float wavePoints = m_WaveDifficultyPoints * multiplier;
-        bool minions = Random.Range(0.0f, 1.0f) < 0.8f;
+        bool minions = Random.Range(0.0f, 1.0f) > 0.8f;
         if (minions)
         {
             wavePoints /= 2;
@@ -155,7 +169,7 @@ public class SpawnEnemyScript : MonoBehaviour
             return bossW;
         }
     }
-    private TilePos GetSpawn()
+    public TilePos GetSpawn()
     {
         m_EndTile = GameObject.FindObjectOfType<EndPoint>().gameObject;
         if (m_EndTile == null)

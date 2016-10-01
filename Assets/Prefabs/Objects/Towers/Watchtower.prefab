@@ -674,6 +674,7 @@ MonoBehaviour:
   m_Radius: 0
   m_Cooldown: 0
   m_Bullet: {fileID: 1000010761787166, guid: 85dd4975cd9058c408bea20094117f40, type: 2}
+  m_field: {fileID: 0}
   m_travelTime: 0.3
   m_bulletSpawn: {fileID: 1000012513188196}
 --- !u!114 &114000014111431288
@@ -688,7 +689,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_segments: 90
-  m_zValue: 0.1
+  m_zValue: 0.075
   m_xRadius: 1
   m_yRadius: 1
   m_angle: 4
@@ -725,8 +726,8 @@ LineRenderer:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
   m_Parameters:
-    startWidth: 1
-    endWidth: 1
+    startWidth: 0.75
+    endWidth: 0.75
     m_StartColor:
       serializedVersion: 2
       rgba: 4294967295

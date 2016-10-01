@@ -63,8 +63,7 @@ public class OpenUpgradeHUDScript : MonoBehaviour
                 m_upgradeTowerHUD.SetActive(false);
                 unshowProps();
             }
-
-            if (!m_upgradeTowerHUD.activeSelf)
+            if (!this.gameObject.activeSelf || m_upgradeTowerHUD.GetComponent<SelectUpgradeScript>().getSelectedTower()!=this.gameObject)
                 unshowProps();
         }
     }
@@ -73,10 +72,11 @@ public class OpenUpgradeHUDScript : MonoBehaviour
     {
         if (Time.timeScale != 0)
         {
+            if (GameObject.Find("MouseSystem").GetComponent<LineRenderer>().enabled) return;
             m_buildTowerHUD.SetActive(false);
             m_totemHUD.SetActive(false);
-
-            Vector3 screenPos = m_camera.WorldToScreenPoint(m_target.position);
+            Camera cam = GameObject.Find("CounterSystem").GetComponent<OverallInformation>().m_curretCam;
+            Vector3 screenPos = cam.WorldToScreenPoint(m_target.position);
             screenPos += new Vector3(0.0f, 10.0f, 0.0f);
             m_upgradeTowerHUD.transform.position = screenPos;
             TowerScript tw = GetComponent<TowerScript>();
@@ -84,8 +84,9 @@ public class OpenUpgradeHUDScript : MonoBehaviour
             Upgrade[] upgrades = tw.GetNextUpgrades();
 
             showUpgrades(upgrades);
- 
+
             showProps();
+ 
 
         }
     }
@@ -93,6 +94,7 @@ public class OpenUpgradeHUDScript : MonoBehaviour
     private void showUpgrades(Upgrade[] upgrades)
     {
         m_upgradeTowerHUD.SetActive(true);
+        m_upgradeTowerHUD.GetComponent<SelectUpgradeScript>().setSelectedTower(gameObject);
         int count = Mathf.Min(MAX_UPGRADES, upgrades.Length);
 
         float radians = (-360 / (count + 1)) * Mathf.Deg2Rad;
@@ -132,7 +134,6 @@ public class OpenUpgradeHUDScript : MonoBehaviour
                 upgradeHUD.transform.FindChild("CircleImage").GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
             }
 
-            m_upgradeTowerHUD.GetComponent<SelectUpgradeScript>().setSelectedTower(gameObject);
         }
 
         for (; i < MAX_UPGRADES; i++)

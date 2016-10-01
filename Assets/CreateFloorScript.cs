@@ -14,19 +14,19 @@ public class CreateFloorScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
     {
-        m_bot = null;
-        m_bot = GameObject.Instantiate(m_bottomPlane);
-        m_bot.transform.position = new Vector3(0.0f, -5.0f, 0.0f);
-        m_bot.transform.localScale = new Vector3(1.0f, 3.0f, 1.0f);
+        //m_bot = null;
+        //m_bot = GameObject.Instantiate(m_bottomPlane);
+        //m_bot.transform.position = new Vector3(0.0f, -5.0f, 0.0f);
+        //m_bot.transform.localScale = new Vector3(1.0f, 3.0f, 1.0f);
 
-        m_bot2 = null;
-        m_bot2 = GameObject.Instantiate(m_bottomPlane);
-        m_bot2.transform.position = new Vector3(0.0f, -10.0f, 0.0f);
-        m_bot2.transform.localScale = new Vector3(1.0f, 3.0f, 1.0f);
+        //m_bot2 = null;
+        //m_bot2 = GameObject.Instantiate(m_bottomPlane);
+        //m_bot2.transform.position = new Vector3(0.0f, -10.0f, 0.0f);
+        //m_bot2.transform.localScale = new Vector3(1.0f, 3.0f, 1.0f);
 
         m_back = null;
         m_back = GameObject.Instantiate(m_backPlane);
-        m_back.transform.position = new Vector3(20.0f, 3.0f, 0.0f);
+        m_back.transform.position = new Vector3(20.0f, 7.0f, 0.0f);
 
         int r = 0;
         float off = 0.0f;
@@ -41,6 +41,7 @@ public class CreateFloorScript : MonoBehaviour {
                 off = -0.5f;
             GameObject c = GameObject.Instantiate(m_cloud);
             c.transform.position = new Vector3(10.0f, 2.0f, i * 3.0f + off);
+            c.transform.parent = this.transform;
         }
 	}
 	
@@ -59,12 +60,12 @@ public class CreateFloorScript : MonoBehaviour {
         Vector3 newScale = scale + expandX;
         m_back.transform.localScale = newScale;
 
-        scale = m_bot.transform.localScale;
-        newScale = scale + expandY;
-        m_bot.transform.localScale = newScale;
+        //scale = m_bot.transform.localScale;
+        //newScale = scale + expandY;
+        //m_bot.transform.localScale = newScale;
 
-        scale = m_bot2.transform.localScale;
-        newScale = scale + expandY;
-        m_bot2.transform.localScale = newScale;
+        //scale = m_bot2.transform.localScale;
+        //newScale = scale + expandY;
+        //m_bot2.transform.localScale = newScale;
     }
 }

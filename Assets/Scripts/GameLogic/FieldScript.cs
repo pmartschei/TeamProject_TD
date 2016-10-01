@@ -154,6 +154,7 @@ public class FieldScript : MonoBehaviour
                         t = GameObject.Instantiate(m_TileSystem.GetComponent<TileSystem>().m_BlankVar1);
                         break;
                 }
+                t.transform.Rotate(Vector3.forward, 90* UnityEngine.Random.Range(0,4));
                 if (correctI == currentX)
                 {
                     if (curve)
@@ -592,7 +593,7 @@ public class FieldScript : MonoBehaviour
     /// <param name="x"></param>
     /// <param name="y"></param>
     /// <returns></returns>
-    public bool IsTile(int x, int y)
+    public bool IsTile(int x, int y,Boolean withGenerated=false)
     {
         if (x >= 0 && x < m_LevelWidth)
         {
@@ -603,7 +604,7 @@ public class FieldScript : MonoBehaviour
 
                 TileScript ts = go.GetComponent<TileScript>();
 
-                if (ts != null)
+                if (ts != null && !withGenerated)
                 {
                     return !ts.m_IsGenerated;
                 }

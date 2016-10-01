@@ -32,7 +32,6 @@ GameObject:
   - 64: {fileID: 6410460}
   - 95: {fileID: 9545072}
   - 65: {fileID: 6508664}
-  - 114: {fileID: 114000013511040508}
   m_Layer: 0
   m_Name: angelStatue
   m_TagString: Untagged
@@ -221,16 +220,3 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 158374}
   m_IsPrefabParent: 1
---- !u!114 &114000013511040508
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 167028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cfc7e75b81522541a95331f54d39178, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_LumberjackPrefab: {fileID: 1000011591766488, guid: 3e842ea30eac35c4db9dbf9a3835f962,
-    type: 2}

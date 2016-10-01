@@ -9,12 +9,11 @@ public class EnemyHealthScript : MonoBehaviour
     public Image m_Fill;
 
     private int m_maxHealth;
-    private Vector3 m_offset;
+    public Vector3 m_offset;
 
 	// Use this for initialization
 	void Start ()
     {
-        m_offset = new Vector3(0.0f, 2.0f, 0.0f);
         m_healthBar = (GameObject)Instantiate(GameObject.Find("UISystem").GetComponent<UISystemScript>().m_HealthBarSlider,gameObject.transform.position+m_offset,Quaternion.identity);
         m_healthBar.transform.SetParent(GameObject.Find("WorldSpaceHUDCanvas").transform);
         m_healthBar.transform.localScale = Vector3.one;

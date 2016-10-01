@@ -10,7 +10,7 @@ public class TowerSystemScript : MonoBehaviour
     public GameObject m_tower2;
     public TextAsset m_tower2UpgradeAsset;
     public GameObject m_tower3;
-    public GameObject m_tower4;
+    public TextAsset m_tower3UpgradeAsset;
 
     private Hashtable m_UpgradeTrees = new Hashtable();
 
@@ -19,6 +19,7 @@ public class TowerSystemScript : MonoBehaviour
     {
         LoadUpgradeTree(m_tower1,m_tower1UpgradeAsset);
         LoadUpgradeTree(m_tower2, m_tower2UpgradeAsset);
+        LoadUpgradeTree(m_tower3, m_tower3UpgradeAsset);
     }
 
     private void LoadUpgradeTree(GameObject go,TextAsset upgradeAsset)
@@ -44,6 +45,12 @@ public class TowerSystemScript : MonoBehaviour
     {
         TowerScript[] towers = GetComponentsInChildren<TowerScript>();//alle Türme abfragen
 
+        EnemyScript[] enemies = GameObject.FindObjectsOfType<EnemyScript>();
+        foreach(EnemyScript enemy in enemies)
+        {
+            enemy.m_AdditionalSpeedMultiplier = 1.0f;
+        }
+
         foreach (TowerScript tower in towers)
         {
 			if (!tower.CanShoot()) continue;//wenn der Tower nicht schießen kann dann zum nächsten
@@ -66,8 +73,29 @@ public class TowerSystemScript : MonoBehaviour
             }
             if (lowestEnemy != null)
             {
-                tower.Shoot(lowestEnemy);
+                if (tower.Shoot(lowestEnemy))
+                {
+                    lowestEnemy.RecalculateAttributes();
+                    return;
+                }
+            }
+            foreach (Collider collider in colliders)
+            {
+                EnemyScript enemy = collider.GetComponent<EnemyScript>();
+                if (enemy != null && enemy!=lowestEnemy)
+                {
+                    tower.Shoot(enemy);
+                    enemy.RecalculateAttributes();
+                }
             }
         }
 	}
+    public void RecalculateAttributes()
+    {
+        TowerScript[] towers = GetComponentsInChildren<TowerScript>();//alle Türme abfragen
+        foreach(TowerScript tower in towers)
+        {
+            tower.RecalculateAttributes();
+        }
+    }
 }

@@ -3786,14 +3786,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e866c80383051041931b930a0ebb603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MaxHp: 2
-  m_Hp: 2
+  m_MaxHp: 4
+  m_Hp: 4
   m_DmgToBase: 1
+  m_BaseSpeed: 1
   m_Speed: 2
   m_WavePoints: 20
-  m_EnemyHealthDifficulty: 0.07
-  m_EnemySpeedDifficulty: 0.01
-  m_Gold: 1
+  m_EnemyHealthDifficulty: 0.2
+  m_EnemySpeedDifficulty: 0.02
+  m_Gold: 2
+  m_AdditionalSpeedMultiplier: 1
   m_LifeAndMoney: {fileID: 0}
 --- !u!114 &114000011569123156
 MonoBehaviour:
@@ -3818,6 +3820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Fill: {fileID: 0}
+  m_offset: {x: 0, y: 0.75, z: 0}
 --- !u!137 &137000010526281144
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

@@ -79,14 +79,15 @@ public class CameraControll : MonoBehaviour {
                 {
                     m_buildTowerHUD.SetActive(false);
                     m_totemHUD.SetActive(false);
-                    m_buildTowerHUD.SetActive(false);
+                    m_upgradeTower.GetComponent<SelectUpgradeScript>().Unshow();
+                    m_upgradeTower.SetActive(false);
                 }
 
                 m_mainCamera.transform.position += new Vector3(0.0f, 0.0f, speed * Time.deltaTime);
             }
             else if (mousePos.x > (Screen.width - (Screen.width / m_cameraBorderFactor)) && checkYParamters()) //rechts
             {
-                if (worldCoordinates.z < -10)
+                if (worldCoordinates.z < 0)
                     return;
                 float value = mousePos.x - (Screen.width - (Screen.width / m_cameraBorderFactor));
                 float speed = m_cameraSpeed * (value / m_cameraVelocityFactor);
@@ -95,7 +96,8 @@ public class CameraControll : MonoBehaviour {
                 {
                     m_buildTowerHUD.SetActive(false);
                     m_totemHUD.SetActive(false);
-                    m_buildTowerHUD.SetActive(false);
+                    m_upgradeTower.GetComponent<SelectUpgradeScript>().Unshow();
+                    m_upgradeTower.SetActive(false);
                 }
 
                 m_mainCamera.transform.position += new Vector3(0.0f, 0.0f, -speed * Time.deltaTime);
@@ -110,11 +112,21 @@ public class CameraControll : MonoBehaviour {
                 m_mainCamera.SetActive(false);
                 setVillageCamera();
                 m_villageCamera.SetActive(true);
+                GameObject.Find("CounterSystem").GetComponent<OverallInformation>().m_curretCam = m_villageCamera.GetComponent<Camera>();
             }
             else
             {
                 m_mainCamera.SetActive(true);
                 m_villageCamera.SetActive(false);
+                GameObject.Find("CounterSystem").GetComponent<OverallInformation>().m_curretCam = m_mainCamera.GetComponent<Camera>();
+
+            }
+            if (m_buildTowerHUD.activeSelf || m_totemHUD.activeSelf || m_upgradeTower.activeSelf)
+            {
+                m_buildTowerHUD.SetActive(false);
+                m_totemHUD.SetActive(false);
+                m_upgradeTower.GetComponent<SelectUpgradeScript>().Unshow();
+                m_upgradeTower.SetActive(false);
             }
         }
 
