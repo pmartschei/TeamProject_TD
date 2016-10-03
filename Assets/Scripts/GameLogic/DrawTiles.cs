@@ -17,8 +17,8 @@ public class DrawTiles : MonoBehaviour
     private GameObject m_drawTileSystem;
 
     // Chance to get one of the following Tiles each draw
-    private float m_getBlank;
-    private float m_getRoad;
+    private float m_getBlank =0.33f;
+    private float m_getRoad =0.66f;
 
     // Used to change the percentages for the next drawn Tile to try and equal the amount of each drawn Tile among all three
     private float m_changePercentagesFactor;
@@ -70,7 +70,6 @@ public class DrawTiles : MonoBehaviour
 
             // rndNumber between 0.0f and 1.0f (both included)
             m_rndNumber = Random.Range(0.0f, 1.0f);
-            
             if (m_rndNumber >= m_getRoad)
             {
                 if (m_counterCurrentTiles < m_maxTiles)
@@ -143,7 +142,6 @@ public class DrawTiles : MonoBehaviour
                 if (m_counterCurrentTiles < 3)
                 {
                     int rndBlankTile = Random.Range(1, 2);
-
                     switch (rndBlankTile)
                     {
                         case 1:

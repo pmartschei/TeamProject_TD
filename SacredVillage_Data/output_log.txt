@@ -16,86 +16,22 @@ Platform assembly: C:\Users\Philipp\Documents\TeamProject_TD\SacredVillage_Data\
 Loading C:\Users\Philipp\Documents\TeamProject_TD\SacredVillage_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
 Platform assembly: C:\Users\Philipp\Documents\TeamProject_TD\SacredVillage_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
 Loading C:\Users\Philipp\Documents\TeamProject_TD\SacredVillage_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-- Completed reload, in  0.111 seconds
+- Completed reload, in  0.051 seconds
 Platform assembly: C:\Users\Philipp\Documents\TeamProject_TD\SacredVillage_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\Philipp\Documents\TeamProject_TD\SacredVillage_Data\Managed\System.dll (this message is harmless)
 desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 1.297446 ms
+UnloadTime: 0.748359 ms
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: f7c -> priority: 1 
-  Thread -> id: 2908 -> priority: 1 
+  Thread -> id: 21d4 -> priority: 1 
+  Thread -> id: dc -> priority: 1 
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 7.927082 ms
+UnloadTime: 4.814733 ms
 
 Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 2883.
-Total: 3.100358 ms (FindLiveObjects: 0.197995 ms CreateObjectMapping: 0.247601 ms MarkObjects: 2.609005 ms  DeleteObjects: 0.044046 ms)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at DrawTiles.Start () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-Serialization depth limit 7 exceeded at 'Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_Upgrade'. There may be an object composition cycle in one or more of your serialized classes.
-
-Serialization hierarchy:
-8: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_Upgrade
-7: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
-6: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
-5: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
-4: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
-3: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
-2: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
-1: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
-0: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
-
- 
-(Filename:  Line: 83)
-
-Serialization depth limit 7 exceeded at 'Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_Upgrade'. There may be an object composition cycle in one or more of your serialized classes.
-
-Serialization hierarchy:
-8: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_Upgrade
-7: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
-6: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
-5: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
-4: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
-3: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
-2: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
-1: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
-0: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
-
- 
-(Filename:  Line: 83)
-
-Serialization depth limit 7 exceeded at 'Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_Upgrade'. There may be an object composition cycle in one or more of your serialized classes.
-
-Serialization hierarchy:
-8: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_Upgrade
-7: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
-6: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
-5: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
-4: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
-3: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
-2: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
-1: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
-0: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
-
- 
-(Filename:  Line: 83)
-
-Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 8.496265 ms
-
-Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 2884.
-Total: 2.712493 ms (FindLiveObjects: 0.138126 ms CreateObjectMapping: 0.240331 ms MarkObjects: 2.313936 ms  DeleteObjects: 0.019243 ms)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at DrawTiles.Start () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
+Total: 1.243132 ms (FindLiveObjects: 0.078257 ms CreateObjectMapping: 0.106908 ms MarkObjects: 1.035302 ms  DeleteObjects: 0.022236 ms)
 
 Serialization depth limit 7 exceeded at 'Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_Upgrade'. There may be an object composition cycle in one or more of your serialized classes.
 
