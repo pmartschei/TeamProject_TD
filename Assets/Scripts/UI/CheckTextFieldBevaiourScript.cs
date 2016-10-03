@@ -39,7 +39,9 @@ public class CheckTextFieldBevaiourScript : MonoBehaviour
     }
 
     public void Activate()
-    {
+
+    { 
+        m_upgradeTower.GetComponent<SelectUpgradeScript>().Unshow();
         m_upgradeTower.SetActive(false);
         m_totemHUD.SetActive(false);
         m_buildTowerHUD.SetActive(false);
@@ -49,8 +51,11 @@ public class CheckTextFieldBevaiourScript : MonoBehaviour
 
     public void Yes()
     {
-        m_lifeAndMoneySystem.GetComponent<LifeAndMoneyScript>().decreaseMoney(m_cost);
-        m_drawTilesSystem.GetComponent<TileUI>().resetTiles();
-        gameObject.SetActive(false);
+        if (m_lifeAndMoneySystem.GetComponent<LifeAndMoneyScript>().isMoneyDecreasePossible(m_cost))
+        {
+            m_lifeAndMoneySystem.GetComponent<LifeAndMoneyScript>().decreaseMoney(m_cost);
+            m_drawTilesSystem.GetComponent<TileUI>().resetTiles();
+            gameObject.SetActive(false);
+        }
     }
 }

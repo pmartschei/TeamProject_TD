@@ -1,0 +1,147 @@
+Initialize engine version: 5.4.0f3 (a6d8d714de6f)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GT 650M (ID=0xfd1)
+    Vendor:   NVIDIA
+    VRAM:     3072 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Philipp\Documents\TeamProject_TD\SacredVillage_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Philipp\Documents\TeamProject_TD\SacredVillage_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Philipp\Documents\TeamProject_TD\SacredVillage_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Philipp\Documents\TeamProject_TD\SacredVillage_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Philipp\Documents\TeamProject_TD\SacredVillage_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
+Loading C:\Users\Philipp\Documents\TeamProject_TD\SacredVillage_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
+Platform assembly: C:\Users\Philipp\Documents\TeamProject_TD\SacredVillage_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Philipp\Documents\TeamProject_TD\SacredVillage_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Philipp\Documents\TeamProject_TD\SacredVillage_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Philipp\Documents\TeamProject_TD\SacredVillage_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+- Completed reload, in  0.111 seconds
+Platform assembly: C:\Users\Philipp\Documents\TeamProject_TD\SacredVillage_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Philipp\Documents\TeamProject_TD\SacredVillage_Data\Managed\System.dll (this message is harmless)
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 1.297446 ms
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: f7c -> priority: 1 
+  Thread -> id: 2908 -> priority: 1 
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 7.927082 ms
+
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 2883.
+Total: 3.100358 ms (FindLiveObjects: 0.197995 ms CreateObjectMapping: 0.247601 ms MarkObjects: 2.609005 ms  DeleteObjects: 0.044046 ms)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DrawTiles.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Serialization depth limit 7 exceeded at 'Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_Upgrade'. There may be an object composition cycle in one or more of your serialized classes.
+
+Serialization hierarchy:
+8: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_Upgrade
+7: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+6: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+5: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+4: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+3: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+2: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+1: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+0: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+
+ 
+(Filename:  Line: 83)
+
+Serialization depth limit 7 exceeded at 'Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_Upgrade'. There may be an object composition cycle in one or more of your serialized classes.
+
+Serialization hierarchy:
+8: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_Upgrade
+7: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+6: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+5: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+4: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+3: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+2: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+1: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+0: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+
+ 
+(Filename:  Line: 83)
+
+Serialization depth limit 7 exceeded at 'Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_Upgrade'. There may be an object composition cycle in one or more of your serialized classes.
+
+Serialization hierarchy:
+8: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_Upgrade
+7: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+6: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+5: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+4: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+3: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+2: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+1: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+0: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+
+ 
+(Filename:  Line: 83)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 8.496265 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 2884.
+Total: 2.712493 ms (FindLiveObjects: 0.138126 ms CreateObjectMapping: 0.240331 ms MarkObjects: 2.313936 ms  DeleteObjects: 0.019243 ms)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DrawTiles.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Serialization depth limit 7 exceeded at 'Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_Upgrade'. There may be an object composition cycle in one or more of your serialized classes.
+
+Serialization hierarchy:
+8: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_Upgrade
+7: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+6: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+5: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+4: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+3: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+2: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+1: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+0: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+
+ 
+(Filename:  Line: 83)
+
+Serialization depth limit 7 exceeded at 'Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_Upgrade'. There may be an object composition cycle in one or more of your serialized classes.
+
+Serialization hierarchy:
+8: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_Upgrade
+7: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+6: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+5: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+4: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+3: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+2: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+1: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+0: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+
+ 
+(Filename:  Line: 83)
+
+Serialization depth limit 7 exceeded at 'Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_Upgrade'. There may be an object composition cycle in one or more of your serialized classes.
+
+Serialization hierarchy:
+8: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_Upgrade
+7: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+6: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+5: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+4: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+3: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+2: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+1: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+0: Assets.Scripts.GameLogic.TowerSystem::UpgradeSlot.m_FollowingUpgrades
+
+ 
+(Filename:  Line: 83)
+

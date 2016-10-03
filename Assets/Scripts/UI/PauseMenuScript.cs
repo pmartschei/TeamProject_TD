@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
-using UnityEditor;
 using UnityEngine.UI;
 
 public class PauseMenuScript : MonoBehaviour
@@ -102,7 +101,6 @@ public class PauseMenuScript : MonoBehaviour
 
     public void QuitGame()
     {
-        EditorApplication.isPlaying = false; // Nur zum testen, löschen später!!!
         Application.Quit();
     }
 }

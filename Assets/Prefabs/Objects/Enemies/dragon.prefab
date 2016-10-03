@@ -3776,7 +3776,7 @@ MonoBehaviour:
   m_BaseSpeed: 1
   m_Speed: 2.6
   m_WavePoints: 20
-  m_EnemyHealthDifficulty: 0.15
+  m_EnemyHealthDifficulty: 0.1
   m_EnemySpeedDifficulty: 0.04
   m_Gold: 2
   m_AdditionalSpeedMultiplier: 1

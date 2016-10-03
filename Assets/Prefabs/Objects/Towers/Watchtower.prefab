@@ -666,7 +666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Lvl: 1
-  m_BaseDamage: 0.5
+  m_BaseDamage: 0.7
   m_BaseCooldown: 0.2
   m_BaseRadius: 4
   m_UpdateIndices: 
